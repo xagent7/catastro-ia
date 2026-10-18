@@ -6,7 +6,7 @@
 
 🌐 **Sitio:** [catastro.xaboli.cl](https://catastro.xaboli.cl) · 📈 **Actualizado:** 18 de octubre de 2026 · 🔁 **Próxima revisión:** 1 nov 2026
 
-[![Licencia del contenido: CC BY 4.0](https://img.shields.io/badge/contenido-CC%20BY%204.0-blue)](LICENSE-CONTENT.md) [![Licencia del código: MIT](https://img.shields.io/badge/c%C3%B3digo-MIT-green)](LICENSE) [![Validación](https://github.com/xaboli/catastro-ia/actions/workflows/ci.yml/badge.svg)](https://github.com/xaboli/catastro-ia/actions/workflows/ci.yml) [![Enlaces](https://github.com/xaboli/catastro-ia/actions/workflows/enlaces.yml/badge.svg)](https://github.com/xaboli/catastro-ia/actions/workflows/enlaces.yml)
+[![Licencia del contenido: CC BY 4.0](https://img.shields.io/badge/contenido-CC%20BY%204.0-blue)](LICENSE-CONTENT.md) [![Licencia del código: MIT](https://img.shields.io/badge/c%C3%B3digo-MIT-green)](LICENSE) [![Validación](https://github.com/xagent7/catastro-ia/actions/workflows/ci.yml/badge.svg)](https://github.com/xagent7/catastro-ia/actions/workflows/ci.yml) [![Enlaces](https://github.com/xagent7/catastro-ia/actions/workflows/enlaces.yml/badge.svg)](https://github.com/xagent7/catastro-ia/actions/workflows/enlaces.yml)
 
 | 121 recursos | 98 repositorios de GitHub | 15 categorías | 136 relaciones | 19 recursos universitarios | 1 learning path |
 |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -306,12 +306,12 @@ Recursos gratuitos de IA que publican las diez primeras universidades del QS Wor
 
 **18 de octubre de 2026.** Se agregan plataformas de formación (DeepLearning.AI, Hugging Face y NVIDIA), Claude Academy, las especificaciones MCP y A2A, y una sección con recursos gratuitos de las 10 mejores universidades del ranking QS 2026. Los artículos se reemplazan por sus recursos originales.
 
-El detalle está en la pestaña [Novedades](https://catastro.xaboli.cl/#novedades) del sitio y en el [historial de commits](https://github.com/xaboli/catastro-ia/commits/main).
+El detalle está en la pestaña [Novedades](https://catastro.xaboli.cl/#novedades) del sitio y en el [historial de commits](https://github.com/xagent7/catastro-ia/commits/main).
 
 ## Cómo contribuir
 
-- **Sugerir un recurso:** abre un [issue con la plantilla](https://github.com/xaboli/catastro-ia/issues/new?template=sugerir-recurso.yml).
-- **Reportar un enlace roto o un error en un examen:** usa las plantillas de [enlace roto](https://github.com/xaboli/catastro-ia/issues/new?template=enlace-roto.yml) o [error en examen](https://github.com/xaboli/catastro-ia/issues/new?template=error-en-examen.yml).
+- **Sugerir un recurso:** abre un [issue con la plantilla](https://github.com/xagent7/catastro-ia/issues/new?template=sugerir-recurso.yml).
+- **Reportar un enlace roto o un error en un examen:** usa las plantillas de [enlace roto](https://github.com/xagent7/catastro-ia/issues/new?template=enlace-roto.yml) o [error en examen](https://github.com/xagent7/catastro-ia/issues/new?template=error-en-examen.yml).
 - **Proponer cambios directos:** edita los archivos de `data/` y abre un pull request. Lee [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Usar los datos

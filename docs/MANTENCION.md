@@ -13,7 +13,7 @@
 
 ## Instrucción sugerida para la tarea programada
 
-> Clona `xaboli/catastro-ia`, crea la rama `actualizacion/AAAA-MM`, lee el último issue con la etiqueta `enlaces` y aplica sus correcciones. Busca recursos nuevos para las categorías de `data/categories.json` siguiendo `CONTRIBUTING.md` (solo recursos directos, gratuitos, con al menos una relación). Registra los cambios en `data/changelog.json`, actualiza `data/meta.json`, ejecuta `npm run validate`, `npm run readme` y `npm run build`, y abre un pull request con el resumen. No elimines un recurso por una sola falla y no hagas merge.
+> Clona `xagent7/catastro-ia`, crea la rama `actualizacion/AAAA-MM`, lee el último issue con la etiqueta `enlaces` y aplica sus correcciones. Busca recursos nuevos para las categorías de `data/categories.json` siguiendo `CONTRIBUTING.md` (solo recursos directos, gratuitos, con al menos una relación). Registra los cambios en `data/changelog.json`, actualiza `data/meta.json`, ejecuta `npm run validate`, `npm run readme` y `npm run build`, y abre un pull request con el resumen. No elimines un recurso por una sola falla y no hagas merge.
 
 ## Publicar un learning path nuevo
 

@@ -11,13 +11,13 @@ Tiempo estimado: 30–40 minutos la primera vez.
 
 ## 1. GitHub
 
-1. Crea la cuenta u organización `xaboli` (si el nombre no está disponible, usa otro y cámbialo en `site.config.json` → `github.repo`).
+1. Inicia sesión con la cuenta `xagent7` (si usas otra, cámbiala en `site.config.json` → `github.repo`).
 2. Crea un repositorio **público** vacío llamado `catastro-ia` (sin README ni licencia: ya vienen en este proyecto).
 3. Sube el código:
 
 ```bash
 cd catastro-ia
-git remote add origin https://github.com/xaboli/catastro-ia.git
+git remote add origin https://github.com/xagent7/catastro-ia.git
 git push -u origin main
 ```
 
@@ -27,7 +27,7 @@ git push -u origin main
 ## 2. Cloudflare Pages
 
 1. En el panel de Cloudflare: **Workers & Pages → Create → Pages → Connect to Git**. (Si el asistente te ofrece crear un Worker, elige la opción de Pages.)
-2. Autoriza GitHub, elige `xaboli/catastro-ia` y configura:
+2. Autoriza GitHub, elige `xagent7/catastro-ia` y configura:
    - **Production branch:** `main`
    - **Framework preset:** None
    - **Build command:** `npm run build`
