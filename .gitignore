@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.wrangler/
+wrangler.toml
+.dev.vars
+link-report.*
+leads.csv
+.DS_Store

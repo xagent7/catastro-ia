@@ -1,0 +1,57 @@
+name: Sugerir un recurso
+description: Propón un repositorio, curso, herramienta o documentación para el catastro.
+title: "Sugerencia: "
+labels: [sugerencia]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Enlace al recurso original
+      description: Repositorio, curso, libro, herramienta o documentación oficial. No se aceptan artículos ni noticias.
+      placeholder: https://github.com/organizacion/proyecto
+    validations:
+      required: true
+  - type: dropdown
+    id: categoria
+    attributes:
+      label: Categoría sugerida
+      options:
+        - Fundamentos y rutas de AI Engineering
+        - LLMs desde cero y entrenamiento
+        - Prompt y context engineering
+        - Frameworks y patrones de agentes
+        - Ecosistema Google de agentes
+        - Claude Code, skills y harness
+        - SDD y SDLC agéntico
+        - Comprensión de código y diagramas
+        - RAG, datos e ingesta
+        - Inferencia, modelos y gateways
+        - Seguridad y gobernanza de agentes
+        - IA multimodal y generativa
+        - Apps e interfaces para agentes
+        - Plataformas de formación
+        - Certificación Claude
+        - No estoy seguro
+    validations:
+      required: true
+  - type: textarea
+    id: porque
+    attributes:
+      label: ¿Para qué sirve en una ruta de aprendizaje?
+      description: Qué enseña o resuelve y para quién.
+    validations:
+      required: true
+  - type: textarea
+    id: relaciones
+    attributes:
+      label: ¿Con qué recursos del catastro se relaciona?
+      description: Se complementa, es alternativa o conviene aprenderlo antes o después.
+  - type: checkboxes
+    id: criterios
+    attributes:
+      label: Criterios
+      options:
+        - label: Es gratuito o tiene una versión gratuita útil.
+          required: true
+        - label: Es el recurso original, no un artículo sobre él.
+          required: true

@@ -1,0 +1,108 @@
+/* Base compartida: tokens de color (claro/oscuro), tipografía autoalojada, cabecera, navegación, botones, formularios y pie */
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/bricolage-grotesque-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/bricolage-grotesque-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/source-sans-3-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/source-sans-3-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/source-sans-3-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/jetbrains-mono-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/jetbrains-mono-latin-600-normal.woff2) format("woff2")}
+
+:root{
+  --bg:#F2F5F4; --surface:#FFFFFF; --ink:#14211E; --muted:#56665F; --line:#D5DEDA; --chip:#E9EEEC;
+  --accent:#2446A8; --accent-ink:#FFFFFF; --accent-soft:#E4EAFB;
+  --ok:#1F7A4D; --ok-soft:#E1F2E8; --bad:#B42318; --bad-soft:#FBE6E3; --warn:#9A5B08; --warn-soft:#FBF0DC;
+  --band:#14211E; --band-ink:#F2F5F4; --band-muted:#B8C6C0;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --c-fund:#2F6FDB; --c-llm:#7A4BD6; --c-prompt:#C2410C; --c-agents:#0E8A6B; --c-google:#A07A06; --c-harness:#C7346A;
+  --c-sdd:#5363C9; --c-code:#0B85A0; --c-rag:#3A8A2A; --c-infer:#9A4E1E; --c-sec:#B42318; --c-media:#A03C9C; --c-apps:#4C7488; --c-cert:#5F6B78; --c-plat:#B4530A;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1412; --surface:#161F1C; --ink:#E5EDEA; --muted:#9BABA5; --line:#2A3631; --chip:#1F2A26;
+  --accent:#8EA8FF; --accent-ink:#0E1412; --accent-soft:#1D2742;
+  --ok:#5CC48E; --ok-soft:#14291F; --bad:#FF8A7A; --bad-soft:#341A17; --warn:#E3A64A; --warn-soft:#2E2414;
+  --band:#1A2622; --band-ink:#E5EDEA; --band-muted:#9BABA5;
+  --c-fund:#79A6FF; --c-llm:#B595FF; --c-prompt:#FF9A63; --c-agents:#43C9A3; --c-google:#E2BD4A; --c-harness:#FF7EAA;
+  --c-sdd:#98A6FF; --c-code:#4FC6E0; --c-rag:#7FCB6A; --c-infer:#E39A6A; --c-sec:#FF8A7A; --c-media:#E487DF; --c-apps:#8DB5C8; --c-cert:#A9B4C0; --c-plat:#F0A060; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1412; --surface:#161F1C; --ink:#E5EDEA; --muted:#9BABA5; --line:#2A3631; --chip:#1F2A26;
+  --accent:#8EA8FF; --accent-ink:#0E1412; --accent-soft:#1D2742;
+  --ok:#5CC48E; --ok-soft:#14291F; --bad:#FF8A7A; --bad-soft:#341A17; --warn:#E3A64A; --warn-soft:#2E2414;
+  --band:#1A2622; --band-ink:#E5EDEA; --band-muted:#9BABA5;
+  --c-fund:#79A6FF; --c-llm:#B595FF; --c-prompt:#FF9A63; --c-agents:#43C9A3; --c-google:#E2BD4A; --c-harness:#FF7EAA;
+  --c-sdd:#98A6FF; --c-code:#4FC6E0; --c-rag:#7FCB6A; --c-infer:#E39A6A; --c-sec:#FF8A7A; --c-media:#E487DF; --c-apps:#8DB5C8; --c-cert:#A9B4C0; --c-plat:#F0A060; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 56px}
+.w{max-width:1200px;margin:0 auto}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--surface);padding:8px 12px;border-radius:8px;z-index:20}
+.skip:focus{left:16px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-size:clamp(30px,4.6vw,46px);line-height:1.05;margin:6px 0 10px;text-wrap:balance}
+h2{font-family:var(--f-display);font-size:26px;line-height:1.15;margin:0 0 6px;text-wrap:balance}
+h3{font-family:var(--f-display);font-size:19px;line-height:1.2;margin:0 0 4px}
+.lede{color:var(--muted);max-width:72ch;margin:0}
+
+/* Barra superior */
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px;padding:16px 0 14px;margin-bottom:22px;border-bottom:1px solid var(--line)}
+.byline{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;font-size:15px;color:var(--muted)}
+.byline b{font-family:var(--f-display);font-size:18px;color:var(--ink);font-weight:700}
+.byline a{font-family:var(--f-mono);font-size:13.5px;text-decoration:none}
+.byline a:hover{text-decoration:underline}
+.nav{display:flex;flex-wrap:wrap;gap:4px 16px;font-weight:600;font-size:15px}
+.nav a{color:var(--ink);text-decoration:none;padding:4px 0;border-bottom:2px solid transparent}
+.nav a:hover{border-color:var(--line)}
+.nav a[aria-current="page"]{border-color:var(--accent)}
+.nav a.cta-link{color:var(--accent)}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;gap:6px;font:600 15px var(--f-body);padding:10px 18px;border-radius:9px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer;white-space:nowrap;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* Banda de llamada a la acción */
+.band{background:var(--band);color:var(--band-ink);border-radius:16px;padding:28px clamp(18px,4vw,40px);margin:44px 0 0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px}
+.band h2{color:var(--band-ink);font-size:clamp(24px,3vw,32px)}
+.band p{color:var(--band-muted);margin:8px 0 0}
+.band .kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--band-muted)}
+.band ul{margin:14px 0 0;padding-left:18px;color:var(--band-ink);display:flex;flex-direction:column;gap:4px;font-size:15px}
+.band a{color:var(--band-ink)}
+@media (max-width:860px){.band{grid-template-columns:1fr}}
+
+/* Formularios */
+.form{background:var(--surface);color:var(--ink);border-radius:12px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form .full{grid-column:1/-1}
+.form label{display:block;font-size:14px;font-weight:600}
+.form label>input,.form label>select,.form label>textarea{display:block;margin-top:5px}
+.form label .optional{font-weight:400;color:var(--muted)}
+.form input[type=text],.form input[type=email],.form select,.form textarea{font:15px var(--f-body);padding:9px 11px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.form textarea{min-height:84px;resize:vertical}
+.form .check{display:flex;align-items:flex-start;gap:9px;font-weight:400;font-size:14px;color:var(--ink)}
+.form .check input{margin:3px 0 0;accent-color:var(--accent);flex:none}
+.form .check a{color:var(--accent)}
+.form .hp{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden}
+.form .status{font-size:14px;min-height:1.4em;margin:0}
+.form .status.ok{color:var(--ok)} .form .status.err{color:var(--bad)}
+.form .fine{font-size:12.5px;color:var(--muted);margin:0}
+@media (max-width:560px){.form{grid-template-columns:1fr}}
+
+/* Pie */
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:12px 28px}
+.foot p{margin:0 0 8px;max-width:80ch}
+.foot nav{display:flex;flex-direction:column;gap:4px}
+.foot a{color:var(--muted)}
+@media (max-width:700px){.foot{grid-template-columns:1fr}}
+
+/* Página de texto (privacidad, 404) */
+.prose{max-width:76ch}
+.prose h2{margin-top:28px;font-size:22px}
+.prose p,.prose li{font-size:16px}
+.prose table{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0}
+.prose th,.prose td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.prose th{background:var(--chip)}

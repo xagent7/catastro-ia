@@ -1,0 +1,164 @@
+[
+  {
+    "date": "2026-10-18",
+    "summary": "Se agregan plataformas de formación (DeepLearning.AI, Hugging Face y NVIDIA), Claude Academy, las especificaciones MCP y A2A, y una sección con recursos gratuitos de las 10 mejores universidades del ranking QS 2026. Los artículos se reemplazan por sus recursos originales.",
+    "items": [
+      {
+        "change": "agregado",
+        "name": "Claude Academy",
+        "id": "academy"
+      },
+      {
+        "change": "agregado",
+        "name": "DeepLearning.AI · cursos cortos",
+        "id": "dlai"
+      },
+      {
+        "change": "agregado",
+        "name": "MCP: Build Rich-Context AI Apps with Anthropic",
+        "id": "dlaimcp"
+      },
+      {
+        "change": "agregado",
+        "name": "Agentic AI",
+        "id": "dlaiag"
+      },
+      {
+        "change": "agregado",
+        "name": "Claude Code: A Highly Agentic Coding Assistant",
+        "id": "dlaicc"
+      },
+      {
+        "change": "agregado",
+        "name": "Hugging Face · LLM Course",
+        "id": "hfllm"
+      },
+      {
+        "change": "agregado",
+        "name": "Hugging Face · Agents Course",
+        "id": "hfagents"
+      },
+      {
+        "change": "agregado",
+        "name": "Hugging Face · MCP Course",
+        "id": "hfmcp"
+      },
+      {
+        "change": "agregado",
+        "name": "Hugging Face · Context Course",
+        "id": "hfcontext"
+      },
+      {
+        "change": "agregado",
+        "name": "Hugging Face · smol course",
+        "id": "hfsmol"
+      },
+      {
+        "change": "agregado",
+        "name": "Hugging Face · Open-Source AI Cookbook",
+        "id": "hfcook"
+      },
+      {
+        "change": "agregado",
+        "name": "NVIDIA Deep Learning Institute",
+        "id": "nvdli"
+      },
+      {
+        "change": "agregado",
+        "name": "huggingface/transformers",
+        "id": "transformers"
+      },
+      {
+        "change": "agregado",
+        "name": "huggingface/smolagents",
+        "id": "smolagents"
+      },
+      {
+        "change": "agregado",
+        "name": "NVIDIA/TensorRT-LLM",
+        "id": "trtllm"
+      },
+      {
+        "change": "agregado",
+        "name": "NVIDIA/NeMo-Guardrails",
+        "id": "nemoguard"
+      },
+      {
+        "change": "agregado",
+        "name": "NVIDIA/GenerativeAIExamples",
+        "id": "nvgenai"
+      },
+      {
+        "change": "agregado",
+        "name": "modelcontextprotocol/modelcontextprotocol",
+        "id": "mcp"
+      },
+      {
+        "change": "agregado",
+        "name": "a2aproject/A2A",
+        "id": "a2a"
+      },
+      {
+        "change": "agregado",
+        "name": "20 recursos de universidades top 10 (QS 2026)",
+        "note": "en la pestaña Universidades top 10"
+      },
+      {
+        "change": "actualizado",
+        "name": "gszhangwei/open-spdd",
+        "id": "spdd",
+        "note": "Ahora apunta a la herramienta original (open-spdd) en vez del artículo"
+      },
+      {
+        "change": "actualizado",
+        "name": "Claude Code · memoria y CLAUDE.md",
+        "id": "claudemd",
+        "note": "Ahora apunta a la documentación oficial de Anthropic"
+      },
+      {
+        "change": "actualizado",
+        "name": "allierays/agentic-architecture-review",
+        "id": "archreview",
+        "note": "Ahora apunta al plugin original en GitHub"
+      },
+      {
+        "change": "actualizado",
+        "name": "OWASP Threat Advisor",
+        "id": "owaspai",
+        "note": "Ahora apunta a la herramienta de OWASP en vez de la noticia"
+      },
+      {
+        "change": "actualizado",
+        "name": "mattpocock/skills",
+        "id": "mattskills",
+        "note": "Incluye la skill teach"
+      },
+      {
+        "change": "actualizado",
+        "name": "paullarionov/claude-certified-architect",
+        "id": "cca",
+        "note": "Descripción ampliada"
+      },
+      {
+        "change": "eliminado",
+        "name": "Agentic Design Patterns (PDF en repositorio de terceros)",
+        "note": "por derechos de autor"
+      },
+      {
+        "change": "eliminado",
+        "name": "The AI-Native SDLC playbook",
+        "note": "es un artículo, no un recurso directo"
+      },
+      {
+        "change": "eliminado",
+        "name": "Skill /teach (ficha propia)",
+        "note": "integrada en mattpocock/skills"
+      },
+      {
+        "change": "eliminado",
+        "name": "Developer’s Guide to AI Agent Protocols",
+        "note": "reemplazada por las especificaciones MCP y A2A"
+      }
+    ]
+  }
+]

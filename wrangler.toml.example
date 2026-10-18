@@ -1,0 +1,12 @@
+# Opcional: configuración de Cloudflare Pages como código.
+# Si la usas, cópiala como wrangler.toml y reemplaza database_id por el de tu base D1
+# (wrangler d1 create catastro-leads). Con wrangler.toml en el repositorio, Cloudflare Pages
+# toma los bindings desde este archivo y no desde el panel.
+name = "catastro-ia"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "catastro-leads"
+database_id = "REEMPLAZAR-CON-EL-ID-DE-TU-BASE-D1"

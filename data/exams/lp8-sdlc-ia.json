@@ -1,0 +1,1305 @@
+{
+  "learningPath": "lp8",
+  "questions": [
+    {
+      "module": 1,
+      "level": "B",
+      "prompt": "Según la guía de buenas prácticas de Claude Code, ¿de qué restricción derivan casi todas sus recomendaciones?",
+      "options": [
+        "La ventana de contexto se llena rápido y el rendimiento cae al llenarse",
+        "El costo por token sube cada vez que el repositorio suma archivos nuevos al índice",
+        "La latencia de red limita cuántas herramientas puede usar por turno",
+        "El modelo solo puede editar un archivo por turno y hay que dividir"
+      ],
+      "answer": 0,
+      "explanation": "El contexto guarda la conversación, cada archivo leído y cada salida de comando. Cuando se llena, el modelo olvida instrucciones y comete más errores; por eso casi todo apunta a cuidar el contexto."
+    },
+    {
+      "module": 1,
+      "level": "B",
+      "prompt": "¿Cuál es el flujo recomendado para un cambio que toca varios archivos o un área que no conoces?",
+      "options": [
+        "Implementar primero y después pedir al agente que documente el cambio",
+        "Explorar, planificar, implementar y hacer commit, en ese orden",
+        "Escribir un prompt muy largo y aceptar la primera solución propuesta",
+        "Pedir tres soluciones en paralelo y quedarse con la más corta"
+      ],
+      "answer": 1,
+      "explanation": "La guía propone explorar en plan mode, pedir un plan detallado, implementar contra ese plan y cerrar con commit y PR. Separar la exploración evita resolver el problema equivocado."
+    },
+    {
+      "module": 1,
+      "level": "B",
+      "prompt": "¿Cuándo conviene saltarse el plan mode y pedir el cambio directamente?",
+      "options": [
+        "Cuando el cambio afecta a más de cinco archivos del repositorio",
+        "Cuando no conoces bien el módulo que vas a modificar",
+        "Cuando podrías describir el diff completo en una sola frase",
+        "Cuando el proyecto todavía no tiene tests automatizados ni pipeline de CI"
+      ],
+      "answer": 2,
+      "explanation": "Planificar agrega costo. Para un typo, una línea de log o un renombre, lo directo es mejor; el plan rinde cuando hay incertidumbre o el cambio es amplio."
+    },
+    {
+      "module": 1,
+      "level": "B",
+      "prompt": "¿Qué significa darle al agente “una forma de verificar su trabajo”?",
+      "options": [
+        "Pedirle que explique por escrito por qué la solución es correcta",
+        "Darle un chequeo ejecutable que devuelva pasa o falla",
+        "Asignar a una persona que apruebe cada archivo antes de seguir",
+        "Activar el nivel de razonamiento más alto del modelo"
+      ],
+      "answer": 1,
+      "explanation": "Tests, build, linter o una captura comparada. Sin una señal ejecutable, “parece listo” es lo único que el agente tiene; con ella, trabaja, corre el chequeo e itera hasta que pasa."
+    },
+    {
+      "module": 1,
+      "level": "I",
+      "prompt": "¿En qué consiste el patrón Writer/Reviewer?",
+      "options": [
+        "Una sesión implementa y otra, con contexto limpio, revisa el resultado",
+        "El mismo agente relee su propio razonamiento al final para validar lo que escribió",
+        "Una persona escribe el código y el agente redacta los commits",
+        "Dos agentes hacen la misma tarea y se elige la que tenga más tests"
+      ],
+      "answer": 0,
+      "explanation": "Un contexto nuevo no arrastra la justificación del autor, así que evalúa el diff por lo que es. Es la base de la revisión adversarial con subagentes."
+    },
+    {
+      "module": 1,
+      "level": "B",
+      "prompt": "Corregiste al agente dos veces sobre el mismo problema y sigue fallando. ¿Qué recomienda la guía?",
+      "options": [
+        "Seguir corrigiendo con mensajes cada vez más detallados hasta que funcione",
+        "Cambiar a un modelo más pequeño y rápido para reducir la confusión del agente",
+        "Hacer /clear y empezar con un prompt mejor, con lo aprendido",
+        "Quitarle los permisos de edición hasta que lo entienda"
+      ],
+      "answer": 2,
+      "explanation": "Después de varias correcciones, el contexto queda lleno de intentos fallidos. Una sesión limpia con un mejor prompt casi siempre supera a una sesión larga con correcciones acumuladas."
+    },
+    {
+      "module": 1,
+      "level": "I",
+      "prompt": "¿Qué describe la falla llamada “trust-then-verify gap”?",
+      "options": [
+        "El equipo termina aprobando permisos sin leerlos después de muchas solicitudes seguidas",
+        "Una implementación plausible que falla en casos borde y nadie lo nota",
+        "El equipo confía en el agente solo después de una auditoría externa",
+        "El modelo verifica dos veces cada cambio y eso duplica el costo"
+      ],
+      "answer": 1,
+      "explanation": "La mitigación es entregar siempre verificación: tests, scripts o capturas. Si no lo puedes verificar, no lo publiques."
+    },
+    {
+      "module": 1,
+      "level": "I",
+      "prompt": "En un SDLC con agentes, ¿qué parte del trabajo conviene que quede en manos de las personas?",
+      "options": [
+        "Escribir la mayor parte del código y dejar al agente la documentación",
+        "Definir la intención y los criterios de aceptación, y revisar la evidencia",
+        "Ejecutar a mano cada comando que el agente propone en la terminal",
+        "Aprobar cada línea antes de que el agente pase a la siguiente"
+      ],
+      "answer": 1,
+      "explanation": "El agente ejecuta; las personas fijan qué se quiere lograr, cómo se sabe que está bien y aprueban sobre evidencia. Revisar evidencia es más rápido que repetir la verificación."
+    },
+    {
+      "module": 1,
+      "level": "B",
+      "prompt": "Para una funcionalidad grande, ¿qué técnica sugiere la guía antes de implementar?",
+      "options": [
+        "Que el agente te entreviste y escriba la especificación en SPEC.md",
+        "Que el agente construya un prototipo rápido para descartarlo después",
+        "Pegar en cada prompt la especificación completa que mandó el cliente",
+        "Dejar que el agente defina el alcance y revisar solo el resultado"
+      ],
+      "answer": 0,
+      "explanation": "La entrevista saca a la luz casos borde, compromisos y decisiones de UX que no habías considerado. El resultado es una especificación escrita que sirve de referencia."
+    },
+    {
+      "module": 1,
+      "level": "I",
+      "prompt": "Ya tienes la especificación escrita. ¿Por qué conviene implementarla en una sesión nueva?",
+      "options": [
+        "Porque la sesión anterior pierde los permisos al terminar",
+        "Porque el contexto queda limpio y centrado en implementar",
+        "Porque una sesión nueva usa automáticamente un modelo mejor",
+        "Porque la especificación solo se lee al inicio de una sesión"
+      ],
+      "answer": 1,
+      "explanation": "La entrevista llena el contexto de idas y vueltas. Una sesión nueva parte con lo esencial: la especificación y el código."
+    },
+    {
+      "module": 2,
+      "level": "B",
+      "prompt": "¿Qué hace el comando /init en Claude Code?",
+      "options": [
+        "Instala las dependencias del proyecto y corre los tests por primera vez en la sesión",
+        "Genera un CLAUDE.md inicial; si ya existe, sugiere mejoras",
+        "Crea el repositorio git y hace el primer commit",
+        "Reinicia la sesión y borra la memoria automática del proyecto actual"
+      ],
+      "answer": 1,
+      "explanation": "/init analiza el código y propone un CLAUDE.md con comandos de build, tests y convenciones. Después se refina con lo que Claude no puede descubrir por sí solo."
+    },
+    {
+      "module": 2,
+      "level": "B",
+      "prompt": "¿Dónde puede vivir el CLAUDE.md de proyecto que comparte el equipo?",
+      "options": [
+        "Solo en ~/.claude/CLAUDE.md de cada usuario",
+        "En ./CLAUDE.md o en ./.claude/CLAUDE.md del repositorio",
+        "En .github/CLAUDE.md, junto a los workflows",
+        "En cualquier carpeta, si se llama claude.txt"
+      ],
+      "answer": 1,
+      "explanation": "El de proyecto va en la raíz o dentro de .claude/ y se comparte por control de versiones. ~/.claude/CLAUDE.md es personal y aplica a todos tus proyectos."
+    },
+    {
+      "module": 2,
+      "level": "B",
+      "prompt": "¿Para qué sirve CLAUDE.local.md?",
+      "options": [
+        "Para las instrucciones que la organización impone a todos",
+        "Para preferencias personales del proyecto, fuera de git",
+        "Para reemplazar al CLAUDE.md del equipo cuando se trabaja sin conexión",
+        "Para registrar los errores de sesiones anteriores"
+      ],
+      "answer": 1,
+      "explanation": "Se carga junto al CLAUDE.md y se lee después de él en ese nivel. Se agrega al .gitignore; sirve para cosas como URLs de tu sandbox o datos de prueba propios."
+    },
+    {
+      "module": 2,
+      "level": "B",
+      "prompt": "¿Qué tamaño recomienda la documentación para cada archivo CLAUDE.md?",
+      "options": [
+        "Menos de 200 líneas por archivo",
+        "Entre 500 y 1.000 líneas",
+        "Una página impresa",
+        "Sin límite: más largo es mejor"
+      ],
+      "answer": 0,
+      "explanation": "Archivos más largos consumen más contexto y reducen la adherencia. Lo que aplica solo a una parte del código va mejor en reglas con alcance por ruta."
+    },
+    {
+      "module": 2,
+      "level": "I",
+      "prompt": "En un CLAUDE.md, las importaciones con @ruta usan rutas relativas. ¿Respecto de qué se resuelven?",
+      "options": [
+        "Del directorio desde donde se lanzó Claude Code",
+        "De la raíz del sistema de archivos",
+        "Del archivo que contiene la importación",
+        "De la carpeta ~/.claude del usuario"
+      ],
+      "answer": 2,
+      "explanation": "Las importaciones pueden anidarse hasta cuatro saltos. Ojo: importar no reduce el costo de contexto, porque lo importado también se carga al inicio."
+    },
+    {
+      "module": 2,
+      "level": "I",
+      "prompt": "¿Qué permite el frontmatter paths en un archivo de .claude/rules/?",
+      "options": [
+        "Cargar la regla solo al trabajar con archivos que coinciden",
+        "Copiar la regla automáticamente a cada una de esas carpetas del repo",
+        "Bloquear la edición de los archivos indicados por los patrones del campo",
+        "Compartir la regla con otros repositorios"
+      ],
+      "answer": 0,
+      "explanation": "Las reglas con alcance por ruta ahorran contexto: las de frontend no se cargan mientras el agente trabaja en el backend."
+    },
+    {
+      "module": 2,
+      "level": "I",
+      "prompt": "Una regla debe cumplirse siempre, sin excepción, como no tocar la carpeta de migraciones. ¿Dónde se implementa?",
+      "options": [
+        "En CLAUDE.md, escrita en mayúsculas",
+        "En un hook que la aplique de forma determinista",
+        "En la descripción de una skill",
+        "En un comentario dentro de cada migración"
+      ],
+      "answer": 1,
+      "explanation": "CLAUDE.md es orientación, no configuración obligatoria. Un hook PreToolUse puede bloquear la acción pase lo que pase."
+    },
+    {
+      "module": 2,
+      "level": "B",
+      "prompt": "¿Qué comando muestra si Claude cargó tus archivos de memoria y cuánto contexto ocupan?",
+      "options": [
+        "/memory-check",
+        "/status --verbose",
+        "/context",
+        "/doctor --memory"
+      ],
+      "answer": 2,
+      "explanation": "/context muestra qué ocupa el contexto, incluida la lista de archivos de memoria cargados."
+    },
+    {
+      "module": 2,
+      "level": "I",
+      "prompt": "¿En qué se diferencia /compact de /clear?",
+      "options": [
+        "/compact borra el historial y /clear lo resume",
+        "/compact resume y conserva lo clave; /clear reinicia",
+        "Son iguales, pero /compact solo existe dentro del plan mode",
+        "/compact guarda la sesión en disco y /clear la sube a la nube"
+      ],
+      "answer": 1,
+      "explanation": "/clear es para cambiar de tarea. /compact sirve para seguir en la misma tarea con menos contexto, y acepta instrucciones como “/compact enfócate en los cambios de la API”."
+    },
+    {
+      "module": 2,
+      "level": "B",
+      "prompt": "Necesitas confirmar un detalle rápido sin que la respuesta quede en el historial. ¿Qué usas?",
+      "options": [
+        "/btw, cuya respuesta no entra al historial",
+        "/rewind, para borrar la pregunta después",
+        "Una rama de git para aislar la consulta",
+        "El modo dontAsk, que no registra consultas"
+      ],
+      "answer": 0,
+      "explanation": "/btw responde una pregunta lateral sin agregarla al contexto, así no crece la conversación por algo puntual."
+    },
+    {
+      "module": 3,
+      "level": "B",
+      "prompt": "¿Dónde se guardan los subagentes de un proyecto en Claude Code?",
+      "options": [
+        "En .claude/agents/, como Markdown con frontmatter",
+        "En .github/agents/, como archivos YAML con un esquema propio",
+        "En el archivo .mcp.json de la raíz",
+        "En package.json, bajo la clave agents"
+      ],
+      "answer": 0,
+      "explanation": "Los de proyecto van en .claude/agents/ y se versionan; los personales, en ~/.claude/agents/. El cuerpo del archivo es el prompt de sistema del subagente."
+    },
+    {
+      "module": 3,
+      "level": "B",
+      "prompt": "¿Qué campos son obligatorios en el frontmatter de un subagente?",
+      "options": [
+        "name, tools y model",
+        "name y description",
+        "description y permissionMode",
+        "Ninguno, todos son opcionales"
+      ],
+      "answer": 1,
+      "explanation": "La descripción es clave: es lo que usa Claude para decidir cuándo delegar."
+    },
+    {
+      "module": 3,
+      "level": "I",
+      "prompt": "¿Qué recibe la conversación principal cuando un subagente termina su tarea?",
+      "options": [
+        "La transcripción completa de lo que hizo",
+        "Solo el resumen final del subagente",
+        "Una copia de cada archivo que abrió",
+        "Nada; el resultado queda solo en logs"
+      ],
+      "answer": 1,
+      "explanation": "El subagente no ve tu historial y trabaja en su propia ventana. Solo su resumen vuelve; por eso protege el contexto principal."
+    },
+    {
+      "module": 3,
+      "level": "I",
+      "prompt": "Al iniciar una sesión, ¿qué parte de cada skill entra al contexto?",
+      "options": [
+        "El SKILL.md completo y sus archivos de apoyo",
+        "Solo su descripción; el resto, al invocarla",
+        "Nada, hasta que alguien escribe su nombre",
+        "Solo el nombre de la carpeta de la skill"
+      ],
+      "answer": 1,
+      "explanation": "Es la divulgación progresiva: el agente sabe qué hay disponible sin pagar el contenido completo. Los archivos de apoyo se leen solo si hacen falta."
+    },
+    {
+      "module": 3,
+      "level": "I",
+      "prompt": "¿Qué efecto tiene disable-model-invocation: true en una skill?",
+      "options": [
+        "Queda oculta del menú / y solo Claude puede usarla por su cuenta",
+        "Solo una persona la invoca; Claude no la carga solo",
+        "Se ejecuta sin modelo, como un script",
+        "Se desactiva por completo hasta reiniciar la sesión de trabajo"
+      ],
+      "answer": 1,
+      "explanation": "Es lo indicado para flujos con efectos secundarios, como un deploy, que quieres disparar a propósito."
+    },
+    {
+      "module": 3,
+      "level": "B",
+      "prompt": "¿Qué relación hay hoy entre los comandos personalizados y las skills?",
+      "options": [
+        "Se fusionaron: ambos formatos crean el mismo /comando",
+        "Los comandos reemplazaron a las skills",
+        "Son sistemas separados e incompatibles",
+        "Los comandos solo funcionan en modo headless"
+      ],
+      "answer": 0,
+      "explanation": ".claude/commands/x.md y .claude/skills/x/SKILL.md crean /x. Las skills agregan archivos de apoyo, control de invocación y carga automática; si coinciden de nombre, gana la skill."
+    },
+    {
+      "module": 3,
+      "level": "I",
+      "prompt": "Un hook PreToolUse termina con código de salida 2. ¿Qué ocurre?",
+      "options": [
+        "La herramienta corre y el error queda en el log",
+        "La llamada se bloquea y Claude ve el stderr",
+        "La sesión completa se cierra por seguridad",
+        "El hook se repite hasta terminar con código 0"
+      ],
+      "answer": 1,
+      "explanation": "Código 2 es error bloqueante en los eventos que pueden bloquear. Ni siquiera un JSON con permissionDecision allow lo anula."
+    },
+    {
+      "module": 3,
+      "level": "A",
+      "prompt": "Un hook PreToolUse termina con código de salida 1 y sin JSON válido. ¿Qué pasa con la acción?",
+      "options": [
+        "Se bloquea, igual que con el código 2",
+        "Continúa: es un error no bloqueante",
+        "Queda en espera de aprobación humana",
+        "Se cancela si el hook tardó más de 30 s"
+      ],
+      "answer": 1,
+      "explanation": "Solo el código 2 bloquea, salvo que el hook tenga onFailure: block. Es un error frecuente creer que cualquier código distinto de cero detiene la acción."
+    },
+    {
+      "module": 3,
+      "level": "B",
+      "prompt": "¿Cómo se llaman las herramientas de un servidor MCP en reglas de permisos y matchers de hooks?",
+      "options": [
+        "mcp.<servidor>.<herramienta>",
+        "<servidor>/<herramienta>",
+        "mcp__<servidor>__<herramienta>",
+        "tool:<herramienta>@<servidor>"
+      ],
+      "answer": 2,
+      "explanation": "Por ejemplo, la herramienta query del servidor db es mcp__db__query. Para cubrir todo un servidor en un hook se usa una regex como mcp__db__.*."
+    },
+    {
+      "module": 3,
+      "level": "I",
+      "prompt": "¿Cuándo conviene empaquetar algo como plugin en vez de una skill suelta?",
+      "options": [
+        "Siempre, porque las skills sueltas no se pueden compartir con el equipo",
+        "Para distribuir varios componentes como una unidad versionada",
+        "Solo si el componente necesita acceso a internet o a servicios externos",
+        "Cuando la skill tiene menos de 50 líneas"
+      ],
+      "answer": 1,
+      "explanation": "Un plugin agrupa skills, agentes, hooks y servidores MCP, tiene su manifiesto en .claude-plugin/plugin.json y se instala desde un marketplace."
+    },
+    {
+      "module": 4,
+      "level": "I",
+      "prompt": "¿En qué orden evalúa Claude Code las reglas de permisos?",
+      "options": [
+        "allow, ask y deny; gana la más específica",
+        "deny, ask y allow; gana la primera que coincide",
+        "En el orden en que aparecen en el archivo",
+        "Primero las del usuario y luego las del proyecto"
+      ],
+      "answer": 1,
+      "explanation": "La especificidad no cambia el orden. Una regla deny siempre gana sobre un allow que también coincida."
+    },
+    {
+      "module": 4,
+      "level": "A",
+      "prompt": "Tienes deny Bash(aws *) y allow Bash(aws s3 ls). ¿Qué pasa cuando el agente ejecuta aws s3 ls?",
+      "options": [
+        "Se permite porque el allow es más específico",
+        "Se bloquea: un allow no abre excepciones a un deny",
+        "Se pregunta a la persona por la contradicción",
+        "Se permite solo en plan mode"
+      ],
+      "answer": 1,
+      "explanation": "La deny amplia bloquea todas las llamadas que coinciden. Si necesitas la excepción, la deny tiene que ser más acotada."
+    },
+    {
+      "module": 4,
+      "level": "B",
+      "prompt": "¿Qué hace el modo de permisos plan?",
+      "options": [
+        "Ejecuta todo sin preguntar y al final resume",
+        "Explora con lecturas sin editar el código fuente",
+        "Solo permite editar archivos de documentación",
+        "Ejecuta todo en segundo plano"
+      ],
+      "answer": 1,
+      "explanation": "Lee archivos y corre comandos de solo lectura para proponer un plan antes de tocar el código. Se activa con Shift+Tab o con --permission-mode plan."
+    },
+    {
+      "module": 4,
+      "level": "I",
+      "prompt": "¿Qué hace el modo dontAsk y para qué sirve?",
+      "options": [
+        "Aprueba todo sin preguntar; sirve para trabajar sin pausas",
+        "Niega todo lo que pediría permiso; sirve en CI",
+        "Pregunta una sola vez por sesión y recuerda la respuesta",
+        "Desactiva los hooks para ir más rápido"
+      ],
+      "answer": 1,
+      "explanation": "Siguen corriendo las lecturas, los comandos de solo lectura y lo pre-aprobado con allow o --allowedTools. Todo lo demás se niega."
+    },
+    {
+      "module": 4,
+      "level": "B",
+      "prompt": "¿Qué aprueba automáticamente el modo acceptEdits?",
+      "options": [
+        "Todo comando de shell y de red",
+        "Ediciones y comandos comunes como mkdir, mv o cp",
+        "Lecturas de archivos fuera del proyecto",
+        "Instalaciones de paquetes y despliegues"
+      ],
+      "answer": 1,
+      "explanation": "Dentro del directorio de trabajo. Otros comandos de shell y las peticiones de red siguen necesitando una regla allow."
+    },
+    {
+      "module": 4,
+      "level": "I",
+      "prompt": "Quieres que el agente nunca lea el archivo .env. ¿Qué es lo correcto?",
+      "options": [
+        "Crear un archivo .claudeignore con .env",
+        "Agregar la regla deny Read(./.env)",
+        "Escribir en CLAUDE.md que no lo lea",
+        "Renombrar el archivo a .env.hidden"
+      ],
+      "answer": 1,
+      "explanation": "La documentación aclara que .claudeignore no tiene efecto. La regla Read deny aplica a las herramientas de archivos y a comandos reconocidos como cat o head."
+    },
+    {
+      "module": 4,
+      "level": "A",
+      "prompt": "¿Qué limitación tienen las reglas Read y Edit deny?",
+      "options": [
+        "Solo funcionan en sistemas Linux",
+        "No cubren scripts que abren archivos por su cuenta",
+        "Se desactivan en el modo auto",
+        "Solo aplican a archivos grandes"
+      ],
+      "answer": 1,
+      "explanation": "Un programa en Python que abre un archivo queda fuera de la regla. Para una garantía a nivel de sistema operativo hay que usar el sandbox."
+    },
+    {
+      "module": 4,
+      "level": "I",
+      "prompt": "¿Qué cambios NO puede deshacer el sistema de checkpoints?",
+      "options": [
+        "Las ediciones hechas con las herramientas de Claude",
+        "Los hechos con comandos de Bash y los externos",
+        "Los cambios en archivos Markdown",
+        "Las ediciones de la última hora"
+      ],
+      "answer": 1,
+      "explanation": "Los checkpoints solo rastrean las ediciones de las herramientas de archivos de Claude; rm, mv o cp en Bash quedan fuera. Por eso no reemplazan a git."
+    },
+    {
+      "module": 4,
+      "level": "B",
+      "prompt": "¿Cómo se abre el menú para volver a un punto anterior de la sesión?",
+      "options": [
+        "Con /undo o Ctrl+Z",
+        "Con /rewind o Esc dos veces",
+        "Con /reset-session",
+        "Cerrando y abriendo el terminal"
+      ],
+      "answer": 1,
+      "explanation": "Esc dos veces funciona con el campo de texto vacío. Desde el menú puedes restaurar código, conversación o ambos, o resumir desde un punto."
+    },
+    {
+      "module": 4,
+      "level": "B",
+      "prompt": "¿Qué relación correcta hay entre checkpoints y git?",
+      "options": [
+        "Los checkpoints reemplazan a git en los proyectos con agentes",
+        "Checkpoints para la sesión; git para el historial",
+        "Git se desactiva mientras hay checkpoints",
+        "Los checkpoints se suben solos como commits a la rama actual"
+      ],
+      "answer": 1,
+      "explanation": "Los checkpoints permiten probar algo arriesgado y volver atrás. El historial permanente y la colaboración siguen en git."
+    },
+    {
+      "module": 5,
+      "level": "B",
+      "prompt": "Al preparar un repositorio para trabajar con Claude Code, ¿qué archivo de configuración se versiona para todo el equipo?",
+      "options": [
+        ".claude/settings.local.json",
+        ".claude/settings.json",
+        "~/.claude/settings.json",
+        "claude.config.yaml"
+      ],
+      "answer": 1,
+      "explanation": ".claude/settings.json se comparte por git. .claude/settings.local.json es personal y queda fuera del control de versiones."
+    },
+    {
+      "module": 5,
+      "level": "I",
+      "prompt": "¿Cuál es el orden de precedencia de la configuración de Claude Code, de mayor a menor?",
+      "options": [
+        "Usuario, compartido, local, línea de comandos, gestionada",
+        "Gestionada, línea de comandos, local, compartido, usuario",
+        "Compartido, usuario, gestionada, línea de comandos, local",
+        "Línea de comandos, usuario, gestionada, compartido, local"
+      ],
+      "answer": 1,
+      "explanation": "La organización manda con la configuración gestionada. Luego pesan la línea de comandos y los ajustes locales del proyecto por sobre los compartidos y los personales."
+    },
+    {
+      "module": 5,
+      "level": "I",
+      "prompt": "Quieres que todo el equipo use el mismo servidor MCP en un repositorio. ¿Qué scope usas?",
+      "options": [
+        "local, guardado en ~/.claude.json",
+        "project, guardado en .mcp.json",
+        "user, guardado en ~/.claude/settings.json",
+        "global, guardado en /etc/claude"
+      ],
+      "answer": 1,
+      "explanation": "El scope project se versiona con el repositorio. En sesiones interactivas, Claude Code pide aprobación antes de usar los servidores de .mcp.json."
+    },
+    {
+      "module": 5,
+      "level": "A",
+      "prompt": "¿Qué cambia al definir CLAUDE_CODE_NEW_INIT=1 antes de ejecutar /init?",
+      "options": [
+        "Regenera el CLAUDE.md borrando el anterior",
+        "Propone CLAUDE.md, skills y hooks y pide revisión",
+        "Crea además un repositorio remoto en GitHub",
+        "Ejecuta /init en modo headless, sin hacer ninguna pregunta"
+      ],
+      "answer": 1,
+      "explanation": "Pregunta qué preparar, explora el código con un subagente y muestra una propuesta revisable antes de escribir archivos. Es la variante más completa para bootstrap."
+    },
+    {
+      "module": 5,
+      "level": "B",
+      "prompt": "¿Qué conviene incluir en el CLAUDE.md al hacer bootstrap de un proyecto?",
+      "options": [
+        "Una descripción archivo por archivo del código",
+        "Comandos que no se adivinan y reglas propias",
+        "Tutoriales completos del framework usado",
+        "La documentación entera de la API"
+      ],
+      "answer": 1,
+      "explanation": "Comandos de build y test, reglas de estilo distintas de las habituales y convenciones del repositorio. Lo que el agente puede deducir del código sobra."
+    },
+    {
+      "module": 5,
+      "level": "I",
+      "prompt": "¿Qué aportan herramientas como sharekit o agentic-stack en el bootstrap de un equipo?",
+      "options": [
+        "Generan el código base de la aplicación a partir de plantillas",
+        "Hacen portable y común el setup del agente",
+        "Reemplazan el control de versiones",
+        "Evitan tener que configurar permisos y reglas de seguridad"
+      ],
+      "answer": 1,
+      "explanation": "Distribuyen CLAUDE.md, skills y reglas entre personas o herramientas. La configuración del agente es parte del sistema de trabajo del equipo; estandarizarla evita que cada uno tenga un agente distinto."
+    },
+    {
+      "module": 5,
+      "level": "I",
+      "prompt": "¿Por qué incluir un dev container o sandbox en el bootstrap de un proyecto con agentes?",
+      "options": [
+        "Porque Claude Code no corre fuera de contenedores",
+        "Para dar más autonomía al agente con menos riesgo",
+        "Para que el agente acceda a producción sin claves",
+        "Para no tener que escribir tests"
+      ],
+      "answer": 1,
+      "explanation": "El aislamiento protege la máquina y los datos mientras el agente trabaja con menos interrupciones. La documentación compara sandbox integrado, dev containers, Docker y máquinas virtuales."
+    },
+    {
+      "module": 5,
+      "level": "I",
+      "prompt": "Quieres que un plugin quede habilitado para todos los que trabajan en un repositorio. ¿Cómo se hace?",
+      "options": [
+        "Con scope project, registrado en el settings versionado",
+        "Copiando la carpeta a mano en cada equipo",
+        "Agregándolo como sección del README",
+        "Con scope user en la máquina del líder técnico"
+      ],
+      "answer": 0,
+      "explanation": "El scope project lo habilita a través de .claude/settings.json, pero cada persona igual lo instala en su máquina."
+    },
+    {
+      "module": 5,
+      "level": "A",
+      "prompt": "¿Qué riesgo tiene ejecutar claude -p sin --bare en un repositorio que no conoces?",
+      "options": [
+        "Ninguno, porque -p es de solo lectura",
+        "Corre sus hooks y servidores MCP sin pedir confianza",
+        "Borra la memoria automática del usuario",
+        "Sube el código a un tercero"
+      ],
+      "answer": 1,
+      "explanation": "En modo -p no hay diálogo de confianza ni aprobación por servidor: se ejecutan los hooks de .claude/settings.json y se conectan los de .mcp.json. --bare evita cargarlos."
+    },
+    {
+      "module": 5,
+      "level": "I",
+      "prompt": "Creas una skill de deploy para el equipo. ¿Qué configuración es la más segura?",
+      "options": [
+        "Invocación automática para que despliegue cuando haga falta",
+        "disable-model-invocation: true, para invocarla a mano",
+        "allowed-tools con todos los comandos del sistema",
+        "Escribirla en CLAUDE.md en vez de en una skill"
+      ],
+      "answer": 1,
+      "explanation": "Los flujos con efectos secundarios deben dispararse a propósito. Que el agente decida desplegar solo es una mala idea."
+    },
+    {
+      "module": 6,
+      "level": "B",
+      "prompt": "¿Cuál es el orden de los comandos principales de spec-kit?",
+      "options": [
+        "plan, specify, implement y tasks",
+        "constitution, specify, plan, tasks e implement",
+        "tasks, plan, constitution, specify e implement",
+        "specify, implement y review"
+      ],
+      "answer": 1,
+      "explanation": "Principios del proyecto, especificación, plan técnico, desglose en tareas e implementación (con el prefijo /speckit.). Cada paso produce un artefacto revisable."
+    },
+    {
+      "module": 6,
+      "level": "B",
+      "prompt": "¿Qué se define con /speckit.constitution?",
+      "options": [
+        "Los principios que guían todas las decisiones",
+        "La lista de tareas del próximo sprint",
+        "La configuración de los pipelines de CI/CD del repositorio",
+        "Quiénes pueden modificar las especificaciones del repositorio"
+      ],
+      "answer": 0,
+      "explanation": "La constitución fija reglas transversales, como estándares de calidad o de testing, que luego respetan la especificación, el plan y la implementación."
+    },
+    {
+      "module": 6,
+      "level": "I",
+      "prompt": "¿En qué debe enfocarse /speckit.specify?",
+      "options": [
+        "En el stack tecnológico y las carpetas",
+        "En qué construir y por qué",
+        "En los nombres de variables y funciones",
+        "En el cronograma y el presupuesto"
+      ],
+      "answer": 1,
+      "explanation": "La especificación describe el qué y el porqué desde el negocio y los usuarios. Las decisiones técnicas van después, en el plan."
+    },
+    {
+      "module": 6,
+      "level": "B",
+      "prompt": "¿Qué decisiones se toman en /speckit.plan?",
+      "options": [
+        "Las historias de usuario del negocio",
+        "Lenguaje, frameworks y enfoque de testing",
+        "La priorización comercial del roadmap del producto",
+        "La aprobación final del cliente"
+      ],
+      "answer": 1,
+      "explanation": "El plan traduce la especificación en decisiones técnicas, que luego se desglosan en tareas."
+    },
+    {
+      "module": 6,
+      "level": "I",
+      "prompt": "En OpenSpec, ¿qué representa openspec/specs/<dominio>/spec.md?",
+      "options": [
+        "Las ideas que todavía no se aprueban",
+        "El comportamiento actual del sistema",
+        "El registro de errores del agente",
+        "La plantilla vacía para proyectos nuevos"
+      ],
+      "answer": 1,
+      "explanation": "Las especificaciones vivas son la fuente de verdad de lo que el sistema hace hoy. Los cambios se proponen aparte y se fusionan al archivarlos."
+    },
+    {
+      "module": 6,
+      "level": "I",
+      "prompt": "¿Qué contiene la carpeta de un cambio en openspec/changes/<cambio>/?",
+      "options": [
+        "Solo el código generado por el agente durante la implementación",
+        "proposal.md, delta specs, design.md y tasks.md",
+        "Los resultados de los tests y el reporte de cobertura del cambio",
+        "Una copia completa del repositorio"
+      ],
+      "answer": 1,
+      "explanation": "Intención y alcance, especificaciones delta, enfoque técnico y lista de tareas, todo revisable antes de implementar."
+    },
+    {
+      "module": 6,
+      "level": "I",
+      "prompt": "¿Qué secciones usan las delta specs de OpenSpec?",
+      "options": [
+        "TODO, DOING y DONE",
+        "ADDED, MODIFIED y REMOVED Requirements",
+        "MUST, SHOULD y COULD",
+        "Frontend, Backend e Infraestructura del sistema"
+      ],
+      "answer": 1,
+      "explanation": "Expresar el cambio como diferencia sobre la especificación actual es lo que hace a OpenSpec adecuado para proyectos existentes."
+    },
+    {
+      "module": 6,
+      "level": "A",
+      "prompt": "¿Qué ocurre al ejecutar /opsx:archive en OpenSpec?",
+      "options": [
+        "Se borra el cambio sin aplicarlo",
+        "Se fusiona el delta y el cambio queda archivado",
+        "Se crea un tag de versión en git",
+        "Se envía a revisión del cliente"
+      ],
+      "answer": 1,
+      "explanation": "Lo agregado se suma, lo modificado reemplaza y lo eliminado se quita de la especificación principal. La carpeta pasa a changes/archive/ como historial auditable."
+    },
+    {
+      "module": 6,
+      "level": "I",
+      "prompt": "¿Por qué el desarrollo guiado por especificaciones funciona bien con agentes?",
+      "options": [
+        "Porque con una especificación ya no hace falta revisar el código generado",
+        "Porque el agente trabaja contra un contrato revisable",
+        "Porque obliga a usar un solo lenguaje",
+        "Porque el agente no puede leer el código si no tiene una especificación"
+      ],
+      "answer": 1,
+      "explanation": "La especificación se revisa antes, guía la implementación y sirve para verificar después. Reduce ambigüedad y retrabajo."
+    },
+    {
+      "module": 6,
+      "level": "I",
+      "prompt": "¿Qué propone Structured-Prompt-Driven Development (SPDD), implementado en open-spdd?",
+      "options": [
+        "Prohibir los prompts libres",
+        "Versionar los prompts estructurados junto al código",
+        "Escribir un prompt por cada línea de código",
+        "Generar especificaciones a partir del código"
+      ],
+      "answer": 1,
+      "explanation": "Los prompts dejan de ser mensajes desechables: hay plantillas por etapa (historia, análisis, generación, tests, sincronización) que viven en el repositorio."
+    },
+    {
+      "module": 7,
+      "level": "B",
+      "prompt": "¿Por qué delegar la investigación de un código grande en subagentes?",
+      "options": [
+        "Porque usan siempre un modelo más barato",
+        "Porque exploran aparte y devuelven un resumen",
+        "Porque solo los subagentes tienen acceso a internet y a la documentación",
+        "Porque así no hace falta pedir permisos"
+      ],
+      "answer": 1,
+      "explanation": "Investigar implica leer muchos archivos. Si lo hace el agente principal, ese contexto se pierde para la implementación."
+    },
+    {
+      "module": 7,
+      "level": "A",
+      "prompt": "Por defecto, ¿hasta qué profundidad pueden los subagentes lanzar sus propios subagentes?",
+      "options": [
+        "No pueden lanzar subagentes propios",
+        "Hasta tres niveles bajo la principal",
+        "Hasta diez niveles",
+        "Sin límite"
+      ],
+      "answer": 1,
+      "explanation": "Se ajusta con CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH; con 1 se desactiva la anidación."
+    },
+    {
+      "module": 7,
+      "level": "I",
+      "prompt": "¿Qué hace isolation: worktree en la definición de un subagente?",
+      "options": [
+        "Le impide leer archivos del repositorio",
+        "Lo ejecuta en un git worktree temporal",
+        "Lo ejecuta en otra máquina de la red",
+        "Le prohíbe hacer commits"
+      ],
+      "answer": 1,
+      "explanation": "Así sus ediciones no chocan con las de otros. Los worktrees permiten trabajo en paralelo sobre copias aisladas del mismo repositorio."
+    },
+    {
+      "module": 7,
+      "level": "I",
+      "prompt": "¿Qué hace el comando /batch en Claude Code?",
+      "options": [
+        "Ejecuta todos los tests del proyecto en lote y reporta los fallos",
+        "Reparte un cambio grande entre 5 y 30 subagentes",
+        "Junta los commits pendientes en uno solo",
+        "Programa las tareas pendientes para ejecutarlas de noche"
+      ],
+      "answer": 1,
+      "explanation": "Cada subagente trabaja en su propio worktree. Es la forma integrada de hacer fan-out para migraciones o cambios masivos."
+    },
+    {
+      "module": 7,
+      "level": "I",
+      "prompt": "Vas a migrar 2.000 archivos con claude -p en un bucle. ¿Qué secuencia recomienda la guía?",
+      "options": [
+        "Correr sobre todos de inmediato y revisar al final",
+        "Probar en 2 o 3, ajustar el prompt y luego escalar",
+        "Pedir que migre todo en un único prompt",
+        "Migrar a mano la mitad y dejar el resto al agente"
+      ],
+      "answer": 1,
+      "explanation": "Los errores aparecen en los primeros casos. Ajustar el prompt antes de escalar evita repetir el mismo error miles de veces."
+    },
+    {
+      "module": 7,
+      "level": "A",
+      "prompt": "Agregas un paso de revisión adversarial con un subagente. ¿Qué conviene pedirle para no caer en sobreingeniería?",
+      "options": [
+        "Que reporte todas las mejoras, incluidas las de estilo",
+        "Que reporte solo lo que afecta corrección o requisitos",
+        "Que reescriba el código completo desde cero",
+        "Que apruebe automáticamente si los tests pasan"
+      ],
+      "answer": 1,
+      "explanation": "Un revisor al que se le pide encontrar problemas casi siempre encuentra algunos. Perseguir cada hallazgo lleva a capas y defensas innecesarias."
+    },
+    {
+      "module": 7,
+      "level": "B",
+      "prompt": "En una metodología como Superpowers, ¿qué se hace antes de implementar una funcionalidad?",
+      "options": [
+        "Se escribe el código y después sus tests",
+        "Se escribe un test que falla",
+        "Se despliega a producción y se mide",
+        "Se pide al agente que estime la duración"
+      ],
+      "answer": 1,
+      "explanation": "Con TDD, el agente tiene un criterio de término objetivo: el test pasa o no pasa."
+    },
+    {
+      "module": 7,
+      "level": "I",
+      "prompt": "¿Para qué usa IDs compartidos agentic-sdlc-kit a lo largo del pipeline?",
+      "options": [
+        "Para cobrar por funcionalidad",
+        "Para trazar cada cambio desde el requisito",
+        "Para saber de quién es cada archivo",
+        "Para cifrar las especificaciones"
+      ],
+      "answer": 1,
+      "explanation": "La trazabilidad conecta requisito, diseño, construcción y verificación: se puede auditar por qué existe cada cambio y si se verificó."
+    },
+    {
+      "module": 7,
+      "level": "B",
+      "prompt": "¿Qué herramienta del catastro monitorea en tiempo real tokens, ventana de contexto y límites de varias sesiones de agentes?",
+      "options": [
+        "abtop",
+        "codeflow",
+        "OpenSpec",
+        "markitdown"
+      ],
+      "answer": 0,
+      "explanation": "abtop es como htop, pero para sesiones de Claude Code y Codex. Ayuda a ver el costo real de trabajar con varios agentes."
+    },
+    {
+      "module": 7,
+      "level": "A",
+      "prompt": "¿Cuál es el cuello de botella típico al lanzar muchos agentes en paralelo sin coordinación?",
+      "options": [
+        "La velocidad del disco del computador",
+        "Los conflictos y la revisión humana",
+        "El tamaño máximo de los archivos",
+        "La cantidad de pestañas del terminal"
+      ],
+      "answer": 1,
+      "explanation": "Generar es barato; revisar e integrar no escala al mismo ritmo. Worktrees, tareas bien acotadas y criterios de merge claros lo mitigan."
+    },
+    {
+      "module": 8,
+      "level": "B",
+      "prompt": "¿Qué ventaja da un grafo de conocimiento del código, como graphify, a un agente?",
+      "options": [
+        "Compila el proyecto más rápido al saltar dependencias",
+        "Consultar relaciones sin leerlo todo",
+        "Reemplaza los tests unitarios",
+        "Genera la interfaz gráfica"
+      ],
+      "answer": 1,
+      "explanation": "En repositorios grandes, explorar archivo por archivo agota el contexto. El grafo responde preguntas de estructura de forma directa."
+    },
+    {
+      "module": 8,
+      "level": "B",
+      "prompt": "¿Qué ofrece codeflow para entender un repositorio?",
+      "options": [
+        "Un mapa interactivo desde la URL, sin instalar",
+        "Un servidor de inferencia local para modelos open-weight",
+        "Un generador de pruebas de carga para APIs en la nube",
+        "Una base de datos vectorial"
+      ],
+      "answer": 0,
+      "explanation": "Corre en el navegador y muestra cómo se conectan los archivos y qué se rompe si cambias algo. Es útil como demostración sin fricción."
+    },
+    {
+      "module": 8,
+      "level": "I",
+      "prompt": "¿Por qué Understand-Anything encaja bien en el onboarding de desarrolladores?",
+      "options": [
+        "Porque escribe el código por la persona nueva",
+        "Porque su foco es enseñar a explorar el código",
+        "Porque bloquea los cambios de los recién llegados",
+        "Porque traduce el código a otro lenguaje"
+      ],
+      "answer": 1,
+      "explanation": "“Graphs that teach”: grafos para explorar, buscar y preguntar sobre el código. El objetivo es entender, no impresionar."
+    },
+    {
+      "module": 8,
+      "level": "B",
+      "prompt": "¿Qué produce la skill archify?",
+      "options": [
+        "Diagramas verificables en HTML autocontenido",
+        "Imágenes generativas de alta resolución para presentaciones",
+        "Contratos de API en formato OpenAPI",
+        "Planillas de costos de nube"
+      ],
+      "answer": 0,
+      "explanation": "Arquitectura, flujo, secuencia y ciclo de vida. Los diagramas generados sirven para documentar y revisar la arquitectura en cada entrega."
+    },
+    {
+      "module": 8,
+      "level": "I",
+      "prompt": "Le pides al agente “investiga cómo funciona esto” sin más detalle. ¿Qué falla describe la guía?",
+      "options": [
+        "La exploración infinita que llena el contexto",
+        "El agente se niega a seguir por falta de permisos de lectura",
+        "El agente responde de memoria sin leer",
+        "La sesión se cierra por exceso de tiempo"
+      ],
+      "answer": 0,
+      "explanation": "Lee cientos de archivos y agota el contexto. Hay que acotar la investigación o delegarla en subagentes."
+    },
+    {
+      "module": 8,
+      "level": "B",
+      "prompt": "¿Cómo recomienda la guía usar el agente para el onboarding a un código nuevo?",
+      "options": [
+        "Pedirle que reescriba todo el código en un estilo que ya conozcas",
+        "Preguntarle como le preguntarías a alguien senior",
+        "Pedirle que borre lo que no se entiende",
+        "Leer todo el repositorio de principio a fin antes de usar el agente"
+      ],
+      "answer": 1,
+      "explanation": "Cómo funciona el logging, cómo se crea un endpoint, qué casos borde maneja algo. No requiere prompts especiales y reduce la carga sobre otros ingenieros."
+    },
+    {
+      "module": 8,
+      "level": "I",
+      "prompt": "Quieres entender por qué una API tiene un diseño extraño. ¿Qué fuente conviene señalarle al agente?",
+      "options": [
+        "El README del proyecto",
+        "El historial de git de ese módulo",
+        "La documentación del lenguaje",
+        "Los mensajes del chat del equipo de desarrollo"
+      ],
+      "answer": 1,
+      "explanation": "La guía usa este ejemplo: apuntar a la fuente que puede responder, en este caso cómo evolucionó la API en el tiempo."
+    },
+    {
+      "module": 8,
+      "level": "I",
+      "prompt": "¿Qué rol cumple sentrux en un flujo con agentes?",
+      "options": [
+        "Sensor que mide la arquitectura en tiempo real",
+        "Gestor de secretos y credenciales del repositorio",
+        "Framework de frontend para agentes",
+        "Servidor MCP de bases de datos"
+      ],
+      "answer": 0,
+      "explanation": "Cierra el ciclo de calidad: el agente no solo genera, también recibe señales sobre el deterioro de la arquitectura."
+    },
+    {
+      "module": 8,
+      "level": "A",
+      "prompt": "¿Cuál es el principal riesgo de la documentación técnica generada por un agente?",
+      "options": [
+        "Que tenga faltas de ortografía",
+        "Que describa lo que el código debería hacer",
+        "Que ocupe demasiado espacio en disco y en el repositorio",
+        "Que no se pueda versionar en git"
+      ],
+      "answer": 1,
+      "explanation": "Y no lo que realmente hace. Hay que validarla contra el código y los tests, como cualquier otra salida del agente."
+    },
+    {
+      "module": 8,
+      "level": "B",
+      "prompt": "¿Para qué sirve escribir @archivo en un prompt de Claude Code?",
+      "options": [
+        "Para mencionar a otra persona del equipo en la conversación",
+        "Para que Claude lea ese archivo antes de responder",
+        "Para bloquear la edición de ese archivo",
+        "Para subir el archivo a la nube"
+      ],
+      "answer": 1,
+      "explanation": "Es más preciso que describir dónde está el código y evita que el agente busque de más."
+    },
+    {
+      "module": 9,
+      "level": "B",
+      "prompt": "¿Qué flag ejecuta Claude Code en modo no interactivo, para scripts y CI?",
+      "options": [
+        "--batch",
+        "-p o --print",
+        "--ci",
+        "--silent --no-ui"
+      ],
+      "answer": 1,
+      "explanation": "Por ejemplo: claude -p \"Encuentra y corrige el bug en auth.py\" --allowedTools \"Read,Edit,Bash\"."
+    },
+    {
+      "module": 9,
+      "level": "I",
+      "prompt": "¿Por qué se recomienda --bare en pipelines de CI?",
+      "options": [
+        "Porque reduce el costo por token a la mitad en los runners de CI",
+        "Porque no carga la configuración local y es reproducible",
+        "Porque desactiva todos los permisos",
+        "Porque usa la suscripción del desarrollador en vez de una clave de API"
+      ],
+      "answer": 1,
+      "explanation": "Omite hooks, skills, plugins, servidores MCP, memoria y CLAUDE.md del entorno, así el resultado es igual en cualquier máquina. El contexto se pasa con flags y se autentica con ANTHROPIC_API_KEY."
+    },
+    {
+      "module": 9,
+      "level": "I",
+      "prompt": "Necesitas que el resultado de claude -p cumpla un esquema para procesarlo en el pipeline. ¿Qué usas?",
+      "options": [
+        "--output-format text y una regex",
+        "--output-format json con --json-schema",
+        "--strict-output con un archivo YAML",
+        "Pedir en el prompt que responda en JSON"
+      ],
+      "answer": 1,
+      "explanation": "El resultado llega en el campo structured_output. Si el esquema no es un JSON Schema válido, la ejecución falla con un error claro."
+    },
+    {
+      "module": 9,
+      "level": "B",
+      "prompt": "¿Cómo informa claude -p al pipeline si la ejecución falló?",
+      "options": [
+        "Siempre sale con código 0",
+        "Sale con 0 si tuvo éxito y distinto de 0 si falló",
+        "Envía un correo al administrador",
+        "Crea un archivo error.log en la raíz"
+      ],
+      "answer": 1,
+      "explanation": "Así el script puede ramificar según el resultado. Los errores de flags se reportan en stderr antes de empezar."
+    },
+    {
+      "module": 9,
+      "level": "A",
+      "prompt": "En --allowedTools, ¿qué diferencia hay entre Bash(git diff *) y Bash(git diff*)?",
+      "options": [
+        "Ninguna, son equivalentes",
+        "Sin espacio también coincide, por ejemplo, git diff-index",
+        "Sin espacio solo coincide git diff exacto",
+        "Con espacio se permite todo git"
+      ],
+      "answer": 1,
+      "explanation": "Con espacio antes del asterisco solo coinciden comandos que empiezan con git diff. Ese espacio importa: sin él, la regla abarca más de lo que pretendías."
+    },
+    {
+      "module": 9,
+      "level": "B",
+      "prompt": "¿Cuál es la GitHub Action oficial para ejecutar Claude Code en workflows?",
+      "options": [
+        "github/copilot-agent-action@claude",
+        "anthropics/claude-code-action@v1",
+        "actions/claude@latest",
+        "anthropic/claude-ci"
+      ],
+      "answer": 1,
+      "explanation": "Responde a menciones @claude, ejecuta prompts automáticos y puede convertir issues en pull requests."
+    },
+    {
+      "module": 9,
+      "level": "I",
+      "prompt": "¿Qué determina si la GitHub Action corre en modo interactivo o de automatización?",
+      "options": [
+        "El nombre del archivo del workflow en .github",
+        "Si el workflow define el input prompt",
+        "El tamaño del repositorio",
+        "La cantidad de revisores del PR"
+      ],
+      "answer": 1,
+      "explanation": "Sin prompt espera la mención @claude; con prompt se ejecuta sin esperar. En automatización, el resultado queda en el log salvo que el prompt indique comentar."
+    },
+    {
+      "module": 9,
+      "level": "B",
+      "prompt": "¿Cómo se debe entregar la credencial de Claude a la GitHub Action?",
+      "options": [
+        "Escrita directamente en el workflow",
+        "Como secreto de GitHub referenciado",
+        "En una variable dentro del CLAUDE.md",
+        "En un archivo .env versionado"
+      ],
+      "answer": 1,
+      "explanation": "ANTHROPIC_API_KEY o CLAUDE_CODE_OAUTH_TOKEN, nunca versionados. Para varios repositorios conviene una clave de API en un secreto de organización."
+    },
+    {
+      "module": 9,
+      "level": "A",
+      "prompt": "Los commits que hace Claude desde la Action no disparan tu CI. ¿Cuál es la causa más probable?",
+      "options": [
+        "Claude no tiene permiso para hacer commits",
+        "Le pasaste el GITHUB_TOKEN por defecto",
+        "El repositorio tiene demasiados workflows",
+        "El modelo no soporta repositorios privados"
+      ],
+      "answer": 1,
+      "explanation": "GitHub no dispara workflows con commits hechos con ese token. Quita el input github_token para que se autentique como la GitHub App de Claude, o usa un token de app propia."
+    },
+    {
+      "module": 9,
+      "level": "A",
+      "prompt": "¿Cómo evitas guardar un secreto de larga duración para la GitHub Action?",
+      "options": [
+        "Usando la suscripción de un desarrollador",
+        "Con identity federation sobre el token OIDC",
+        "Rotando cada semana una clave guardada en el código",
+        "Sin autenticación en repositorios privados"
+      ],
+      "answer": 1,
+      "explanation": "La Action cambia el token OIDC del workflow por acceso a la API; requiere el permiso id-token: write. Lo mismo aplica con Bedrock, Vertex o Foundry."
+    },
+    {
+      "module": 10,
+      "level": "B",
+      "prompt": "¿Qué medidas ayudan a controlar el costo de la GitHub Action de Claude?",
+      "options": [
+        "Usar siempre el modelo más grande disponible para menos turnos",
+        "--max-turns, timeouts y control de concurrencia",
+        "Ejecutarla en cada commit de cada rama para detectar antes los problemas",
+        "Desactivar el cache de dependencias"
+      ],
+      "answer": 1,
+      "explanation": "Cada ejecución consume minutos de Actions y tokens. Un CLAUDE.md conciso, solicitudes específicas y plantillas de issues también reducen turnos."
+    },
+    {
+      "module": 10,
+      "level": "I",
+      "prompt": "¿Qué dato de costo entrega claude -p con --output-format json?",
+      "options": [
+        "El costo exacto facturado por Anthropic",
+        "Una estimación en total_cost_usd por modelo",
+        "Solo la cantidad de archivos modificados",
+        "El costo de los minutos de GitHub Actions consumidos"
+      ],
+      "answer": 1,
+      "explanation": "Es una estimación del lado del cliente y puede diferir de la factura, pero sirve para alertas y límites de presupuesto en el pipeline."
+    },
+    {
+      "module": 10,
+      "level": "I",
+      "prompt": "¿Cómo se evalúa razonablemente un agente de desarrollo antes de adoptarlo en el equipo?",
+      "options": [
+        "Por las líneas de código que genera por hora",
+        "Con tareas de referencia y tests ejecutables",
+        "Por la opinión del primero que lo prueba",
+        "Por su ranking en redes sociales"
+      ],
+      "answer": 1,
+      "explanation": "Midiendo tasa de éxito, costo, tiempo y trayectoria. Sin una línea base no se sabe si un cambio de modelo, prompt o skill mejora o empeora."
+    },
+    {
+      "module": 10,
+      "level": "A",
+      "prompt": "Vas a cambiar el modelo o el prompt de un agente que ya opera en tu pipeline. ¿Cuál es la práctica correcta?",
+      "options": [
+        "Cambiarlo directo en producción, porque el modelo nuevo es mejor",
+        "Tratarlo como un release, con evaluación y rollback",
+        "Pedirle al propio agente que evalúe si el cambio de modelo le conviene",
+        "Esperar a que los usuarios reporten problemas"
+      ],
+      "answer": 1,
+      "explanation": "Versionar, evaluar contra la línea base, desplegar de forma gradual y poder revertir. Un cambio de modelo o de prompt cambia el comportamiento igual que un cambio de código."
+    },
+    {
+      "module": 10,
+      "level": "I",
+      "prompt": "¿Por qué la Action de Claude rechaza por defecto a los actores bot?",
+      "options": [
+        "Porque los bots no pagan tokens",
+        "Para evitar ciclos entre bots",
+        "Porque GitHub prohíbe bots en Actions",
+        "Porque los bots no tienen escritura"
+      ],
+      "answer": 1,
+      "explanation": "Un bot que comenta y otro que responde pueden entrar en un loop costoso. Se pueden permitir de forma explícita con allowed_bots."
+    },
+    {
+      "module": 10,
+      "level": "B",
+      "prompt": "En eventos de issues y pull requests, ¿quién puede disparar la Action de Claude por defecto?",
+      "options": [
+        "Cualquier usuario de GitHub",
+        "Quienes tienen acceso de escritura",
+        "Solo los administradores de la organización",
+        "Solo el autor del workflow"
+      ],
+      "answer": 1,
+      "explanation": "Para permitir a usuarios sin acceso de escritura existe allowed_non_write_users, junto con un github_token propio."
+    },
+    {
+      "module": 10,
+      "level": "I",
+      "prompt": "¿Qué aporta incluir una herramienta como deepsec en el pipeline?",
+      "options": [
+        "Reemplaza por completo la revisión humana de seguridad del equipo",
+        "Agentes que buscan vulnerabilidades antes del merge",
+        "Cifra el código fuente del repositorio antes de cada despliegue",
+        "Acelera la compilación del proyecto"
+      ],
+      "answer": 1,
+      "explanation": "Los hallazgos los prioriza una persona. Los agentes también pueden trabajar a favor de la seguridad, no solo ser un riesgo a controlar."
+    },
+    {
+      "module": 10,
+      "level": "I",
+      "prompt": "En una aplicación agéntica desplegada, ¿qué controla un toolkit como NeMo Guardrails?",
+      "options": [
+        "La velocidad de inferencia del modelo en producción",
+        "Temas permitidos, jailbreaks y contenido",
+        "El costo de la infraestructura",
+        "El versionado del código"
+      ],
+      "answer": 1,
+      "explanation": "Son restricciones programables en la entrada y la salida del modelo, incluida la verificación de hechos, complementarias a los permisos sobre herramientas."
+    },
+    {
+      "module": 10,
+      "level": "A",
+      "prompt": "La Action de Claude procesa issues y pull requests de terceros. ¿Cuál es la práctica de seguridad correcta?",
+      "options": [
+        "Darle permisos de administrador para que pueda resolver todo",
+        "Tratar su contenido como datos y dar permisos mínimos",
+        "Desactivar los logs del workflow para no exponer información sensible",
+        "Usar el token personal del líder técnico"
+      ],
+      "answer": 1,
+      "explanation": "Un issue puede traer una prompt injection. Además, en repositorios públicos GitHub no entrega secretos a pull requests que vienen de forks."
+    },
+    {
+      "module": 10,
+      "level": "I",
+      "prompt": "¿Qué métricas reflejan mejor el impacto real de los agentes en el SDLC?",
+      "options": [
+        "Las líneas de código generadas por el agente cada semana",
+        "Lead time, fallas de cambios, revisión y retrabajo",
+        "Los prompts enviados por persona al día",
+        "La cantidad de skills instaladas"
+      ],
+      "answer": 1,
+      "explanation": "Más código no es mejor resultado. Las métricas de entrega y estabilidad muestran si el equipo realmente mejoró."
+    }
+  ]
+}

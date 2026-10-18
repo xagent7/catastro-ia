@@ -1,0 +1,66 @@
+<main id="main">
+<header>
+  <div class="eyebrow">Catálogo curado y vivo · se revisa cada mes</div>
+  <h1>Catastro abierto de repositorios y herramientas de IA</h1>
+  <p class="lede">Una selección en español de repositorios, frameworks, cursos y documentación oficial de inteligencia artificial, clasificados por tema. Cada ficha explica qué es el recurso, para qué sirve en una ruta de aprendizaje y con qué otros recursos se complementa. Incluye recursos gratuitos de las 10 mejores universidades del mundo y learning paths con examen.</p>
+  <div class="stats" id="stats"></div>
+  <div class="updated" id="updated"></div>
+  {{PROMO}}
+</header>
+
+<div class="tabs" role="tablist" id="tabs">
+  <button role="tab" id="t-cat" aria-selected="true" aria-controls="p-cat">Catálogo</button>
+  <button role="tab" id="t-lp" aria-selected="false" aria-controls="p-lp">Learning paths</button>
+  <button role="tab" id="t-rel" aria-selected="false" aria-controls="p-rel">Mapa de relaciones</button>
+  <button role="tab" id="t-uni" aria-selected="false" aria-controls="p-uni">Universidades top 10</button>
+  <button role="tab" id="t-new" aria-selected="false" aria-controls="p-new">Novedades</button>
+</div>
+
+<section id="p-cat" role="tabpanel" aria-labelledby="t-cat">
+  <div class="toolbar">
+    <input id="q" type="search" placeholder="Buscar por nombre o tema (ej. RAG, skills, vLLM, seguridad)" aria-label="Buscar en el catálogo">
+    <span class="count" id="count"></span>
+  </div>
+  <div class="cats" id="cats"></div>
+  <div id="catalog">{{NOSCRIPT}}</div>
+</section>
+
+<section id="p-lp" role="tabpanel" aria-labelledby="t-lp" hidden>
+  <h2>Learning paths con examen</h2>
+  <p class="lede">Rutas que ordenan los recursos del catastro por objetivo, con módulos de nivel creciente, una práctica entregable por módulo y un examen interactivo. Se publica una ruta nueva cada mes.</p>
+  <div class="lpcards" id="lps"></div>
+</section>
+
+<section id="p-rel" role="tabpanel" aria-labelledby="t-rel" hidden>
+  <h2>Mapa de relaciones</h2>
+  <p class="lede">Cada nodo es un recurso del catálogo y su tamaño indica con cuántos otros se relaciona. Toca un nodo para ver con qué se complementa, qué alternativas tiene y qué conviene aprender antes. Arrastra los nodos para reacomodarlos.</p>
+  <div class="graphwrap">
+    <svg id="graph" role="img" aria-label="Grafo de relaciones entre recursos de IA"></svg>
+    <div class="panel" id="panel">Toca un nodo para ver sus relaciones.</div>
+    <div class="legend" id="legend"></div>
+  </div>
+</section>
+
+<section id="p-new" role="tabpanel" aria-labelledby="t-new" hidden>
+  <h2>Novedades</h2>
+  <p class="lede">El catastro se revisa una vez al mes. Aquí queda el registro de qué recursos entraron, cuáles cambiaron y cuáles salieron. Los recursos nuevos o actualizados llevan una etiqueta durante 60 días. El historial completo está en el <a href="{{REPO_URL}}/commits/{{BRANCH}}" rel="noopener">repositorio</a>.</p>
+  <div class="log" id="log"></div>
+  <div class="crit"><h3>Criterio de inclusión</h3><ul>
+   <li>Solo recursos directos: repositorios, cursos, libros, herramientas y documentación oficial. No se incluyen artículos, noticias ni posts.</li>
+   <li>Gratuitos o con una versión gratuita útil; si el certificado o parte del contenido es pagado, se indica.</li>
+   <li>Cada recurso se relaciona con al menos otro del catálogo.</li>
+   <li>Los recursos con riesgos (de seguridad, de términos de uso o afirmaciones no verificadas) se incluyen solo como casos de estudio y con advertencia.</li>
+   <li>¿Falta algo? <a href="{{REPO_URL}}/issues/new?template=sugerir-recurso.yml" rel="noopener">Sugiere un recurso</a>.</li>
+  </ul></div>
+</section>
+
+<section id="p-uni" role="tabpanel" aria-labelledby="t-uni" hidden>
+  <h2>Recursos gratuitos de las 10 mejores universidades</h2>
+  <p class="lede">Cursos, libros y repositorios de IA que publican de forma gratuita las diez primeras universidades del QS World University Rankings 2026. Se priorizó material actualizado; los clásicos se marcan como tales. Algunos cursos son gratis para aprender, pero cobran el certificado.</p>
+  <div id="unis"></div>
+</section>
+
+<p class="foot-note">Las descripciones marcadas como <b>según el proyecto</b> se basan en la descripción publicada por sus autores y no en una evaluación independiente. Los recursos con advertencia se incluyen como casos de estudio, no como recomendación. Verifica licencias y términos de uso antes de usar cualquiera de ellos en tu organización.</p>
+
+{{CTA}}
+</main>

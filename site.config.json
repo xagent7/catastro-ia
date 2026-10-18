@@ -1,0 +1,29 @@
+{
+  "siteUrl": "https://catastro.xaboli.cl",
+  "siteName": "Catastro Herramientas IA",
+  "language": "es",
+  "author": {
+    "name": "Oliver Fierro",
+    "title": "Enterprise Applied AI Lead",
+    "linkedin": "https://www.linkedin.com/in/oliverfierro"
+  },
+  "github": {
+    "repo": "xaboli/catastro-ia",
+    "branch": "main"
+  },
+  "cta": {
+    "brand": "Xäboli",
+    "brandUrl": "https://xaboli.cl",
+    "headline": "¿Tu equipo de ingeniería quiere adoptar Claude en todo el ciclo de desarrollo?",
+    "body": "Programas de adopción y entrenamiento para equipos de software: desde el bootstrap del repositorio y el desarrollo guiado por especificaciones hasta agentes de desarrollo y CI/CD agéntico, con los learning paths y exámenes de este catastro como base.",
+    "button": "Conversemos sobre tu equipo"
+  },
+  "privacy": {
+    "controller": "Oliver Fierro (Xäboli)",
+    "contactEmail": "contacto@xaboli.cl",
+    "version": "2026-10-18",
+    "retentionMonths": 24
+  },
+  "turnstileSiteKey": "",
+  "cloudflareAnalyticsToken": ""
+}

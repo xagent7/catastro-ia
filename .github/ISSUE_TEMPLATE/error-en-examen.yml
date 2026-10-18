@@ -1,0 +1,26 @@
+name: Error en un examen
+description: Una pregunta tiene la respuesta equivocada, es ambigua o quedó desactualizada.
+title: "Examen: "
+labels: [examen]
+body:
+  - type: dropdown
+    id: ruta
+    attributes:
+      label: Learning path
+      options:
+        - LP8 · Ciclo de desarrollo de software con IA
+    validations:
+      required: true
+  - type: textarea
+    id: pregunta
+    attributes:
+      label: Pregunta (copia el enunciado)
+    validations:
+      required: true
+  - type: textarea
+    id: problema
+    attributes:
+      label: ¿Cuál es el problema?
+      description: Incluye el enlace a la documentación que lo respalda, si lo tienes.
+    validations:
+      required: true

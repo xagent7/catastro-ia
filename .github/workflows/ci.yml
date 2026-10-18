@@ -1,0 +1,25 @@
+name: Validación
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Validar datos
+        run: npm run validate
+      - name: Construir el sitio
+        run: npm run build
+      - name: Pruebas (función de formularios y páginas generadas)
+        run: npm test
+      - name: README al día con los datos
+        run: npm run readme:check

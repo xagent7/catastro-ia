@@ -1,0 +1,818 @@
+[
+  {
+    "from": "nnz",
+    "to": "llmscratch",
+    "type": "pre",
+    "label": "micrograd y makemore dan la intuición; LLMs-from-scratch formaliza el pipeline completo"
+  },
+  {
+    "from": "llmscratch",
+    "to": "trainllm",
+    "type": "comp",
+    "label": "Ambos entrenan un LLM propio; Raschka explica y FareedKhan da un script directo de punta a punta"
+  },
+  {
+    "from": "trainllm",
+    "to": "halo",
+    "type": "pre",
+    "label": "Del entrenamiento didáctico al framework de entrenamiento a escala"
+  },
+  {
+    "from": "txexp",
+    "to": "nnz",
+    "type": "comp",
+    "label": "La visualización de GPT-2 hace concreto lo que Karpathy construye en código"
+  },
+  {
+    "from": "llmscratch",
+    "to": "hollm",
+    "type": "comp",
+    "label": "Uno construye el modelo; el otro lo aplica (embeddings, RAG, fine-tuning)"
+  },
+  {
+    "from": "hollm",
+    "to": "llmcourse",
+    "type": "comp",
+    "label": "Libro aplicado y roadmap de LLM Scientist/Engineer, con notebooks complementarios"
+  },
+  {
+    "from": "aefs",
+    "to": "learnai",
+    "type": "comp",
+    "label": "Currículo práctico más índice de recursos para profundizar cada tema"
+  },
+  {
+    "from": "aefs",
+    "to": "roadmap26",
+    "type": "alt",
+    "label": "Dos secuencias para el mismo rol; contrasta el orden de temas"
+  },
+  {
+    "from": "aefs",
+    "to": "cheats",
+    "type": "comp",
+    "label": "Las cheatsheets sirven como resumen de decisión al cierre de cada módulo"
+  },
+  {
+    "from": "ml4b",
+    "to": "ai4b",
+    "type": "pre",
+    "label": "ML clásico antes de redes neuronales"
+  },
+  {
+    "from": "ai4b",
+    "to": "genai4b",
+    "type": "pre",
+    "label": "Fundamentos de IA antes de IA generativa"
+  },
+  {
+    "from": "genai4b",
+    "to": "aia4b",
+    "type": "pre",
+    "label": "IA generativa antes de agentes (misma serie de Microsoft)"
+  },
+  {
+    "from": "ai4b",
+    "to": "aia4b",
+    "type": "fam",
+    "label": "Serie “for Beginners” de Microsoft"
+  },
+  {
+    "from": "mwml",
+    "to": "dmls",
+    "type": "comp",
+    "label": "Curso práctico de MLOps más el libro de diseño de sistemas de ML"
+  },
+  {
+    "from": "awgen",
+    "to": "aia4b",
+    "type": "comp",
+    "label": "El Agentic AI Crash Course complementa el curso de Microsoft"
+  },
+  {
+    "from": "anthpe",
+    "to": "peguide",
+    "type": "comp",
+    "label": "Tutorial con ejercicios específico de Claude más una guía agnóstica de técnicas"
+  },
+  {
+    "from": "anthpe",
+    "to": "karpskills",
+    "type": "pre",
+    "label": "Primero se aprende a escribir prompts; después reglas persistentes en CLAUDE.md"
+  },
+  {
+    "from": "karpskills",
+    "to": "claudemd",
+    "type": "comp",
+    "label": "Un ejemplo concreto de CLAUDE.md y la guía que explica cómo se carga"
+  },
+  {
+    "from": "karpskills",
+    "to": "caveman",
+    "type": "comp",
+    "label": "Calidad del comportamiento y costo de tokens: dos ejes del contexto"
+  },
+  {
+    "from": "spdd",
+    "to": "speckit",
+    "type": "alt",
+    "label": "Dos formas de estructurar el trabajo con agentes: prompts versionados o especificaciones"
+  },
+  {
+    "from": "aia4b",
+    "to": "genaiag",
+    "type": "pre",
+    "label": "Curso introductorio, luego tutoriales por caso de uso"
+  },
+  {
+    "from": "genaiag",
+    "to": "awllm",
+    "type": "comp",
+    "label": "Tutoriales guiados más apps completas para clonar"
+  },
+  {
+    "from": "learncc",
+    "to": "deepag",
+    "type": "pre",
+    "label": "Entender un harness desde cero antes de usar uno listo"
+  },
+  {
+    "from": "deepag",
+    "to": "cmacook",
+    "type": "alt",
+    "label": "Harness propio en Python frente a harness administrado por Anthropic"
+  },
+  {
+    "from": "learncc",
+    "to": "ecc",
+    "type": "pre",
+    "label": "Saber cómo funciona el harness antes de optimizarlo"
+  },
+  {
+    "from": "deepag",
+    "to": "aigraph",
+    "type": "comp",
+    "label": "Diseño visual del grafo y su implementación en LangGraph"
+  },
+  {
+    "from": "deepag",
+    "to": "adk",
+    "type": "alt",
+    "label": "Dos frameworks de agentes: ecosistema LangChain o ecosistema Google"
+  },
+  {
+    "from": "adk",
+    "to": "asp",
+    "type": "comp",
+    "label": "ADK define el agente; Agent Starter Pack lo lleva a producción"
+  },
+  {
+    "from": "adk",
+    "to": "agcli",
+    "type": "comp",
+    "label": "El CLI hace que tu agente de código construya agentes de ADK"
+  },
+  {
+    "from": "adk",
+    "to": "gax",
+    "type": "comp",
+    "label": "ADK para construir y AX como runtime distribuido"
+  },
+  {
+    "from": "adk",
+    "to": "genkit",
+    "type": "alt",
+    "label": "Ambos de Google: ADK para sistemas de agentes, Genkit para apps con IA en JS/Go/Python"
+  },
+  {
+    "from": "adk",
+    "to": "mcp",
+    "type": "comp",
+    "label": "La guía explica MCP y A2A, que ADK soporta"
+  },
+  {
+    "from": "kaggle5d",
+    "to": "adk",
+    "type": "comp",
+    "label": "El curso de 5 días usa ADK en sus codelabs"
+  },
+  {
+    "from": "gskills",
+    "to": "addyskills",
+    "type": "alt",
+    "label": "Skills de proveedor frente a skills curadas por un practicante"
+  },
+  {
+    "from": "hermes",
+    "to": "aionui",
+    "type": "comp",
+    "label": "AionUi da interfaz cowork a Hermes Agent y otros CLIs"
+  },
+  {
+    "from": "orca",
+    "to": "aionui",
+    "type": "alt",
+    "label": "Dos formas de manejar varios agentes: flota en paralelo o interfaz unificada"
+  },
+  {
+    "from": "orca",
+    "to": "abtop",
+    "type": "comp",
+    "label": "Orca lanza agentes en paralelo; abtop monitorea tokens y contexto"
+  },
+  {
+    "from": "superp",
+    "to": "ecc",
+    "type": "alt",
+    "label": "Dos sistemas completos de harness; compáralos sobre la misma tarea"
+  },
+  {
+    "from": "superp",
+    "to": "addyskills",
+    "type": "comp",
+    "label": "Metodología base más colección de skills de ingeniería"
+  },
+  {
+    "from": "superp",
+    "to": "mattskills",
+    "type": "comp",
+    "label": "Metodología base más skills reales de un practicante"
+  },
+  {
+    "from": "superp",
+    "to": "aecoach",
+    "type": "comp",
+    "label": "Ambos buscan disciplinar la práctica de ingeniería agéntica"
+  },
+  {
+    "from": "cctemp",
+    "to": "sharekit",
+    "type": "comp",
+    "label": "Uno instala componentes del ecosistema; el otro distribuye tu propio setup"
+  },
+  {
+    "from": "sharekit",
+    "to": "agstack",
+    "type": "comp",
+    "label": "Distribuir configuración y hacerla portable entre agentes"
+  },
+  {
+    "from": "agstack",
+    "to": "ecc",
+    "type": "comp",
+    "label": "Memoria y skills portables sobre un sistema de harness"
+  },
+  {
+    "from": "book2skill",
+    "to": "hollm",
+    "type": "comp",
+    "label": "Convierte el libro en una skill tutora del path"
+  },
+  {
+    "from": "book2skill",
+    "to": "mattskills",
+    "type": "comp",
+    "label": "Del contenido (libro) al método (tutor)"
+  },
+  {
+    "from": "harnessk",
+    "to": "addyskills",
+    "type": "fam",
+    "label": "Skills de dominio DevOps junto a skills de ingeniería generales"
+  },
+  {
+    "from": "portal",
+    "to": "cctemp",
+    "type": "comp",
+    "label": "Plugins empresariales sobre un portal frente a un catálogo comunitario"
+  },
+  {
+    "from": "freecc",
+    "to": "9router",
+    "type": "alt",
+    "label": "Dos routers no oficiales con el mismo perfil de riesgo"
+  },
+  {
+    "from": "9router",
+    "to": "explabs",
+    "type": "alt",
+    "label": "Router no oficial frente a gateway gobernable"
+  },
+  {
+    "from": "speckit",
+    "to": "openspec",
+    "type": "alt",
+    "label": "Dos enfoques de SDD; OpenSpec es más liviano y orientado a cambios"
+  },
+  {
+    "from": "speckit",
+    "to": "sdlckit",
+    "type": "comp",
+    "label": "SDD en la fase de especificación y pipeline de skills en el SDLC completo"
+  },
+  {
+    "from": "openspec",
+    "to": "aiproj",
+    "type": "comp",
+    "label": "Especificaciones vivas más gobernanza documental del proyecto"
+  },
+  {
+    "from": "superp",
+    "to": "speckit",
+    "type": "comp",
+    "label": "Disciplina de ejecución (TDD, revisión) sobre especificaciones"
+  },
+  {
+    "from": "graphify",
+    "to": "understand",
+    "type": "alt",
+    "label": "Dos grafos de conocimiento de código; Understand-Anything con foco pedagógico"
+  },
+  {
+    "from": "codeflow",
+    "to": "understand",
+    "type": "pre",
+    "label": "Demo sin instalación antes de la herramienta integrada al agente"
+  },
+  {
+    "from": "graphify",
+    "to": "sentrux",
+    "type": "comp",
+    "label": "Entender el código y medir su calidad arquitectónica"
+  },
+  {
+    "from": "archify",
+    "to": "diagdesign",
+    "type": "alt",
+    "label": "Dos skills de diagramas: técnico verificable o editorial"
+  },
+  {
+    "from": "archify",
+    "to": "anatomy",
+    "type": "comp",
+    "label": "Diagramas de arquitectura más ilustraciones isométricas del sistema"
+  },
+  {
+    "from": "graphify",
+    "to": "archify",
+    "type": "comp",
+    "label": "Del grafo consultable al diagrama comunicable"
+  },
+  {
+    "from": "markitdown",
+    "to": "begrag",
+    "type": "pre",
+    "label": "Ingesta de documentos antes de indexar"
+  },
+  {
+    "from": "scrapling",
+    "to": "begrag",
+    "type": "pre",
+    "label": "Ingesta web antes de indexar"
+  },
+  {
+    "from": "begrag",
+    "to": "prodrag",
+    "type": "pre",
+    "label": "Mismo autor: de RAG local a RAG agéntico de producción"
+  },
+  {
+    "from": "ragtech",
+    "to": "prodrag",
+    "type": "comp",
+    "label": "Técnicas aisladas para mejorar el sistema productivo"
+  },
+  {
+    "from": "prodrag",
+    "to": "raganything",
+    "type": "pre",
+    "label": "De RAG de texto a RAG multimodal"
+  },
+  {
+    "from": "turbovec",
+    "to": "ragtech",
+    "type": "comp",
+    "label": "Cómo funciona por dentro el índice vectorial que usan las técnicas"
+  },
+  {
+    "from": "wren",
+    "to": "prodrag",
+    "type": "alt",
+    "label": "Text-to-SQL para datos estructurados y RAG para documentos"
+  },
+  {
+    "from": "llmfit",
+    "to": "vllm",
+    "type": "pre",
+    "label": "Elegir qué modelo cabe antes de servirlo"
+  },
+  {
+    "from": "llmfit",
+    "to": "omlx",
+    "type": "pre",
+    "label": "Elegir modelo y servirlo en Apple Silicon"
+  },
+  {
+    "from": "vllm",
+    "to": "omlx",
+    "type": "alt",
+    "label": "Servidor en GPU frente a servidor en Apple Silicon (ambos con continuous batching)"
+  },
+  {
+    "from": "vllm",
+    "to": "localai",
+    "type": "alt",
+    "label": "Throughput en GPU frente a autohospedaje simple, incluso sin GPU"
+  },
+  {
+    "from": "minimax",
+    "to": "vllm",
+    "type": "comp",
+    "label": "Modelo open-weight grande y motor para servirlo"
+  },
+  {
+    "from": "kimik3",
+    "to": "llmfit",
+    "type": "comp",
+    "label": "Contrastar la afirmación del README con el cálculo de memoria"
+  },
+  {
+    "from": "freeapis",
+    "to": "explabs",
+    "type": "comp",
+    "label": "Proveedores alternativos detrás de un gateway"
+  },
+  {
+    "from": "agt",
+    "to": "opensb",
+    "type": "comp",
+    "label": "Gobernanza y políticas sobre ejecución aislada"
+  },
+  {
+    "from": "agt",
+    "to": "opa",
+    "type": "comp",
+    "label": "Políticas como código para decidir qué puede hacer cada agente"
+  },
+  {
+    "from": "piiguard",
+    "to": "agt",
+    "type": "comp",
+    "label": "Redacción de PII como control de datos dentro del marco de gobernanza"
+  },
+  {
+    "from": "deepsec",
+    "to": "agt",
+    "type": "comp",
+    "label": "Agentes que encuentran vulnerabilidades y gobernanza de esos agentes"
+  },
+  {
+    "from": "owaspai",
+    "to": "agt",
+    "type": "comp",
+    "label": "Threat modeling para definir los controles que aplica el toolkit"
+  },
+  {
+    "from": "opensb",
+    "to": "learncc",
+    "type": "comp",
+    "label": "Un harness propio necesita un sandbox para ejecutar código"
+  },
+  {
+    "from": "ecc",
+    "to": "piiguard",
+    "type": "comp",
+    "label": "Hooks de Claude Code como punto de control para redactar PII"
+  },
+  {
+    "from": "harnessk",
+    "to": "deepsec",
+    "type": "comp",
+    "label": "Skills de CI/CD y escaneo de seguridad: DevSecOps con agentes"
+  },
+  {
+    "from": "comfy",
+    "to": "aigraph",
+    "type": "comp",
+    "label": "Ambos usan grafos de nodos para componer pipelines"
+  },
+  {
+    "from": "omnivoice",
+    "to": "comfy",
+    "type": "comp",
+    "label": "Voz e imagen para producción audiovisual local"
+  },
+  {
+    "from": "copilotkit",
+    "to": "deepag",
+    "type": "comp",
+    "label": "Frontend AG-UI sobre un backend de agentes"
+  },
+  {
+    "from": "copilotkit",
+    "to": "adk",
+    "type": "comp",
+    "label": "Frontend AG-UI sobre un agente de ADK"
+  },
+  {
+    "from": "twenty",
+    "to": "copilotkit",
+    "type": "comp",
+    "label": "CRM como sistema de registro y UI agéntica encima"
+  },
+  {
+    "from": "wren",
+    "to": "twenty",
+    "type": "comp",
+    "label": "Preguntas en lenguaje natural sobre datos del CRM"
+  },
+  {
+    "from": "dlai",
+    "to": "dlaimcp",
+    "type": "fam",
+    "label": "Curso del catálogo de DeepLearning.AI"
+  },
+  {
+    "from": "dlai",
+    "to": "dlaiag",
+    "type": "fam",
+    "label": "Curso del catálogo de DeepLearning.AI"
+  },
+  {
+    "from": "dlai",
+    "to": "dlaicc",
+    "type": "fam",
+    "label": "Curso del catálogo de DeepLearning.AI"
+  },
+  {
+    "from": "dlaimcp",
+    "to": "mcp",
+    "type": "comp",
+    "label": "Curso práctico sobre la especificación de MCP"
+  },
+  {
+    "from": "hfmcp",
+    "to": "dlaimcp",
+    "type": "alt",
+    "label": "Dos cursos de MCP: Hugging Face con certificado gratuito, o DeepLearning.AI con Anthropic"
+  },
+  {
+    "from": "hfmcp",
+    "to": "mcp",
+    "type": "comp",
+    "label": "Curso práctico sobre la especificación de MCP"
+  },
+  {
+    "from": "hfcontext",
+    "to": "claudemd",
+    "type": "comp",
+    "label": "Context engineering: del curso a la documentación oficial"
+  },
+  {
+    "from": "hfcontext",
+    "to": "learncc",
+    "type": "comp",
+    "label": "Ambos terminan construyendo un harness mínimo"
+  },
+  {
+    "from": "hfcontext",
+    "to": "addyskills",
+    "type": "comp",
+    "label": "El curso enseña a escribir skills; la colección da ejemplos"
+  },
+  {
+    "from": "dlaicc",
+    "to": "academy",
+    "type": "comp",
+    "label": "Curso guiado de Claude Code más los cursos oficiales"
+  },
+  {
+    "from": "dlaicc",
+    "to": "anthpe",
+    "type": "comp",
+    "label": "Prompting más su aplicación en un agente de código"
+  },
+  {
+    "from": "dlaiag",
+    "to": "aia4b",
+    "type": "comp",
+    "label": "Patrones agénticos más un curso de agentes por lecciones"
+  },
+  {
+    "from": "hfagents",
+    "to": "aia4b",
+    "type": "alt",
+    "label": "Dos cursos introductorios de agentes; el de Hugging Face da certificado"
+  },
+  {
+    "from": "hfagents",
+    "to": "smolagents",
+    "type": "comp",
+    "label": "El curso usa smolagents como primer framework"
+  },
+  {
+    "from": "hfagents",
+    "to": "deepag",
+    "type": "comp",
+    "label": "El curso tiene una unidad de LangGraph"
+  },
+  {
+    "from": "smolagents",
+    "to": "deepag",
+    "type": "alt",
+    "label": "Agentes minimalistas que escriben código frente a un harness completo"
+  },
+  {
+    "from": "hfllm",
+    "to": "hollm",
+    "type": "comp",
+    "label": "Curso del ecosistema Hugging Face más el libro aplicado"
+  },
+  {
+    "from": "hfllm",
+    "to": "transformers",
+    "type": "comp",
+    "label": "El curso enseña a usar la librería"
+  },
+  {
+    "from": "transformers",
+    "to": "llmscratch",
+    "type": "comp",
+    "label": "Implementación de referencia frente a implementación desde cero"
+  },
+  {
+    "from": "hfsmol",
+    "to": "llmcourse",
+    "type": "comp",
+    "label": "Fine-tuning práctico de modelos pequeños más el roadmap de LLM Engineer"
+  },
+  {
+    "from": "hfcook",
+    "to": "awllm",
+    "type": "comp",
+    "label": "Recetas en notebooks y apps completas"
+  },
+  {
+    "from": "hfcook",
+    "to": "ragtech",
+    "type": "comp",
+    "label": "Dos bancos de técnicas en notebooks"
+  },
+  {
+    "from": "nvdli",
+    "to": "trtllm",
+    "type": "comp",
+    "label": "Fundamentos de GPU y CUDA antes de optimizar inferencia"
+  },
+  {
+    "from": "trtllm",
+    "to": "vllm",
+    "type": "alt",
+    "label": "Inferencia optimizada para NVIDIA frente a un motor más general"
+  },
+  {
+    "from": "nemoguard",
+    "to": "agt",
+    "type": "comp",
+    "label": "Guardrails de contenido dentro de un marco de gobernanza"
+  },
+  {
+    "from": "nemoguard",
+    "to": "piiguard",
+    "type": "comp",
+    "label": "Dos controles en la entrada y salida del modelo"
+  },
+  {
+    "from": "nvgenai",
+    "to": "prodrag",
+    "type": "comp",
+    "label": "Arquitectura de referencia de RAG en NVIDIA y curso de RAG productivo"
+  },
+  {
+    "from": "nvgenai",
+    "to": "trtllm",
+    "type": "comp",
+    "label": "Ejemplos que corren sobre la pila de inferencia de NVIDIA"
+  },
+  {
+    "from": "academy",
+    "to": "cca",
+    "type": "pre",
+    "label": "Cursos oficiales antes de preparar la certificación"
+  },
+  {
+    "from": "academy",
+    "to": "anthpe",
+    "type": "comp",
+    "label": "Cursos oficiales más el tutorial de prompting con ejercicios"
+  },
+  {
+    "from": "academy",
+    "to": "ccesp",
+    "type": "comp",
+    "label": "Cursos oficiales en inglés y material de apoyo en español"
+  },
+  {
+    "from": "academy",
+    "to": "dojo",
+    "type": "comp",
+    "label": "Formación oficial y práctica gamificada"
+  },
+  {
+    "from": "academy",
+    "to": "mcp",
+    "type": "comp",
+    "label": "El curso Introducción a MCP complementa la guía de protocolos"
+  },
+  {
+    "from": "cca",
+    "to": "ccaguide",
+    "type": "comp",
+    "label": "Dos guías de estudio para el mismo examen"
+  },
+  {
+    "from": "anthpe",
+    "to": "cca",
+    "type": "pre",
+    "label": "El tutorial de prompting es base del temario de la certificación"
+  },
+  {
+    "from": "cmacook",
+    "to": "cca",
+    "type": "comp",
+    "label": "Agentes administrados: tema práctico del ecosistema Claude"
+  },
+  {
+    "from": "dojo",
+    "to": "ccesp",
+    "type": "comp",
+    "label": "Práctica gamificada más material en español"
+  },
+  {
+    "from": "artemis",
+    "to": "sdlckit",
+    "type": "comp",
+    "label": "Automatización de QA móvil dentro de la fase de verificación del SDLC"
+  },
+  {
+    "from": "orloj",
+    "to": "agt",
+    "type": "comp",
+    "label": "Infraestructura como código de agentes más gobernanza"
+  },
+  {
+    "from": "awllm",
+    "to": "prodrag",
+    "type": "comp",
+    "label": "Las apps de RAG del repo como variaciones del proyecto central"
+  },
+  {
+    "from": "spdd",
+    "to": "openspec",
+    "type": "alt",
+    "label": "Prompts estructurados y versionados frente a especificaciones vivas"
+  },
+  {
+    "from": "mcp",
+    "to": "a2a",
+    "type": "comp",
+    "label": "MCP conecta agente con herramientas; A2A conecta agentes entre sí"
+  },
+  {
+    "from": "adk",
+    "to": "a2a",
+    "type": "comp",
+    "label": "ADK soporta A2A para comunicar agentes"
+  },
+  {
+    "from": "markitdown",
+    "to": "mcp",
+    "type": "comp",
+    "label": "MarkItDown se puede exponer como servidor MCP"
+  },
+  {
+    "from": "archreview",
+    "to": "deepag",
+    "type": "comp",
+    "label": "Revisar el diseño antes de implementarlo con un harness"
+  },
+  {
+    "from": "aia4b",
+    "to": "bootcamp14",
+    "type": "pre",
+    "label": "Curso introductorio antes del bootcamp intensivo de 14 días"
+  },
+  {
+    "from": "multiag",
+    "to": "deepag",
+    "type": "alt",
+    "label": "Orquestación multiagente propia frente a un harness con subagentes"
+  },
+  {
+    "from": "archreview",
+    "to": "bootcamp14",
+    "type": "comp",
+    "label": "Checklist de revisión para los proyectos del bootcamp"
+  }
+]

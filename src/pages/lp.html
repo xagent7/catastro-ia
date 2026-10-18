@@ -1,0 +1,55 @@
+<main id="main">
+<header>
+  <div class="eyebrow">{{LP_EYEBROW}}</div>
+  <h1>{{LP_TITLE}}</h1>
+  <p class="lede">{{LP_LEDE}}</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="tabs" role="tablist" id="tabs">
+  <button role="tab" id="t-ruta" aria-selected="true" aria-controls="p-ruta">Ruta y contenido</button>
+  <button role="tab" id="t-exam" aria-selected="false" aria-controls="p-exam">Examen</button>
+</div>
+
+<section id="p-ruta" role="tabpanel" aria-labelledby="t-ruta">
+  <h2>El ciclo, fase por fase</h2>
+  <p class="lede">Los recursos del catastro ordenados según la fase del ciclo donde se usan. Cada fase indica qué módulos de la ruta la cubren.</p>
+  <div class="phases" id="phases"></div>
+  <h2>Módulos</h2>
+  <p class="lede">Módulos ordenados de lo básico a lo avanzado, cada uno con su práctica y sus preguntas. Los enlaces azules son documentación oficial; los grises, recursos del <a href="/">catastro</a>.</p>
+  <div class="lvlegend"><span><span class="lvlb B">Básico</span></span><span><span class="lvlb I">Intermedio</span></span><span><span class="lvlb A">Avanzado</span></span></div>
+  <ol class="modlist" id="mods"></ol>
+</section>
+
+<section id="p-exam" role="tabpanel" aria-labelledby="t-exam" hidden>
+  <div class="examhead">
+    <label for="mode" class="progress">Modo</label>
+    <select id="mode"></select>
+    <div class="bar" aria-hidden="true"><i id="barfill"></i></div>
+    <span class="progress" id="prog"></span>
+  </div>
+  <ol class="qs" id="qs"></ol>
+  <div class="actions"><button class="btn" id="grade" type="button" disabled>Corregir</button><button class="btn ghost" id="reset" type="button">Reiniciar este modo</button><span class="progress" id="hint"></span></div>
+  <div id="res" aria-live="polite"></div>
+
+  <section class="notify" id="notify" hidden aria-labelledby="notify-h">
+    <h3 id="notify-h">Recibe el próximo learning path</h3>
+    <p class="lede">Se publica una ruta nueva cada mes. Deja tu correo y te aviso cuando salga; nada más.</p>
+    <form class="form" data-lead="novedades" data-ok-msg="Listo. Te escribiré cuando se publique la próxima ruta." novalidate>
+      <label>Correo<input type="email" name="email" required maxlength="160" autocomplete="email"></label>
+      <label>Nombre <span class="optional">(opcional)</span><input type="text" name="name" maxlength="120" autocomplete="name"></label>
+      <input type="hidden" name="lp" value="{{LP_ID}}"><input type="hidden" name="score" value=""><input type="hidden" name="lp_mode" value="">
+      <label class="check full"><input type="checkbox" name="share_score"><span>Incluir mi resultado (<span class="scoretxt"></span>) para recibir recomendaciones según mi nivel.</span></label>
+      <label class="check full"><input type="checkbox" name="consent_marketing" required><span>Quiero recibir por correo los próximos learning paths del catastro. Puedo darme de baja cuando quiera. Ver la <a href="/privacidad/">política de privacidad</a>.</span></label>
+      <div class="hp" aria-hidden="true"><label>No completar<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <div class="ts full"></div>
+      <div class="full"><button class="btn" type="submit">Avísame</button></div>
+      <p class="status full" role="status"></p>
+    </form>
+  </section>
+
+  <p class="note">Se aprueba con {{LP_PASS}}%. Las alternativas se ordenan al azar en cada intento. Tus respuestas en curso y el mejor puntaje se guardan solo en este navegador. Datos de Claude Code verificados contra la documentación oficial el {{LP_REVIEWED}}; las funciones cambian seguido, así que conviene revisar la documentación antes de usar este examen en una certificación interna. ¿Encontraste un error? <a href="{{REPO_URL}}/issues/new?template=error-en-examen.yml" rel="noopener">Repórtalo</a>.</p>
+</section>
+
+{{CTA}}
+</main>

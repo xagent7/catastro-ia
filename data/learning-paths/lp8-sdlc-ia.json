@@ -1,0 +1,421 @@
+{
+  "id": "lp8",
+  "slug": "sdlc-ia",
+  "code": "LP8",
+  "title": "Ciclo de desarrollo de software con IA",
+  "eyebrow": "Learning path LP8 · Básico → Avanzado · 10 semanas · 4–6 h/semana",
+  "summary": "Cómo construir software con agentes de punta a punta: Claude Code y herramientas afines, bootstrap de proyectos, desarrollo guiado por especificaciones, agentes del desarrollo y CI/CD para soluciones agénticas.",
+  "lede": "Cómo construir software con agentes de punta a punta: Claude Code y herramientas afines, bootstrap de proyectos, desarrollo guiado por especificaciones, agentes del desarrollo y CI/CD para soluciones agénticas. La ruta ordena los recursos del catastro por fase del ciclo y termina con un examen de 100 preguntas.",
+  "audience": "Desarrolladores, equipos de plataforma y líderes técnicos que quieren llevar agentes de código a todo el ciclo de desarrollo.",
+  "published": "2026-10-18",
+  "reviewed": "2026-10-18",
+  "passMark": 75,
+  "phases": [
+    {
+      "title": "Contexto y bootstrap",
+      "description": "Preparar el repositorio y el agente antes de escribir código.",
+      "modules": [
+        2,
+        5
+      ],
+      "resources": [
+        {
+          "name": "CLAUDE.md y memoria",
+          "url": "https://code.claude.com/docs/en/memory",
+          "official": true
+        },
+        {
+          "ref": "cctemp"
+        },
+        {
+          "ref": "sharekit"
+        },
+        {
+          "ref": "agstack"
+        }
+      ]
+    },
+    {
+      "title": "Especificar",
+      "description": "Definir qué construir y por qué, con artefactos revisables.",
+      "modules": [
+        1,
+        6
+      ],
+      "resources": [
+        {
+          "ref": "speckit"
+        },
+        {
+          "ref": "openspec"
+        },
+        {
+          "ref": "spdd"
+        }
+      ]
+    },
+    {
+      "title": "Diseñar y entender",
+      "description": "Comprender el sistema existente y decidir el enfoque.",
+      "modules": [
+        8
+      ],
+      "resources": [
+        {
+          "ref": "graphify"
+        },
+        {
+          "ref": "understand"
+        },
+        {
+          "ref": "archify"
+        }
+      ]
+    },
+    {
+      "title": "Construir",
+      "description": "Implementar con agentes, skills y subagentes de forma disciplinada.",
+      "modules": [
+        3,
+        7
+      ],
+      "resources": [
+        {
+          "ref": "superp"
+        },
+        {
+          "ref": "addyskills"
+        },
+        {
+          "name": "Subagentes",
+          "url": "https://code.claude.com/docs/en/sub-agents",
+          "official": true
+        },
+        {
+          "name": "Hooks",
+          "url": "https://code.claude.com/docs/en/hooks",
+          "official": true
+        }
+      ]
+    },
+    {
+      "title": "Verificar e integrar",
+      "description": "Tests, revisión adversarial y pipelines reproducibles.",
+      "modules": [
+        4,
+        9
+      ],
+      "resources": [
+        {
+          "name": "claude -p",
+          "url": "https://code.claude.com/docs/en/headless",
+          "official": true
+        },
+        {
+          "name": "claude-code-action",
+          "url": "https://github.com/anthropics/claude-code-action",
+          "official": false
+        },
+        {
+          "ref": "deepsec"
+        },
+        {
+          "ref": "sdlckit"
+        }
+      ]
+    },
+    {
+      "title": "Operar y gobernar",
+      "description": "Costos, evaluación continua, guardrails y políticas.",
+      "modules": [
+        10
+      ],
+      "resources": [
+        {
+          "ref": "agt"
+        },
+        {
+          "ref": "nemoguard"
+        },
+        {
+          "name": "Costos",
+          "url": "https://code.claude.com/docs/en/costs",
+          "official": true
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "title": "Fundamentos del SDLC con IA",
+      "level": "B",
+      "objective": "Cómo cambia el ciclo de desarrollo cuando un agente explora, planifica, implementa y verifica; qué queda en manos de las personas.",
+      "practice": "Resolver una tarea real con el flujo explorar → planificar → implementar → commit, entregando evidencia (tests o capturas) en el PR.",
+      "resources": [
+        {
+          "name": "Buenas prácticas de Claude Code",
+          "url": "https://code.claude.com/docs/en/best-practices",
+          "official": true
+        },
+        {
+          "ref": "academy"
+        },
+        {
+          "ref": "dlaicc"
+        }
+      ]
+    },
+    {
+      "title": "Contexto y memoria",
+      "level": "B",
+      "objective": "Administrar el recurso más escaso: CLAUDE.md, CLAUDE.local.md, reglas por ruta, importaciones, /compact, /clear y /context.",
+      "practice": "Escribir el CLAUDE.md del repositorio en menos de 200 líneas y mover lo específico a .claude/rules/ con paths.",
+      "resources": [
+        {
+          "name": "Memoria y CLAUDE.md",
+          "url": "https://code.claude.com/docs/en/memory",
+          "official": true
+        },
+        {
+          "ref": "karpskills"
+        },
+        {
+          "ref": "hfcontext"
+        },
+        {
+          "ref": "caveman"
+        }
+      ]
+    },
+    {
+      "title": "Extensiones: skills, subagentes, hooks, MCP y plugins",
+      "level": "I",
+      "objective": "Elegir el mecanismo correcto para cada necesidad y conocer su configuración y comportamiento.",
+      "practice": "Crear una skill del equipo, un subagente revisor y un hook PreToolUse que bloquee un comando peligroso.",
+      "resources": [
+        {
+          "name": "Skills",
+          "url": "https://code.claude.com/docs/en/skills",
+          "official": true
+        },
+        {
+          "name": "Subagentes",
+          "url": "https://code.claude.com/docs/en/sub-agents",
+          "official": true
+        },
+        {
+          "name": "Hooks",
+          "url": "https://code.claude.com/docs/en/hooks",
+          "official": true
+        },
+        {
+          "name": "MCP",
+          "url": "https://code.claude.com/docs/en/mcp",
+          "official": true
+        },
+        {
+          "name": "Plugins",
+          "url": "https://code.claude.com/docs/en/plugins/overview",
+          "official": true
+        },
+        {
+          "ref": "addyskills"
+        },
+        {
+          "ref": "mattskills"
+        }
+      ]
+    },
+    {
+      "title": "Permisos, seguridad y recuperación",
+      "level": "I",
+      "objective": "Modos de permisos, reglas deny/ask/allow, sandbox y checkpoints, y sus límites reales.",
+      "practice": "Configurar permisos del proyecto que nieguen la lectura de secretos y permitan solo los comandos de build y test.",
+      "resources": [
+        {
+          "name": "Permisos",
+          "url": "https://code.claude.com/docs/en/permissions",
+          "official": true
+        },
+        {
+          "name": "Sandbox",
+          "url": "https://code.claude.com/docs/en/sandboxing",
+          "official": true
+        },
+        {
+          "name": "Checkpoints",
+          "url": "https://code.claude.com/docs/en/checkpointing",
+          "official": true
+        },
+        {
+          "ref": "piiguard"
+        },
+        {
+          "ref": "opensb"
+        }
+      ]
+    },
+    {
+      "title": "Bootstrap de proyectos",
+      "level": "I",
+      "objective": "Dejar un repositorio listo para trabajar con agentes: /init, settings compartidos y locales, MCP del equipo, plugins, contenedores y plantillas.",
+      "practice": "Hacer el bootstrap de un repositorio nuevo: CLAUDE.md, .claude/settings.json, .mcp.json, una skill y un dev container, y publicarlo como plantilla.",
+      "resources": [
+        {
+          "name": "Configuración y precedencia",
+          "url": "https://code.claude.com/docs/en/settings",
+          "official": true
+        },
+        {
+          "name": "Dev containers",
+          "url": "https://code.claude.com/docs/en/devcontainer",
+          "official": true
+        },
+        {
+          "ref": "cctemp"
+        },
+        {
+          "ref": "sharekit"
+        },
+        {
+          "ref": "agstack"
+        }
+      ]
+    },
+    {
+      "title": "Desarrollo guiado por especificaciones",
+      "level": "I",
+      "objective": "Trabajar contra especificaciones revisables con spec-kit, OpenSpec y prompts versionados.",
+      "practice": "Implementar la misma funcionalidad con spec-kit y con OpenSpec y comparar artefactos, tiempo y retrabajo.",
+      "resources": [
+        {
+          "ref": "speckit"
+        },
+        {
+          "ref": "openspec"
+        },
+        {
+          "ref": "spdd"
+        },
+        {
+          "ref": "aiproj"
+        }
+      ]
+    },
+    {
+      "title": "Agentes del desarrollo",
+      "level": "I",
+      "objective": "Subagentes, trabajo en paralelo, fan-out, revisión adversarial y metodologías como Superpowers.",
+      "practice": "Resolver una issue con un agente implementador y un subagente revisor en contexto limpio; documentar qué hallazgos se aceptaron.",
+      "resources": [
+        {
+          "name": "Agentes en paralelo",
+          "url": "https://code.claude.com/docs/en/agents",
+          "official": true
+        },
+        {
+          "ref": "superp"
+        },
+        {
+          "ref": "ecc"
+        },
+        {
+          "ref": "sdlckit"
+        },
+        {
+          "ref": "learncc"
+        },
+        {
+          "ref": "orca"
+        },
+        {
+          "ref": "abtop"
+        }
+      ]
+    },
+    {
+      "title": "Comprensión de código y documentación",
+      "level": "I",
+      "objective": "Bajar el costo de entender un código grande con grafos de conocimiento y diagramas verificables.",
+      "practice": "Generar el grafo y el diagrama de arquitectura de un servicio y validarlos con quien lo mantiene.",
+      "resources": [
+        {
+          "ref": "graphify"
+        },
+        {
+          "ref": "understand"
+        },
+        {
+          "ref": "codeflow"
+        },
+        {
+          "ref": "archify"
+        },
+        {
+          "ref": "sentrux"
+        }
+      ]
+    },
+    {
+      "title": "CI/CD para soluciones agénticas",
+      "level": "A",
+      "objective": "Ejecutar agentes en pipelines de forma reproducible y segura: claude -p, --bare, salidas estructuradas, GitHub Actions y GitLab.",
+      "practice": "Agregar a un repositorio un workflow con claude-code-action que revise cada PR y un job de claude -p --bare con salida JSON validada por esquema.",
+      "resources": [
+        {
+          "name": "Modo programático (claude -p)",
+          "url": "https://code.claude.com/docs/en/headless",
+          "official": true
+        },
+        {
+          "name": "GitHub Actions",
+          "url": "https://code.claude.com/docs/en/github-actions",
+          "official": true
+        },
+        {
+          "name": "GitLab CI/CD",
+          "url": "https://code.claude.com/docs/en/gitlab-ci-cd",
+          "official": true
+        },
+        {
+          "name": "anthropics/claude-code-action",
+          "url": "https://github.com/anthropics/claude-code-action"
+        },
+        {
+          "ref": "harnessk"
+        },
+        {
+          "ref": "asp"
+        },
+        {
+          "ref": "agcli"
+        }
+      ]
+    },
+    {
+      "title": "Calidad, evaluación y operación",
+      "level": "A",
+      "objective": "Medir, controlar costos, evaluar cambios de modelo o prompt y gobernar agentes en producción.",
+      "practice": "Definir un set de tareas de referencia para tu agente de desarrollo, medir éxito y costo, y escribir la política de cambios de modelo.",
+      "resources": [
+        {
+          "name": "Costos",
+          "url": "https://code.claude.com/docs/en/costs",
+          "official": true
+        },
+        {
+          "ref": "deepsec"
+        },
+        {
+          "ref": "agt"
+        },
+        {
+          "ref": "nemoguard"
+        },
+        {
+          "ref": "owaspai"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "catastro-ia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catastro abierto de repositorios y herramientas de IA en español, con learning paths y exámenes.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Oliver Fierro",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/build.mjs",
+    "readme": "node scripts/readme.mjs",
+    "readme:check": "node scripts/readme.mjs --check",
+    "test": "node --test tests/*.test.mjs",
+    "check-links": "node scripts/check-links.mjs",
+    "dev": "npm run build && wrangler pages dev dist --d1 DB=catastro-leads",
+    "db:migrate": "wrangler d1 execute catastro-leads --remote --file migrations/0001_leads.sql",
+    "leads:export": "node scripts/leads-export.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0",
+    "wrangler": "^4.40.0"
+  }
+}

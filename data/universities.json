@@ -1,0 +1,368 @@
+[
+  {
+    "rank": 1,
+    "university": "Massachusetts Institute of Technology (MIT)",
+    "country": "EE. UU.",
+    "items": [
+      {
+        "name": "MIT 6.S191 · Introduction to Deep Learning",
+        "url": "https://introtodeeplearning.com/",
+        "repo": "https://github.com/MITDeepLearning/introtodeeplearning",
+        "type": "Curso + repo",
+        "level": "Principiante → Intermedio",
+        "confidence": "contrastada",
+        "description": "Bootcamp intensivo que MIT renueva cada año, con clases en video y laboratorios en notebooks. Cubre redes neuronales, visión, modelos de secuencia, IA generativa y LLMs, más charlas de la industria.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "nnz",
+            "type": "comp",
+            "label": "Teoría compacta de MIT más construcción a mano con Karpathy"
+          },
+          {
+            "to": "ai4b",
+            "type": "alt",
+            "label": "Dos introducciones; 6.S191 es más densa y actualizada"
+          }
+        ]
+      },
+      {
+        "name": "MIT 6.5940 · TinyML and Efficient Deep Learning Computing",
+        "url": "https://efficientml.ai/",
+        "type": "Curso",
+        "level": "Avanzado",
+        "confidence": "contrastada",
+        "description": "Curso de Song Han (MIT HAN Lab) sobre cómo hacer eficientes los modelos: pruning, cuantización, destilación, búsqueda de arquitecturas e inferencia eficiente de LLMs y modelos de difusión. Las clases se publican en YouTube y los laboratorios son prácticos.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "vllm",
+            "type": "comp",
+            "label": "La teoría detrás de las optimizaciones de un motor de inferencia"
+          },
+          {
+            "to": "llmfit",
+            "type": "comp",
+            "label": "Por qué la cuantización cambia lo que cabe en tu hardware"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "rank": 2,
+    "university": "Imperial College London",
+    "country": "Reino Unido",
+    "items": [
+      {
+        "name": "Mathematics for Machine Learning (Coursera)",
+        "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+        "type": "Curso en línea (auditoría gratuita)",
+        "level": "Principiante",
+        "confidence": "contrastada",
+        "description": "Especialización de Imperial con tres cursos: álgebra lineal, cálculo multivariable y PCA, con ejercicios en Python. Se puede cursar gratis en modo auditoría; el certificado es pagado.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "nnz",
+            "type": "pre",
+            "label": "La base matemática antes de implementar redes neuronales"
+          }
+        ]
+      },
+      {
+        "name": "Libro Mathematics for Machine Learning",
+        "url": "https://mml-book.github.io/",
+        "repo": "https://github.com/mml-book/mml-book.github.io",
+        "type": "Libro gratuito",
+        "level": "Principiante → Intermedio",
+        "confidence": "contrastada",
+        "description": "Libro de Deisenroth, Faisal y Ong, con PDF gratuito y tutoriales en notebooks: álgebra lineal, geometría analítica, descomposiciones de matrices, cálculo vectorial, probabilidad y optimización, aplicados a regresión, PCA, mezclas gaussianas y SVM.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "ml4b",
+            "type": "pre",
+            "label": "Las matemáticas detrás del ML clásico"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "rank": 3,
+    "university": "Stanford University",
+    "country": "EE. UU.",
+    "items": [
+      {
+        "name": "CS336 · Language Modeling from Scratch",
+        "url": "https://cs336.stanford.edu/",
+        "repo": "https://github.com/stanford-cs336",
+        "type": "Curso + repos",
+        "level": "Avanzado",
+        "confidence": "contrastada",
+        "description": "Curso de Stanford (edición primavera 2026) para construir un modelo de lenguaje de punta a punta: tokenización, arquitectura, sistemas y GPUs, leyes de escalamiento, datos y alineamiento. Publica las clases en YouTube y las cinco tareas en GitHub.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "llmscratch",
+            "type": "comp",
+            "label": "Versión universitaria y más exigente del mismo recorrido"
+          },
+          {
+            "to": "trainllm",
+            "type": "comp",
+            "label": "Del script didáctico al entrenamiento con foco en sistemas"
+          }
+        ]
+      },
+      {
+        "name": "CS224N · Natural Language Processing with Deep Learning",
+        "url": "https://web.stanford.edu/class/cs224n/",
+        "type": "Curso",
+        "level": "Intermedio",
+        "confidence": "contrastada",
+        "description": "El curso de referencia de NLP con deep learning: embeddings, redes recurrentes, atención, transformers, pretraining, post-training y evaluación de LLMs. Las clases están en YouTube y las tareas, en el sitio del curso.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "hollm",
+            "type": "comp",
+            "label": "Fundamento teórico para los capítulos aplicados del libro"
+          }
+        ]
+      },
+      {
+        "name": "CS25 · Transformers United",
+        "url": "https://web.stanford.edu/class/cs25/",
+        "type": "Seminario",
+        "level": "Intermedio → Avanzado",
+        "confidence": "contrastada",
+        "description": "Seminario con investigadores invitados de los principales laboratorios sobre el estado del arte de los transformers y sus aplicaciones. Las sesiones se publican en YouTube.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "txexp",
+            "type": "comp",
+            "label": "Visualizar la arquitectura antes de las charlas de investigación"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "rank": 4,
+    "university": "University of Oxford",
+    "country": "Reino Unido",
+    "items": [
+      {
+        "name": "Geometric Deep Learning",
+        "url": "https://geometricdeeplearning.com/",
+        "type": "Libro + clases",
+        "level": "Avanzado",
+        "confidence": "contrastada",
+        "description": "Marco de Michael Bronstein (Oxford) y coautores que unifica CNNs, GNNs y transformers a partir de simetrías e invarianzas. Incluye un proto-libro gratuito y clases grabadas.",
+        "added": "2026-10-18",
+        "relations": []
+      },
+      {
+        "name": "Oxford Deep NLP (2017)",
+        "url": "https://github.com/oxford-cs-deepnlp-2017/lectures",
+        "type": "Repo · clásico",
+        "level": "Intermedio",
+        "confidence": "contrastada",
+        "description": "Curso de Oxford dictado con DeepMind, con diapositivas y videos sobre NLP con redes neuronales. Es anterior a los LLMs actuales: sirve para entender de dónde vienen, no para estar al día.",
+        "warning": "Contenido de 2017: no cubre transformers modernos ni LLMs.",
+        "added": "2026-10-18",
+        "relations": []
+      }
+    ]
+  },
+  {
+    "rank": 5,
+    "university": "Harvard University",
+    "country": "EE. UU.",
+    "items": [
+      {
+        "name": "CS50's Introduction to AI with Python",
+        "url": "https://cs50.harvard.edu/ai/",
+        "type": "Curso",
+        "level": "Principiante",
+        "confidence": "contrastada",
+        "description": "Curso gratuito de la familia CS50 sobre los fundamentos de la IA: búsqueda, conocimiento, incertidumbre, optimización, aprendizaje, redes neuronales y lenguaje, con proyectos en Python. El certificado de edX es opcional y pagado.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "ai4b",
+            "type": "alt",
+            "label": "Dos introducciones a la IA; CS50 AI es más algorítmica"
+          }
+        ]
+      },
+      {
+        "name": "Machine Learning Systems (MLSysBook)",
+        "url": "https://mlsysbook.ai/",
+        "repo": "https://github.com/harvard-edge/cs249r_book",
+        "type": "Libro abierto + repo",
+        "level": "Intermedio",
+        "confidence": "contrastada",
+        "description": "Libro abierto de Vijay Janapa Reddi (Harvard) sobre ingeniería de sistemas de ML: datos, entrenamiento, optimización, hardware, despliegue, operación, IA en el borde e IA responsable. Se mantiene en GitHub.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "mwml",
+            "type": "comp",
+            "label": "Teoría de sistemas de ML más práctica de MLOps"
+          },
+          {
+            "to": "dmls",
+            "type": "comp",
+            "label": "Dos miradas al diseño de sistemas de ML en producción"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "rank": 6,
+    "university": "University of Cambridge",
+    "country": "Reino Unido",
+    "items": [
+      {
+        "name": "Machine Learning and the Physical World (L48)",
+        "url": "https://www.cl.cam.ac.uk/teaching/2324/L48/materials.html",
+        "type": "Materiales de curso",
+        "level": "Avanzado",
+        "confidence": "segun_proyecto",
+        "description": "Curso de máster de Neil Lawrence sobre ML aplicado a sistemas físicos: modelado probabilístico, procesos gaussianos, emuladores y toma de decisiones con incertidumbre. Los materiales están publicados en la página del curso; las grabaciones pueden requerir acceso de Cambridge.",
+        "added": "2026-10-18",
+        "relations": []
+      },
+      {
+        "name": "Information Theory, Inference, and Learning Algorithms",
+        "url": "https://www.inference.org.uk/itila/book.html",
+        "type": "Libro gratuito · clásico",
+        "level": "Avanzado",
+        "confidence": "contrastada",
+        "description": "Libro de David MacKay (Cambridge), con descarga gratuita, que conecta teoría de la información, inferencia bayesiana y redes neuronales. Es un clásico para entender los fundamentos probabilísticos del aprendizaje.",
+        "warning": "Es de 2003: aporta fundamentos, no técnicas actuales.",
+        "added": "2026-10-18",
+        "relations": []
+      }
+    ]
+  },
+  {
+    "rank": 7,
+    "university": "ETH Zurich",
+    "country": "Suiza",
+    "items": [
+      {
+        "name": "Large Language Models (ETH, primavera 2026)",
+        "url": "https://rycolab.io/classes/llm-s26/",
+        "type": "Curso",
+        "level": "Avanzado",
+        "confidence": "segun_proyecto",
+        "description": "Curso de Ryan Cotterell, Mrinmaya Sachan y Florian Tramèr sobre fundamentos formales, arquitectura, entrenamiento, aplicaciones y seguridad de LLMs. Muchas diapositivas son públicas; las grabaciones y tareas requieren cuenta de ETH. Las notas teóricas están en arXiv como Formal Aspects of Language Modeling.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "llmscratch",
+            "type": "comp",
+            "label": "Teoría formal más implementación práctica"
+          }
+        ]
+      },
+      {
+        "name": "Probabilistic Artificial Intelligence",
+        "url": "https://arxiv.org/abs/2402.15892",
+        "type": "Libro gratuito",
+        "level": "Avanzado",
+        "confidence": "contrastada",
+        "description": "Libro de Andreas Krause y Jonas Hübotter (ETH), gratuito en arXiv: inferencia bayesiana, procesos gaussianos, deep learning bayesiano, optimización bayesiana y aprendizaje por refuerzo, con foco en la incertidumbre.",
+        "added": "2026-10-18",
+        "relations": []
+      }
+    ]
+  },
+  {
+    "rank": 8,
+    "university": "National University of Singapore (NUS)",
+    "country": "Singapur",
+    "items": [
+      {
+        "name": "CS6101 · Large Language Models (WING)",
+        "url": "https://wing.comp.nus.edu.sg/event/cs6101-llm",
+        "type": "Curso abierto",
+        "level": "Avanzado",
+        "confidence": "segun_proyecto",
+        "description": "Curso del grupo WING de NUS en formato de lectura colectiva: los participantes presentan y discuten los materiales de LLMs de Stanford, Princeton y ETH, con proyecto final. Se puede asistir de forma presencial u online.",
+        "warning": "NUS no publica cursos de IA abiertos propios equivalentes a los demás de esta lista. Este curso reutiliza materiales de otras universidades.",
+        "added": "2026-10-18",
+        "relations": []
+      }
+    ]
+  },
+  {
+    "rank": 9,
+    "university": "University College London (UCL)",
+    "country": "Reino Unido",
+    "items": [
+      {
+        "name": "DeepMind x UCL · Deep Learning (2020) y Reinforcement Learning (2021)",
+        "url": "https://www.youtube.com/@googledeepmind/playlists",
+        "type": "Series de clases en video",
+        "level": "Intermedio → Avanzado",
+        "confidence": "contrastada",
+        "description": "Dos series dictadas por investigadores de DeepMind en colaboración con UCL: una de deep learning (optimización, CNNs, atención, modelos generativos, IA responsable) y otra de aprendizaje por refuerzo, sucesora del curso clásico de David Silver.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "nnz",
+            "type": "comp",
+            "label": "Visión de investigación sobre lo que Karpathy construye en código"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "rank": 10,
+    "university": "California Institute of Technology (Caltech)",
+    "country": "EE. UU.",
+    "items": [
+      {
+        "name": "Learning From Data",
+        "url": "https://work.caltech.edu/telecourse",
+        "type": "Curso · clásico",
+        "level": "Intermedio",
+        "confidence": "contrastada",
+        "description": "Curso de Yaser Abu-Mostafa sobre la teoría del aprendizaje automático: factibilidad del aprendizaje, dimensión VC, sesgo y varianza, sobreajuste, regularización y validación, con 18 clases y tareas.",
+        "warning": "Es de 2012: excelente para la teoría, pero no cubre deep learning moderno.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "ml4b",
+            "type": "comp",
+            "label": "Teoría del aprendizaje más práctica con scikit-learn"
+          }
+        ]
+      },
+      {
+        "name": "CS 159 · Large Language Models for Reasoning (2024)",
+        "url": "https://sites.google.com/view/cs-159-2024",
+        "type": "Curso de posgrado",
+        "level": "Avanzado",
+        "confidence": "segun_proyecto",
+        "description": "Curso de temas avanzados de Caltech sobre el uso de LLMs como modelo base para tareas de razonamiento, con clases introductorias, presentaciones de papers y proyecto. El sitio del curso enlaza clases y lecturas.",
+        "added": "2026-10-18",
+        "relations": [
+          {
+            "to": "peguide",
+            "type": "comp",
+            "label": "Técnicas de razonamiento como chain-of-thought vistas desde la investigación"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "fund",
+    "name": "Fundamentos y rutas de AI Engineering",
+    "description": "Currículos, roadmaps e índices para aprender IA de forma ordenada."
+  },
+  {
+    "id": "llm",
+    "name": "LLMs desde cero y entrenamiento",
+    "description": "Entender por dentro cómo se construye, entrena y ajusta un modelo de lenguaje."
+  },
+  {
+    "id": "prompt",
+    "name": "Prompt y context engineering",
+    "description": "Cómo instruir modelos y administrar el contexto de agentes de código."
+  },
+  {
+    "id": "agents",
+    "name": "Frameworks y patrones de agentes",
+    "description": "Patrones de diseño, harness y frameworks para construir agentes."
+  },
+  {
+    "id": "google",
+    "name": "Ecosistema Google de agentes",
+    "description": "ADK, Genkit y herramientas de Google para crear y desplegar agentes."
+  },
+  {
+    "id": "harness",
+    "name": "Claude Code, skills y harness",
+    "description": "Colecciones de skills, plugins y herramientas para agentes de código."
+  },
+  {
+    "id": "sdd",
+    "name": "SDD y SDLC agéntico",
+    "description": "Desarrollo guiado por especificaciones y ciclo de vida de software con agentes."
+  },
+  {
+    "id": "code",
+    "name": "Comprensión de código y diagramas",
+    "description": "Grafos de conocimiento del código y skills para documentar arquitectura."
+  },
+  {
+    "id": "rag",
+    "name": "RAG, datos e ingesta",
+    "description": "Recuperación aumentada, ingesta de documentos y consulta de datos."
+  },
+  {
+    "id": "infer",
+    "name": "Inferencia, modelos y gateways",
+    "description": "Servir modelos, ejecución local, modelos open-weight y enrutamiento."
+  },
+  {
+    "id": "sec",
+    "name": "Seguridad y gobernanza de agentes",
+    "description": "Sandboxing, políticas, PII y análisis de vulnerabilidades con agentes."
+  },
+  {
+    "id": "media",
+    "name": "IA multimodal y generativa",
+    "description": "Imagen, voz, video y presentaciones generadas con IA."
+  },
+  {
+    "id": "apps",
+    "name": "Apps e interfaces para agentes",
+    "description": "Frontends, CRMs y apps de escritorio que integran agentes."
+  },
+  {
+    "id": "plat",
+    "name": "Plataformas de formación",
+    "description": "Cursos y recursos gratuitos de DeepLearning.AI, Hugging Face y NVIDIA."
+  },
+  {
+    "id": "cert",
+    "name": "Certificación Claude",
+    "description": "Material de estudio para la certificación Claude Certified Architect."
+  }
+]

@@ -1,0 +1,18 @@
+name: Reportar un enlace roto o un dato incorrecto
+description: Un enlace no funciona, se movió o la descripción de un recurso está desactualizada.
+title: "Enlace: "
+labels: [enlaces]
+body:
+  - type: input
+    id: recurso
+    attributes:
+      label: Recurso o URL afectada
+    validations:
+      required: true
+  - type: textarea
+    id: detalle
+    attributes:
+      label: ¿Qué pasa?
+      description: Si conoces la nueva ubicación, inclúyela.
+    validations:
+      required: true

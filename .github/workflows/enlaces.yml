@@ -1,0 +1,39 @@
+name: Enlaces
+on:
+  schedule:
+    - cron: '17 11 1 * *'   # día 1 de cada mes, 08:17 en Santiago (UTC-3)
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: enlaces
+  cancel-in-progress: false
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Verificar enlaces
+        id: check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/check-links.mjs
+      - name: Guardar informe
+        uses: actions/upload-artifact@v4
+        with:
+          name: informe-enlaces
+          path: link-report.*
+      - name: Abrir o actualizar el issue del mes
+        if: steps.check.outputs.actionable != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create enlaces --color D93F0B --description "Verificación mensual de enlaces" 2>/dev/null || true
+          TITLE="Enlaces para revisar · $(date -u +%Y-%m)"
+          NUM=$(gh issue list --label enlaces --state open --search "in:title \"$TITLE\"" --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then gh issue edit "$NUM" --body-file link-report.md; else gh issue create --title "$TITLE" --label enlaces --body-file link-report.md; fi
