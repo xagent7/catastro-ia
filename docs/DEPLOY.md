@@ -3,7 +3,7 @@
 Arquitectura: el repositorio en GitHub es la fuente de verdad; Cloudflare Pages construye y publica el sitio en cada push a `main` y crea una vista previa por cada pull request. Los formularios se guardan en Cloudflare D1 mediante una Pages Function (`functions/api/lead.js`).
 
 ```
-GitHub (data/*.json) ──push──▶ Cloudflare Pages (npm run build → dist/) ──▶ catastro.xaboli.cl
+GitHub (data/*.json) ──push──▶ Cloudflare Pages (npm run build → dist/) ──▶ academia.xaboli.cl
                                         └── /api/lead (Function) ──▶ D1 catastro-leads
 ```
 
@@ -21,7 +21,7 @@ git remote add origin https://github.com/xagent7/catastro-ia.git
 git push -u origin main
 ```
 
-4. En **Settings → General**, agrega descripción, el sitio `https://catastro.xaboli.cl` y estos temas: `ai`, `claude`, `claude-code`, `llm`, `agents`, `awesome-list`, `spanish`, `learning-path`.
+4. En **Settings → General**, agrega descripción, el sitio `https://academia.xaboli.cl` y estos temas: `ai`, `claude`, `claude-code`, `llm`, `agents`, `awesome-list`, `spanish`, `learning-path`.
 5. En **Settings → Branches**, protege `main` y exige que pase el check **Validación**.
 
 ## 2. Cloudflare Pages
@@ -34,7 +34,7 @@ git push -u origin main
    - **Build output directory:** `dist`
    - **Variable de entorno:** `NODE_VERSION` = `22`
 3. Guarda y despliega. El sitio queda en `catastro-ia.pages.dev`.
-4. **Custom domains → Set up a domain →** `catastro.xaboli.cl`. Como `xaboli.cl` ya está en Cloudflare, el registro DNS se crea solo.
+4. **Custom domains → Set up a domain →** `academia.xaboli.cl`. Como `xaboli.cl` ya está en Cloudflare, el registro DNS se crea solo.
 
 ## 3. Base de datos de contactos (D1)
 
@@ -47,7 +47,7 @@ Mientras `DB` no esté configurada, el formulario responde con un mensaje que in
 
 ## 4. Protección contra bots (Turnstile)
 
-1. **Turnstile → Add widget**: nombre `catastro`, hostnames `catastro.xaboli.cl` y `catastro-ia.pages.dev`, modo **Managed**.
+1. **Turnstile → Add widget**: nombre `catastro`, hostnames `academia.xaboli.cl` y `catastro-ia.pages.dev`, modo **Managed**.
 2. Copia la **Site key** en `site.config.json` → `turnstileSiteKey` y haz commit.
 3. En Pages: **Settings → Variables and Secrets → Add** (tipo *Secret*):
    - `TURNSTILE_SECRET` = la Secret key del widget.
@@ -61,7 +61,7 @@ Sin `TURNSTILE_SECRET` el formulario funciona igual, protegido solo por el campo
 En el proyecto de Pages: **Metrics → Web Analytics → Enable**. Cloudflare inyecta el script automáticamente; no hace falta tocar el código. (Alternativa: poner el token en `site.config.json` → `cloudflareAnalyticsToken`.)
 
 Usa enlaces con UTM en tus publicaciones para saber de dónde vienen los contactos, por ejemplo:
-`https://catastro.xaboli.cl/lp/sdlc-ia/?utm_source=linkedin&utm_medium=post&utm_campaign=lp8`. La campaña de llegada queda guardada junto a cada contacto.
+`https://academia.xaboli.cl/lp/sdlc-ia/?utm_source=linkedin&utm_medium=post&utm_campaign=lp8`. La campaña de llegada queda guardada junto a cada contacto.
 
 ## 6. Correo de contacto
 
@@ -74,10 +74,10 @@ La política de privacidad publica `contacto@xaboli.cl` (configurable en `site.c
 
 ## 8. Verificación final
 
-- [ ] `https://catastro.xaboli.cl` carga, con candado y sin errores en la consola.
-- [ ] `https://catastro.xaboli.cl/lp/sdlc-ia/` permite rendir el examen y, al corregir, muestra el formulario de aviso.
+- [ ] `https://academia.xaboli.cl` carga, con candado y sin errores en la consola.
+- [ ] `https://academia.xaboli.cl/lp/sdlc-ia/` permite rendir el examen y, al corregir, muestra el formulario de aviso.
 - [ ] Un envío de prueba del formulario «Para equipos» aparece en D1 (`SELECT * FROM leads ORDER BY id DESC LIMIT 5;` en la consola).
-- [ ] `https://catastro.xaboli.cl/privacidad/` muestra el correo correcto.
+- [ ] `https://academia.xaboli.cl/privacidad/` muestra el correo correcto.
 - [ ] En GitHub, **Actions → Enlaces → Run workflow** termina sin errores.
 - [ ] Revisa cómo se ve el enlace al compartirlo (LinkedIn Post Inspector).
 

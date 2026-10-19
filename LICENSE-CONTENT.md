@@ -4,7 +4,7 @@ El contenido de este repositorio —las descripciones, la clasificación, las re
 
 Puedes copiarlo, redistribuirlo, adaptarlo y usarlo con cualquier fin, incluso comercial, siempre que des el crédito correspondiente, enlaces a la licencia e indiques si hiciste cambios. Atribución sugerida:
 
-> «Catastro Herramientas IA – Oliver Fierro», https://catastro.xaboli.cl, CC BY 4.0
+> «Academia de IA Xäboli – Oliver Fierro», https://academia.xaboli.cl, CC BY 4.0
 
 Texto legal completo: https://creativecommons.org/licenses/by/4.0/legalcode.es
 

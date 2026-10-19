@@ -148,7 +148,7 @@ const noscript = `<noscript><p class="lede">Activa JavaScript para filtrar y bus
 const latestLp = [...d.paths].sort((a, b) => b.published.localeCompare(a.published))[0];
 const promo = latestLp ? `<p class="promo"><b>Nuevo: ${esc(latestLp.code)} · ${esc(latestLp.title)}.</b> <span>${latestLp.modules.length} módulos y examen de ${latestLp.exam ? latestLp.exam.questions.length : 0} preguntas.</span> <a href="/lp/${latestLp.slug}/">Abrir la ruta →</a></p>` : '';
 const home = fill(src('pages/index.html'), { ...common, NOSCRIPT: noscript, PROMO: promo, CTA: cta('home') });
-const homeDesc = `Catálogo en español de ${d.resources.length} repositorios, cursos y herramientas de IA, con mapa de relaciones, recursos de universidades top 10 y learning paths con examen. Se actualiza cada mes.`;
+const homeDesc = `Academia gratuita de IA en español: learning paths con examen y un catastro de ${d.resources.length} repositorios, cursos y herramientas, con mapa de relaciones y recursos de universidades top 10. Se actualiza cada mes.`;
 out('index.html', page({
   meta: { title: `${C.siteName} · ${C.author.name}`, description: homeDesc, path: '/', css: ['catalog.css'],
     jsonld: { '@context': 'https://schema.org', '@type': 'CollectionPage', name: C.siteName, description: homeDesc, inLanguage: 'es', url: C.siteUrl + '/',

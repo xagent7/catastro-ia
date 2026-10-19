@@ -1,10 +1,10 @@
 <!-- Archivo generado por scripts/readme.mjs a partir de /data. No lo edites a mano: cambia los JSON y ejecuta npm run readme. -->
 
-# Catastro Herramientas IA
+# Academia de IA Xäboli
 
-**Catálogo abierto, en español y vivo de repositorios, cursos y herramientas de IA**, clasificados por tema, con las relaciones entre ellos, recursos gratuitos de las 10 mejores universidades del mundo y learning paths con examen.
+**Rutas de aprendizaje de IA con examen y un catastro abierto, en español y vivo, de repositorios, cursos y herramientas**, clasificados por tema, con las relaciones entre ellos y recursos gratuitos de las 10 mejores universidades del mundo.
 
-🌐 **Sitio:** [catastro.xaboli.cl](https://catastro.xaboli.cl) · 📈 **Actualizado:** 18 de octubre de 2026 · 🔁 **Próxima revisión:** 1 nov 2026
+🌐 **Sitio:** [academia.xaboli.cl](https://academia.xaboli.cl) · 📈 **Actualizado:** 18 de octubre de 2026 · 🔁 **Próxima revisión:** 1 nov 2026
 
 [![Licencia del contenido: CC BY 4.0](https://img.shields.io/badge/contenido-CC%20BY%204.0-blue)](LICENSE-CONTENT.md) [![Licencia del código: MIT](https://img.shields.io/badge/c%C3%B3digo-MIT-green)](LICENSE) [![Validación](https://github.com/xagent7/catastro-ia/actions/workflows/ci.yml/badge.svg)](https://github.com/xagent7/catastro-ia/actions/workflows/ci.yml) [![Enlaces](https://github.com/xagent7/catastro-ia/actions/workflows/enlaces.yml/badge.svg)](https://github.com/xagent7/catastro-ia/actions/workflows/enlaces.yml)
 
@@ -14,7 +14,7 @@
 ## Qué lo hace distinto
 
 - **En español y para equipos de LATAM.** Cada ficha explica qué es el recurso y *para qué sirve en una ruta de aprendizaje*, no solo un enlace.
-- **Relaciones entre recursos.** Qué se complementa, qué es alternativa de qué y qué conviene aprender antes. En el sitio se exploran como [mapa interactivo](https://catastro.xaboli.cl/#mapa).
+- **Relaciones entre recursos.** Qué se complementa, qué es alternativa de qué y qué conviene aprender antes. En el sitio se exploran como [mapa interactivo](https://academia.xaboli.cl/#mapa).
 - **Honesto sobre lo que no se verificó.** Las fichas marcadas *según el proyecto* repiten lo que declaran sus autores; las que tienen riesgos (seguridad, términos de uso, afirmaciones no verificadas) llevan advertencia.
 - **Solo recursos directos.** Repositorios, cursos, libros, herramientas y documentación oficial. Sin artículos ni noticias.
 - **Vivo.** Se revisa cada mes, con verificación automática de enlaces y un registro público de cambios.
@@ -24,7 +24,7 @@
 
 | Ruta | Módulos | Examen | |
 |---|:-:|:-:|---|
-| **LP8 · Ciclo de desarrollo de software con IA**<br>Cómo construir software con agentes de punta a punta: Claude Code y herramientas afines, bootstrap de proyectos, desarrollo guiado por especificaciones, agentes del desarrollo y CI/CD para soluciones agénticas. | 10 | 100 preguntas | [Abrir](https://catastro.xaboli.cl/lp/sdlc-ia/) |
+| **LP8 · Ciclo de desarrollo de software con IA**<br>Cómo construir software con agentes de punta a punta: Claude Code y herramientas afines, bootstrap de proyectos, desarrollo guiado por especificaciones, agentes del desarrollo y CI/CD para soluciones agénticas. | 10 | 100 preguntas | [Abrir](https://academia.xaboli.cl/lp/sdlc-ia/) |
 
 Se publica una ruta nueva cada mes. Para recibir el aviso, deja tu correo al final de cualquier examen en el sitio.
 
@@ -306,7 +306,7 @@ Recursos gratuitos de IA que publican las diez primeras universidades del QS Wor
 
 **18 de octubre de 2026.** Se agregan plataformas de formación (DeepLearning.AI, Hugging Face y NVIDIA), Claude Academy, las especificaciones MCP y A2A, y una sección con recursos gratuitos de las 10 mejores universidades del ranking QS 2026. Los artículos se reemplazan por sus recursos originales.
 
-El detalle está en la pestaña [Novedades](https://catastro.xaboli.cl/#novedades) del sitio y en el [historial de commits](https://github.com/xagent7/catastro-ia/commits/main).
+El detalle está en la pestaña [Novedades](https://academia.xaboli.cl/#novedades) del sitio y en el [historial de commits](https://github.com/xagent7/catastro-ia/commits/main).
 
 ## Cómo contribuir
 
@@ -316,13 +316,13 @@ El detalle está en la pestaña [Novedades](https://catastro.xaboli.cl/#novedade
 
 ## Usar los datos
 
-Los datos están en [`data/`](data/) y se publican como JSON abierto en [catastro.xaboli.cl/data/resources.json](https://catastro.xaboli.cl/data/resources.json). Puedes reutilizarlos citando la fuente (CC BY 4.0).
+Los datos están en [`data/`](data/) y se publican como JSON abierto en [academia.xaboli.cl/data/resources.json](https://academia.xaboli.cl/data/resources.json). Puedes reutilizarlos citando la fuente (CC BY 4.0).
 
 ## Autor
 
 **Oliver Fierro** · Enterprise Applied AI Lead · [LinkedIn](https://www.linkedin.com/in/oliverfierro)
 
-¿Tu equipo quiere adoptar Claude y los agentes de código en todo el ciclo de desarrollo? [Conversemos](https://catastro.xaboli.cl/#equipos).
+¿Tu equipo quiere adoptar Claude y los agentes de código en todo el ciclo de desarrollo? [Conversemos](https://academia.xaboli.cl/#equipos).
 
 ---
 

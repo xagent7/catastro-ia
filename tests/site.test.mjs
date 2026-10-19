@@ -13,7 +13,7 @@ function load(page) {
     (m, src) => `<script>${readFileSync(new URL('.' + src, DIST), 'utf8')}</script>`);
   const errors = [];
   const vc = new VirtualConsole(); vc.on('jsdomError', e => { if (!/Not implemented/.test(e.message)) errors.push(e.message); });
-  const dom = new JSDOM(html, { runScripts: 'dangerously', pretendToBeVisual: true, url: 'https://catastro.xaboli.cl/', virtualConsole: vc });
+  const dom = new JSDOM(html, { runScripts: 'dangerously', pretendToBeVisual: true, url: 'https://academia.xaboli.cl/', virtualConsole: vc });
   return { doc: dom.window.document, win: dom.window, errors };
 }
 

@@ -19,9 +19,9 @@ function mockDB({ recent = 0 } = {}) {
     },
   };
 }
-const req = (body, headers = {}) => new Request('https://catastro.xaboli.cl/api/lead', {
+const req = (body, headers = {}) => new Request('https://academia.xaboli.cl/api/lead', {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json', Origin: 'https://catastro.xaboli.cl', 'CF-Connecting-IP': '203.0.113.7', ...headers },
+  headers: { 'Content-Type': 'application/json', Origin: 'https://academia.xaboli.cl', 'CF-Connecting-IP': '203.0.113.7', ...headers },
   body: typeof body === 'string' ? body : JSON.stringify(body),
 });
 const team = { kind: 'equipo', name: 'Ana', email: 'ana@empresa.cl', company: 'Empresa', team_size: '11–50', interest: 'Otro', consent_contact: true, consent_marketing: false };

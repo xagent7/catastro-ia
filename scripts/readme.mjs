@@ -22,7 +22,7 @@ let md = `<!-- Archivo generado por scripts/readme.mjs a partir de /data. No lo 
 
 # ${C.siteName}
 
-**Catálogo abierto, en español y vivo de repositorios, cursos y herramientas de IA**, clasificados por tema, con las relaciones entre ellos, recursos gratuitos de las 10 mejores universidades del mundo y learning paths con examen.
+**Rutas de aprendizaje de IA con examen y un catastro abierto, en español y vivo, de repositorios, cursos y herramientas**, clasificados por tema, con las relaciones entre ellos y recursos gratuitos de las 10 mejores universidades del mundo.
 
 🌐 **Sitio:** [${C.siteUrl.replace('https://', '')}](${C.siteUrl}) · 📈 **Actualizado:** ${longDate(d.meta.updated)} · 🔁 **Próxima revisión:** ${d.meta.nextReview}
 
