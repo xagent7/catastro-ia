@@ -5,7 +5,7 @@
 //   TURNSTILE_SECRET (secreto, recomendado) verifica el token de Cloudflare Turnstile
 //   IP_SALT          (secreto, recomendado) sal para el hash de la IP
 //   NOTIFY_WEBHOOK   (secreto, opcional) URL compatible con Slack/Discord/Teams para avisar de cada contacto
-import config from '../../site.config.json' with { type: 'json' };
+import { CONSENT_VERSION, CONTACT_EMAIL } from '../../lib/lead-config.js';
 
 const MAX_BODY = 12_000;
 const RATE_LIMIT_PER_HOUR = 5;
@@ -44,7 +44,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   const host = new URL(request.url).host;
   if (origin && new URL(origin).host !== host) return json(403, { ok: false, error: 'Origen no permitido.' });
   if (!(request.headers.get('Content-Type') || '').includes('application/json')) return json(415, { ok: false, error: 'Formato no soportado.' });
-  if (!env.DB) return json(503, { ok: false, error: `El formulario aún no está activo. Escribe a ${config.privacy.contactEmail}.` });
+  if (!env.DB) return json(503, { ok: false, error: `El formulario aún no está activo. Escribe a ${CONTACT_EMAIL}.` });
 
   const raw = await request.text();
   if (raw.length > MAX_BODY) return json(413, { ok: false, error: 'El mensaje es demasiado largo.' });
@@ -94,7 +94,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
     score: shareScore ? str(b.score, 12) : '',
     consent_contact: consentContact ? 1 : 0,
     consent_marketing: consentMarketing ? 1 : 0,
-    consent_version: config.privacy.version,
+    consent_version: CONSENT_VERSION,
     page: str(b.page, 200), landing: str(b.landing, 200), source: str(b.source, 40),
     utm_source: str(b.utm_source, 80), utm_medium: str(b.utm_medium, 80), utm_campaign: str(b.utm_campaign, 80),
     ip_hash: ipHash,

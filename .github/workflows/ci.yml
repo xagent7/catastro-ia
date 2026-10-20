@@ -21,5 +21,7 @@ jobs:
         run: npm run build
       - name: Pruebas (función de formularios y páginas generadas)
         run: npm test
+      - name: Empaquetar la función como lo hace Cloudflare Pages
+        run: npx wrangler pages functions build --outdir /tmp/functions-build
       - name: README al día con los datos
         run: npm run readme:check
