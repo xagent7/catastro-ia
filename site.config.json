@@ -28,7 +28,7 @@
   "cloudflareAnalyticsToken": "",
   "leadForm": {
     "provider": "google",
-    "url": "",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSd8PjJTQCtNdlbj-xXp8eVr7bvWnacFVS2TX50GlhXFcYhegA/viewform",
     "_nota": "Pega aquí el enlace público del Formulario de Google (termina en /viewform). Si queda vacío, se usan los formularios propios con Cloudflare D1."
   }
 }
