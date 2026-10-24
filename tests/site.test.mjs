@@ -24,7 +24,7 @@ test('portada: catálogo, learning paths, universidades y formulario', { skip },
   assert.equal(doc.querySelectorAll('#catalog .card').length, R.length);
   assert.ok(doc.querySelectorAll('.lpcard').length >= 1);
   assert.ok(doc.querySelectorAll('.ucard').length >= 10);
-  assert.ok(doc.querySelector('form[data-lead="equipo"] [name=consent_contact][required]'));
+  assert.ok(doc.querySelector('form[data-lead="equipo"] [name=consent_contact][required]') || doc.querySelector('#equipos .gform'), 'formulario propio o de Google');
   assert.ok(doc.querySelector('link[rel=canonical]').href.startsWith('https://'));
   assert.ok(doc.querySelector('meta[property="og:image"]'));
   assert.match(readFileSync(new URL('index.html', DIST), 'utf8'), /<noscript>.*<li><a href="https:/s, 'listado sin JavaScript para buscadores');
@@ -36,7 +36,7 @@ test('learning paths: módulos, fases y examen completo', { skip }, () => {
     assert.deepEqual(errors, [], lp.href);
     assert.equal(doc.querySelectorAll('.modlist li').length, lp.modules);
     assert.equal(doc.querySelectorAll('#qs > li').length, lp.questions, 'modo completo muestra todas las preguntas');
-    assert.ok(doc.querySelector('form[data-lead="novedades"] [name=consent_marketing][required]'));
+    assert.ok(doc.querySelector('form[data-lead="novedades"] [name=consent_marketing][required]') || doc.querySelector('#notify a[href*="google"], #notify a[href*="forms.gle"]'));
   }
 });
 

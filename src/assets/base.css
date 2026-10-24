@@ -106,3 +106,11 @@ h3{font-family:var(--f-display);font-size:19px;line-height:1.2;margin:0 0 4px}
 .prose table{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0}
 .prose th,.prose td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
 .prose th{background:var(--chip)}
+
+/* Formulario de Google embebido */
+.gform{background:var(--surface);border-radius:12px;padding:8px;min-width:0}
+.gform iframe{display:block;width:100%;height:1180px;border:0;border-radius:8px;background:#fff}
+.gform .fine{margin:8px 8px 4px;font-size:13px;color:var(--muted)}
+.gform.link{display:flex;flex-direction:column;justify-content:center;gap:14px;padding:24px;color:var(--ink)}
+.gform.link p{color:var(--ink);margin:0}
+@media (max-width:560px){.gform iframe{height:1350px}}

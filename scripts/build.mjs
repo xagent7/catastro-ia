@@ -90,6 +90,9 @@ const top = active => `<div class="top">
     <a class="cta-link" href="${active === 'home' ? '' : '/'}#equipos">Para equipos</a>
   </nav>
 </div>`;
+const googleBlock = () => gfEmbed
+  ? `<div class="gform"><iframe src="${esc(gfEmbed)}" title="Formulario de contacto para equipos" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">Cargando…</iframe><p class="fine">¿No ves el formulario? <a href="${esc(GF)}" target="_blank" rel="noopener">Ábrelo en una pestaña nueva</a>.</p></div>`
+  : `<div class="gform link"><p>Cuéntanos sobre tu equipo en un formulario de dos minutos.</p><a class="btn" href="${esc(GF)}" target="_blank" rel="noopener">${esc(C.cta.button)} ↗</a></div>`;
 const cta = page => `<section class="band" id="equipos" aria-labelledby="equipos-h">
   <div>
     <div class="kicker">Para equipos · ${esc(C.cta.brand)}</div>
@@ -103,7 +106,7 @@ const cta = page => `<section class="band" id="equipos" aria-labelledby="equipos
     </ul>
     <p><a href="${esc(C.cta.brandUrl)}" rel="noopener">${esc(C.cta.brandUrl.replace(/^https:\/\//, ''))}</a></p>
   </div>
-  <form class="form" data-lead="equipo" data-ok-msg="Gracias. Te responderé en un plazo de 2 días hábiles." novalidate>
+${GF ? googleBlock() : `  <form class="form" data-lead="equipo" data-ok-msg="Gracias. Te responderé en un plazo de 2 días hábiles." novalidate>
     <label>Nombre<input type="text" name="name" required maxlength="120" autocomplete="name"></label>
     <label>Correo de trabajo<input type="email" name="email" required maxlength="160" autocomplete="email"></label>
     <label>Empresa<input type="text" name="company" required maxlength="120" autocomplete="organization"></label>
@@ -118,7 +121,7 @@ const cta = page => `<section class="band" id="equipos" aria-labelledby="equipos
     <div class="ts full"></div>
     <div class="full"><button class="btn" type="submit">${esc(C.cta.button)}</button></div>
     <p class="status full" role="status"></p>
-  </form>
+  </form>`}
 </section>`;
 const foot = () => `<footer class="foot">
   <div>
@@ -138,6 +141,9 @@ const page = ({ meta, active, body, scripts = [] }) =>
   head(meta) + '\n' + top(active) + '\n' + body + '\n' + foot() + '\n' + scripts.map(s => `<script src="${s}" defer></script>`).join('\n') + '\n</body>\n</html>\n';
 const fill = (tpl, map) => tpl.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => { if (!(k in map)) throw new Error('Token sin valor: ' + k); return map[k]; });
 const common = { REPO_URL, BRANCH: C.github.branch };
+const GF = C.leadForm && C.leadForm.provider === 'google' && C.leadForm.url ? C.leadForm.url.trim() : '';
+if (GF && !/^https:\/\/(docs\.google\.com\/forms\/|forms\.gle\/)/.test(GF)) { console.error('leadForm.url debe ser un enlace de Google Forms (docs.google.com/forms/... o forms.gle/...)'); process.exit(1); }
+const gfEmbed = GF && GF.includes('docs.google.com') ? GF.replace(/\/(edit|viewform)(\?.*)?$/, '/viewform') + '?embedded=true' : '';
 
 // ── Página principal
 const catNames = Object.fromEntries(d.categories.map(c => [c.id, c.name]));
@@ -166,19 +172,30 @@ for (const lp of d.paths) {
   const Q = lp.exam ? lp.exam.questions.map(q => ({ m: q.module, lv: q.level, p: q.prompt, o: q.options, a: q.answer, e: q.explanation })) : [];
   const lpData = dataJs(lp.id, { LP: { id: lp.id, passMark: lp.passMark }, MODS, PHASES, Q });
   const body = fill(src('pages/lp.html'), { ...common, LP_EYEBROW: esc(lp.eyebrow), LP_TITLE: esc(lp.title), LP_LEDE: esc(lp.lede), LP_ID: esc(lp.id), LP_PASS: String(lp.passMark), LP_REVIEWED: longDate(lp.reviewed), CTA: cta(lp.id) });
+  const lpBody = GF ? body.replace(/<form class="form" data-lead="novedades"[\s\S]*?<\/form>/, `<p><a class="btn" href="${esc(GF)}" target="_blank" rel="noopener">Avísame del próximo learning path ↗</a></p>`).replace('Deja tu correo y te aviso cuando salga; nada más.', 'Deja tu correo en el formulario y marca que quieres recibir los próximos learning paths.') : body;
   const path = `/lp/${lp.slug}/`;
   out(`lp/${lp.slug}/index.html`, page({
     meta: { title: `${lp.code} · ${lp.title} · ${C.siteName}`, description: `${lp.summary} ${lp.modules.length} módulos y examen interactivo de ${Q.length} preguntas.`, path, css: ['lp.css'],
       jsonld: { '@context': 'https://schema.org', '@type': 'Course', name: `${lp.code} · ${lp.title}`, description: lp.summary, inLanguage: 'es', url: C.siteUrl + path,
         provider: { '@type': 'Organization', name: C.cta.brand, url: C.cta.brandUrl }, isAccessibleForFree: true, educationalLevel: 'Básico a avanzado',
         datePublished: lp.published, dateModified: lp.reviewed, hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online', courseWorkload: 'PT50H' } } },
-    active: 'lp', body, scripts: [lpData, assets['lp.js'], assets['forms.js']],
+    active: 'lp', body: lpBody, scripts: [lpData, assets['lp.js'], assets['forms.js']],
   }));
   sitemap.push({ loc: path, lastmod: lp.reviewed });
 }
 
 // ── Privacidad y 404
-const priv = fill(src('pages/privacidad.html'), { ...common, PRIV_VERSION: longDate(C.privacy.version), PRIV_CONTROLLER: esc(C.privacy.controller), PRIV_EMAIL: esc(C.privacy.contactEmail), PRIV_RETENTION: String(C.privacy.retentionMonths) });
+const PRIV = GF ? {
+  PRIV_ROWS: '<tr><td>Contacto y novedades</td><td>Los datos que completes en el formulario: nombre, correo, empresa, cargo, tamaño del equipo, interés y mensaje.</td><td>Responder tu solicitud sobre programas para equipos y, si lo marcas, avisarte de los próximos learning paths.</td><td>Tu consentimiento, que entregas en el formulario.</td></tr>',
+  PRIV_META: '<p>El formulario no registra tu dirección IP ni tu cuenta de Google, salvo que el propio formulario lo indique. Tus respuestas del examen no se envían.</p>',
+  PRIV_PROVIDERS: '<p>El sitio está alojado en Cloudflare. El formulario de contacto es un Formulario de Google y las respuestas se guardan en una planilla de Google de ' + esc(C.privacy.controller) + '; Google actúa como proveedor y puede procesar datos fuera de Chile con garantías contractuales. Al abrir el formulario, Google puede recibir datos técnicos de tu navegador según su propia política de privacidad. Las fuentes tipográficas se sirven desde este mismo sitio.</p>',
+} : {
+  PRIV_ROWS: '<tr><td>Para equipos</td><td>Nombre, correo, empresa, cargo, tamaño del equipo, interés y mensaje.</td><td>Responder tu solicitud sobre programas de adopción y entrenamiento para equipos.</td><td>Tu consentimiento, que entregas al marcar la casilla del formulario.</td></tr>\n<tr><td>Próximo learning path</td><td>Correo, nombre (opcional) y, solo si lo marcas, tu resultado en el examen.</td><td>Avisarte por correo cuando se publique una ruta nueva y, si compartiste tu resultado, recomendarte por dónde seguir.</td><td>Tu consentimiento.</td></tr>\n<tr><td>Novedades (opcional, en «Para equipos»)</td><td>Correo.</td><td>Enviarte los próximos learning paths y novedades del catastro.</td><td>Tu consentimiento, independiente del anterior.</td></tr>',
+  PRIV_META: '<p>Junto con cada envío se guardan la página desde la que escribiste, la campaña de llegada si viniste desde un enlace con parámetros UTM, la fecha y un identificador de tu dirección IP transformado de forma irreversible (hash), que se usa solo para frenar envíos abusivos. No se guarda la dirección IP en claro.</p>\n<p>No se venden ni se ceden datos a terceros, ni se usan para decisiones automatizadas.</p>',
+  PRIV_PROVIDERS: '<p>El sitio y la base de datos de los formularios están alojados en Cloudflare, que actúa como proveedor de infraestructura y puede procesar datos fuera de Chile con garantías contractuales. Los formularios usan Cloudflare Turnstile para distinguir personas de bots, que procesa datos técnicos del navegador solo para ese fin. Las fuentes tipográficas se sirven desde este mismo sitio.</p>',
+};
+if (GF) PRIV.PRIV_META += '\n<p>No se venden ni se ceden datos a terceros, ni se usan para decisiones automatizadas.</p>';
+const priv = fill(src('pages/privacidad.html'), { ...common, ...PRIV, PRIV_VERSION: longDate(C.privacy.version), PRIV_CONTROLLER: esc(C.privacy.controller), PRIV_EMAIL: esc(C.privacy.contactEmail), PRIV_RETENTION: String(C.privacy.retentionMonths) });
 out('privacidad/index.html', page({ meta: { title: `Política de privacidad · ${C.siteName}`, description: 'Qué datos recoge este sitio, para qué, por cuánto tiempo y cómo ejercer tus derechos.', path: '/privacidad/' }, active: '', body: priv }));
 sitemap.push({ loc: '/privacidad/', lastmod: C.privacy.version });
 out('404.html', page({ meta: { title: `Página no encontrada · ${C.siteName}`, description: 'La página no existe.', path: '/404' }, active: '', body: src('pages/404.html') }));
@@ -193,7 +210,7 @@ const csp = [
   "font-src 'self'",
   "img-src 'self' data:",
   "connect-src 'self' https://cloudflareinsights.com",
-  'frame-src https://challenges.cloudflare.com',
+  `frame-src https://challenges.cloudflare.com${GF ? ' https://docs.google.com' : ''}`,
   "base-uri 'self'", "form-action 'self'", "frame-ancestors 'none'", "object-src 'none'", 'upgrade-insecure-requests',
 ].join('; ');
 out('_headers', `/*

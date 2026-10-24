@@ -25,5 +25,10 @@
     "retentionMonths": 24
   },
   "turnstileSiteKey": "",
-  "cloudflareAnalyticsToken": ""
+  "cloudflareAnalyticsToken": "",
+  "leadForm": {
+    "provider": "google",
+    "url": "",
+    "_nota": "Pega aquí el enlace público del Formulario de Google (termina en /viewform). Si queda vacío, se usan los formularios propios con Cloudflare D1."
+  }
 }
