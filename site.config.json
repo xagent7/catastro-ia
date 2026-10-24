@@ -19,9 +19,9 @@
     "button": "Conversemos sobre tu equipo"
   },
   "privacy": {
-    "controller": "Oliver Fierro (Xäboli)",
+    "controller": "Xäboli",
     "contactEmail": "contacto@xaboli.cl",
-    "version": "2026-10-18",
+    "version": "2026-10-24",
     "retentionMonths": 24
   },
   "turnstileSiteKey": "",

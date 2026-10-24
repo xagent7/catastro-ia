@@ -57,7 +57,7 @@ const head = ({ title, description, path, css = [], jsonld = null, type = 'websi
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${esc(url)}">
-<meta name="author" content="${esc(C.author.name)}">
+<meta name="author" content="${esc(C.cta.brand)}">
 <meta property="og:type" content="${type}">
 <meta property="og:locale" content="es_CL">
 <meta property="og:site_name" content="${esc(C.siteName)}">
@@ -101,7 +101,7 @@ const cta = page => `<section class="band" id="equipos" aria-labelledby="equipos
       <li>Learning paths con examen por rol, como los de este catastro.</li>
       <li>Desarrollo guiado por especificaciones, CI/CD agéntico y gobierno de agentes.</li>
     </ul>
-    <p>Por ${esc(C.author.name)} · <a href="${esc(C.cta.brandUrl)}" rel="noopener">${esc(C.cta.brandUrl.replace(/^https:\/\//, ''))}</a></p>
+    <p><a href="${esc(C.cta.brandUrl)}" rel="noopener">${esc(C.cta.brandUrl.replace(/^https:\/\//, ''))}</a></p>
   </div>
   <form class="form" data-lead="equipo" data-ok-msg="Gracias. Te responderé en un plazo de 2 días hábiles." novalidate>
     <label>Nombre<input type="text" name="name" required maxlength="120" autocomplete="name"></label>
@@ -123,7 +123,7 @@ const cta = page => `<section class="band" id="equipos" aria-labelledby="equipos
 const foot = () => `<footer class="foot">
   <div>
     <p>Proyecto independiente. No está afiliado ni respaldado por Anthropic ni por los autores de los recursos listados; los nombres de productos y marcas pertenecen a sus dueños, y Claude es una marca de Anthropic.</p>
-    <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es" rel="noopener license">CC BY 4.0</a>: puedes reutilizarlo citando «${esc(C.siteName)} – ${esc(C.author.name)}». Código bajo licencia MIT. Datos abiertos en <a href="/data/resources.json">JSON</a>.</p>
+    <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es" rel="noopener license">CC BY 4.0</a>: puedes reutilizarlo citando «${esc(C.siteName)}». Código bajo licencia MIT. Datos abiertos en <a href="/data/resources.json">JSON</a>.</p>
   </div>
   <nav aria-label="Pie">
     <a href="${REPO_URL}" rel="noopener">Repositorio en GitHub</a>
@@ -150,9 +150,9 @@ const promo = latestLp ? `<p class="promo"><b>Nuevo: ${esc(latestLp.code)} · ${
 const home = fill(src('pages/index.html'), { ...common, NOSCRIPT: noscript, PROMO: promo, CTA: cta('home') });
 const homeDesc = `Academia gratuita de IA en español: learning paths con examen y un catastro de ${d.resources.length} repositorios, cursos y herramientas, con mapa de relaciones y recursos de universidades top 10. Se actualiza cada mes.`;
 out('index.html', page({
-  meta: { title: `${C.siteName} · ${C.author.name}`, description: homeDesc, path: '/', css: ['catalog.css'],
+  meta: { title: C.siteName, description: homeDesc, path: '/', css: ['catalog.css'],
     jsonld: { '@context': 'https://schema.org', '@type': 'CollectionPage', name: C.siteName, description: homeDesc, inLanguage: 'es', url: C.siteUrl + '/',
-      author: { '@type': 'Person', name: C.author.name, jobTitle: C.author.title, sameAs: [C.author.linkedin] }, dateModified: d.meta.updated,
+      author: { '@type': 'Organization', name: C.cta.brand, url: C.cta.brandUrl }, dateModified: d.meta.updated,
       license: 'https://creativecommons.org/licenses/by/4.0/',
       mainEntity: { '@type': 'ItemList', numberOfItems: d.resources.length } } },
   active: 'home', body: home, scripts: [catalogData, assets['catalog.js'], assets['forms.js']],
@@ -168,9 +168,9 @@ for (const lp of d.paths) {
   const body = fill(src('pages/lp.html'), { ...common, LP_EYEBROW: esc(lp.eyebrow), LP_TITLE: esc(lp.title), LP_LEDE: esc(lp.lede), LP_ID: esc(lp.id), LP_PASS: String(lp.passMark), LP_REVIEWED: longDate(lp.reviewed), CTA: cta(lp.id) });
   const path = `/lp/${lp.slug}/`;
   out(`lp/${lp.slug}/index.html`, page({
-    meta: { title: `${lp.code} · ${lp.title} · ${C.author.name}`, description: `${lp.summary} ${lp.modules.length} módulos y examen interactivo de ${Q.length} preguntas.`, path, css: ['lp.css'],
+    meta: { title: `${lp.code} · ${lp.title} · ${C.siteName}`, description: `${lp.summary} ${lp.modules.length} módulos y examen interactivo de ${Q.length} preguntas.`, path, css: ['lp.css'],
       jsonld: { '@context': 'https://schema.org', '@type': 'Course', name: `${lp.code} · ${lp.title}`, description: lp.summary, inLanguage: 'es', url: C.siteUrl + path,
-        provider: { '@type': 'Person', name: C.author.name, sameAs: [C.author.linkedin] }, isAccessibleForFree: true, educationalLevel: 'Básico a avanzado',
+        provider: { '@type': 'Organization', name: C.cta.brand, url: C.cta.brandUrl }, isAccessibleForFree: true, educationalLevel: 'Básico a avanzado',
         datePublished: lp.published, dateModified: lp.reviewed, hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online', courseWorkload: 'PT50H' } } },
     active: 'lp', body, scripts: [lpData, assets['lp.js'], assets['forms.js']],
   }));
