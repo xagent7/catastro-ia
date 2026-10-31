@@ -17,39 +17,55 @@
   }
 
   const ORANGE = '#e26223', BG = '#0d1112';
-  let logoP = null;
-  function logo() {
-    if (!logoP) logoP = new Promise(res => { const img = new Image(); img.onload = () => res(img); img.onerror = () => res(null); img.src = '/brand/xaboli-logo-dark.svg'; });
-    return logoP;
-  }
+  const imgs = {};
+  const loadImg = src => imgs[src] || (imgs[src] = new Promise(res => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; }));
+  const DEFAULT_VARIANT = 'iso-seal';
 
-  async function draw(canvas, b) {
-    const img = await logo();
+  async function draw(canvas, b, variant) {
+    variant = variant || DEFAULT_VARIANT;
+    const [img, iso] = await Promise.all([loadImg('/brand/xaboli-logo-dark.svg'), loadImg('/brand/xaboli-isotipo-dark.svg')]);
     try { await Promise.all(['700 64px "Bricolage Grotesque"', '400 30px "Source Sans 3"', '600 30px "Source Sans 3"', '400 26px "JetBrains Mono"'].map(f => document.fonts.load(f))); } catch (e) {}
     const ctx = canvas.getContext('2d');
     canvas.width = W; canvas.height = H;
     // Fondo
     const g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#141a1b'); g.addColorStop(1, BG);
     ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-    // Red de nodos (motivo del catastro)
-    const N = [[930, 210, 30, ORANGE], [1090, 160, 18, '#F2F5F4'], [1010, 360, 24, '#F2F5F4'], [1120, 330, 36, ORANGE], [880, 410, 14, '#9BABA5'], [1060, 500, 20, ORANGE]];
-    const L = [[0, 1], [0, 2], [1, 3], [2, 3], [2, 4], [3, 5], [2, 5], [0, 4]];
-    ctx.strokeStyle = 'rgba(226,98,35,.4)'; ctx.lineWidth = 3;
-    L.forEach(([a, c]) => { ctx.beginPath(); ctx.moveTo(N[a][0], N[a][1]); ctx.lineTo(N[c][0], N[c][1]); ctx.stroke(); });
-    N.forEach(([x, y, r, col]) => { ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fillStyle = col; ctx.fill(); });
+    if (variant === 'iso-hero' && iso) {
+      ctx.globalAlpha = 1; ctx.drawImage(iso, 740, 40, 400, 400);
+    } else {
+      // Red de nodos (motivo del catastro)
+      const N = [[930, 210, 30, ORANGE], [1090, 160, 18, '#F2F5F4'], [1010, 360, 24, '#F2F5F4'], [1120, 330, 36, ORANGE], [880, 410, 14, '#9BABA5'], [1060, 500, 20, ORANGE]];
+      const L = [[0, 1], [0, 2], [1, 3], [2, 3], [2, 4], [3, 5], [2, 5], [0, 4]];
+      ctx.strokeStyle = 'rgba(226,98,35,.4)'; ctx.lineWidth = 3;
+      L.forEach(([a, c]) => { ctx.beginPath(); ctx.moveTo(N[a][0], N[a][1]); ctx.lineTo(N[c][0], N[c][1]); ctx.stroke(); });
+      N.forEach(([x, y, r, col]) => { ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fillStyle = col; ctx.fill(); });
+    }
     // Marca
-    if (img) { const lh = 92, lw = lh * img.naturalWidth / img.naturalHeight || lh * 3.83; ctx.drawImage(img, 90, 80, lw, lh); }
-    else { ctx.fillStyle = '#F2F5F4'; ctx.font = '700 80px "Bricolage Grotesque", sans-serif'; ctx.fillText('Xäboli', 90, 160); }
-    ctx.fillStyle = '#9BABA5'; ctx.font = '400 26px "JetBrains Mono", monospace';
-    ctx.fillText('ACADEMIA DE IA', 94, 222);
+    const isoSeal = variant === 'iso-seal' || variant === 'iso-only';
+    if (variant === 'iso-only') {
+      ctx.fillStyle = '#9BABA5'; ctx.font = '400 28px "JetBrains Mono", monospace'; ctx.fillText('ACADEMIA DE IA XÄBOLI', 90, 150);
+    } else {
+      if (img) { const lh = 92, lw = lh * img.naturalWidth / img.naturalHeight || lh * 3.83; ctx.drawImage(img, 90, 80, lw, lh); }
+      else { ctx.fillStyle = '#F2F5F4'; ctx.font = '700 80px "Bricolage Grotesque", sans-serif'; ctx.fillText('Xäboli', 90, 160); }
+      ctx.fillStyle = '#9BABA5'; ctx.font = '400 26px "JetBrains Mono", monospace';
+      ctx.fillText('ACADEMIA DE IA', 94, 222);
+    }
     // Sello
     const cx = 250, cy = 430, R = 140;
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = ORANGE; ctx.fill();
-    ctx.beginPath(); ctx.arc(cx, cy, R - 14, 0, Math.PI * 2); ctx.strokeStyle = BG; ctx.lineWidth = 4; ctx.stroke();
-    ctx.fillStyle = BG; ctx.textAlign = 'center';
-    ctx.font = '700 92px "Bricolage Grotesque", sans-serif'; ctx.fillText(LP.code, cx, cy + 18);
-    ctx.font = '600 24px "Source Sans 3", sans-serif'; ctx.fillText('APROBADO', cx, cy + 64);
-    ctx.textAlign = 'left';
+    if (isoSeal && iso) {
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = '#1a2224'; ctx.fill();
+      ctx.beginPath(); ctx.arc(cx, cy, R - 6, 0, Math.PI * 2); ctx.strokeStyle = ORANGE; ctx.lineWidth = 12; ctx.stroke();
+      const s2 = R * 1.85; ctx.drawImage(iso, cx - s2 / 2 - 4, cy - s2 / 2 + 4, s2, s2);
+      ctx.fillStyle = ORANGE; ctx.font = '700 120px "Bricolage Grotesque", sans-serif'; ctx.fillText(LP.code, cx + R + 50, cy + 20);
+      ctx.fillStyle = '#F2F5F4'; ctx.font = '600 30px "Source Sans 3", sans-serif'; ctx.fillText('APROBADO', cx + R + 56, cy + 70);
+    } else {
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = ORANGE; ctx.fill();
+      ctx.beginPath(); ctx.arc(cx, cy, R - 14, 0, Math.PI * 2); ctx.strokeStyle = BG; ctx.lineWidth = 4; ctx.stroke();
+      ctx.fillStyle = BG; ctx.textAlign = 'center';
+      ctx.font = '700 92px "Bricolage Grotesque", sans-serif'; ctx.fillText(LP.code, cx, cy + 18);
+      ctx.font = '600 24px "Source Sans 3", sans-serif'; ctx.fillText('APROBADO', cx, cy + 64);
+      ctx.textAlign = 'left';
+    }
     // Título
     ctx.fillStyle = '#F2F5F4'; ctx.font = '700 70px "Bricolage Grotesque", sans-serif';
     let y = 650;
@@ -111,6 +127,7 @@
 
   // Llamado por lp.js cada vez que se corrige un modo
   window.XaboliBadge = {
+    _draw: draw,
     onGraded(mode, ok, n) {
       const host = document.getElementById('badge'); if (!host) return;
       const pct = Math.round(100 * ok / n);
