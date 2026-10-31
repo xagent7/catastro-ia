@@ -16,27 +16,37 @@
     if (line) lines.push(line); return lines;
   }
 
+  const ORANGE = '#e26223', BG = '#0d1112';
+  let logoP = null;
+  function logo() {
+    if (!logoP) logoP = new Promise(res => { const img = new Image(); img.onload = () => res(img); img.onerror = () => res(null); img.src = '/brand/xaboli-logo-dark.svg'; });
+    return logoP;
+  }
+
   async function draw(canvas, b) {
+    const img = await logo();
     try { await Promise.all(['700 64px "Bricolage Grotesque"', '400 30px "Source Sans 3"', '600 30px "Source Sans 3"', '400 26px "JetBrains Mono"'].map(f => document.fonts.load(f))); } catch (e) {}
     const ctx = canvas.getContext('2d');
     canvas.width = W; canvas.height = H;
     // Fondo
-    const g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#14211E'); g.addColorStop(1, '#0B1311');
+    const g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#141a1b'); g.addColorStop(1, BG);
     ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
     // Red de nodos (motivo del catastro)
-    const N = [[930, 170, 34, '#43C9A3'], [1090, 120, 22, '#FF7EAA'], [1010, 330, 28, '#79A6FF'], [1120, 300, 40, '#E2BD4A'], [880, 380, 16, '#FF9A63'], [1060, 470, 22, '#B595FF']];
+    const N = [[930, 210, 30, ORANGE], [1090, 160, 18, '#F2F5F4'], [1010, 360, 24, '#F2F5F4'], [1120, 330, 36, ORANGE], [880, 410, 14, '#9BABA5'], [1060, 500, 20, ORANGE]];
     const L = [[0, 1], [0, 2], [1, 3], [2, 3], [2, 4], [3, 5], [2, 5], [0, 4]];
-    ctx.strokeStyle = 'rgba(142,168,255,.45)'; ctx.lineWidth = 3;
+    ctx.strokeStyle = 'rgba(226,98,35,.4)'; ctx.lineWidth = 3;
     L.forEach(([a, c]) => { ctx.beginPath(); ctx.moveTo(N[a][0], N[a][1]); ctx.lineTo(N[c][0], N[c][1]); ctx.stroke(); });
     N.forEach(([x, y, r, col]) => { ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fillStyle = col; ctx.fill(); });
     // Marca
+    if (img) { const lh = 92, lw = lh * img.naturalWidth / img.naturalHeight || lh * 3.83; ctx.drawImage(img, 90, 80, lw, lh); }
+    else { ctx.fillStyle = '#F2F5F4'; ctx.font = '700 80px "Bricolage Grotesque", sans-serif'; ctx.fillText('Xäboli', 90, 160); }
     ctx.fillStyle = '#9BABA5'; ctx.font = '400 26px "JetBrains Mono", monospace';
-    ctx.fillText('ACADEMIA DE IA XÄBOLI', 90, 140);
+    ctx.fillText('ACADEMIA DE IA', 94, 222);
     // Sello
-    const cx = 260, cy = 400, R = 150;
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = '#8EA8FF'; ctx.fill();
-    ctx.beginPath(); ctx.arc(cx, cy, R - 14, 0, Math.PI * 2); ctx.strokeStyle = '#14211E'; ctx.lineWidth = 4; ctx.stroke();
-    ctx.fillStyle = '#14211E'; ctx.textAlign = 'center';
+    const cx = 250, cy = 430, R = 140;
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fillStyle = ORANGE; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, R - 14, 0, Math.PI * 2); ctx.strokeStyle = BG; ctx.lineWidth = 4; ctx.stroke();
+    ctx.fillStyle = BG; ctx.textAlign = 'center';
     ctx.font = '700 92px "Bricolage Grotesque", sans-serif'; ctx.fillText(LP.code, cx, cy + 18);
     ctx.font = '600 24px "Source Sans 3", sans-serif'; ctx.fillText('APROBADO', cx, cy + 64);
     ctx.textAlign = 'left';
@@ -52,7 +62,7 @@
     ctx.fillText(fmt(b.date), 90, y);
     // Pie
     ctx.fillStyle = 'rgba(255,255,255,.12)'; ctx.fillRect(90, H - 150, W - 180, 2);
-    ctx.fillStyle = '#8EA8FF'; ctx.font = '400 28px "JetBrains Mono", monospace'; ctx.fillText(SITE + '/' + LP.id, 90, H - 92);
+    ctx.fillStyle = ORANGE; ctx.font = '400 28px "JetBrains Mono", monospace'; ctx.fillText(SITE + '/' + LP.id, 90, H - 92);
     ctx.fillStyle = '#9BABA5'; ctx.font = '400 22px "Source Sans 3", sans-serif'; ctx.textAlign = 'right';
     ctx.fillText('Insignia de práctica · examen autoevaluado', W - 90, H - 94); ctx.textAlign = 'left';
   }

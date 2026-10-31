@@ -1,5 +1,5 @@
 // Construye el sitio estático en /dist a partir de /data, /src y site.config.json
-import { mkdirSync, rmSync, writeFileSync, readFileSync, readdirSync, copyFileSync, existsSync } from 'node:fs';
+import { mkdirSync, rmSync, writeFileSync, readFileSync, readdirSync, copyFileSync, cpSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { ROOT, loadAll, validate, toClient, resolveLpResource } from './lib/data.mjs';
@@ -29,7 +29,7 @@ for (const f of readdirSync(join(ROOT, 'src/assets'))) {
 }
 mkdirSync(join(DIST, 'fonts'), { recursive: true });
 for (const f of readdirSync(join(ROOT, 'src/fonts'))) copyFileSync(join(ROOT, 'src/fonts', f), join(DIST, 'fonts', f));
-if (existsSync(join(ROOT, 'public'))) for (const f of readdirSync(join(ROOT, 'public'))) copyFileSync(join(ROOT, 'public', f), join(DIST, f));
+if (existsSync(join(ROOT, 'public'))) cpSync(join(ROOT, 'public'), DIST, { recursive: true });
 
 // ── Datos públicos (abiertos) y datos de página
 const client = toClient(d);
