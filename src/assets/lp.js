@@ -35,7 +35,8 @@ function render(){
     ${st.graded?`<div class="explain"><span class="tag ${sel===q.a?'ok':'bad'}">${sel===q.a?'Correcta':(sel==null?'Sin responder':'Incorrecta')}</span>${esc(q.e)}</div>`:''}</li>`}).join('');
   progress();
   document.getElementById('res').innerHTML=st.graded?resultHTML():'';
-  const nf=document.getElementById('notify');if(nf){nf.hidden=!st.graded;if(st.graded){const sc=scoreOf();nf.querySelector('[name=score]').value=sc.ok+'/'+sc.n;nf.querySelector('[name=lp_mode]').value=cur.mode;nf.querySelector('.scoretxt').textContent=sc.ok+'/'+sc.n}}
+  if(window.XaboliBadge){if(st.graded){const sc=scoreOf();window.XaboliBadge.onGraded(cur.mode,sc.ok,sc.n)}else window.XaboliBadge.hide()}
+  const nf=document.getElementById('notify');if(nf){nf.hidden=!st.graded;if(st.graded){const sc=scoreOf();const f1=nf.querySelector('[name=score]'),f2=nf.querySelector('[name=lp_mode]'),f3=nf.querySelector('.scoretxt');if(f1)f1.value=sc.ok+'/'+sc.n;if(f2)f2.value=cur.mode;if(f3)f3.textContent=sc.ok+'/'+sc.n}}
 }
 function progress(){
   const {st}=cur,n=st.order.length,a=Object.keys(st.ans).length;

@@ -66,3 +66,17 @@ ol.qs>li{background:var(--surface);border:1px solid var(--line);border-radius:12
 .notify{margin-top:18px}
 .notify h3{margin-bottom:6px}
 .notify .form{border:1px solid var(--line)}
+
+/* Insignia de práctica */
+.badge{margin-top:18px;padding:18px;border:1px solid var(--ok);border-radius:12px;background:var(--surface)}
+.badge h3{margin-bottom:4px}
+.badge-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;margin-top:14px;align-items:start}
+.badge-img canvas{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.badge-side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.badge-side label{display:block;font-size:14px;font-weight:600}
+.badge-side .optional{font-weight:400;color:var(--muted)}
+.badge-side input,.badge-side textarea{display:block;width:100%;margin-top:5px;font:15px var(--f-body);padding:9px 11px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.badge-side textarea{resize:vertical;line-height:1.45}
+.badge-actions{display:flex;flex-wrap:wrap;gap:8px}
+.badge .fine{font-size:13px;color:var(--muted);margin:0}
+@media (max-width:760px){.badge-grid{grid-template-columns:1fr}}

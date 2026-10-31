@@ -170,7 +170,7 @@ for (const lp of d.paths) {
   const MODS = lp.modules.map(m => ({ t: m.title, lv: m.level, o: m.objective, p: m.practice, r: m.resources.map(r => resolveLpResource(r, byId)) }));
   const PHASES = lp.phases.map(p => ({ t: p.title, d: p.description, m: p.modules, r: p.resources.map(r => resolveLpResource(r, byId).slice(0, 2)) }));
   const Q = lp.exam ? lp.exam.questions.map(q => ({ m: q.module, lv: q.level, p: q.prompt, o: q.options, a: q.answer, e: q.explanation })) : [];
-  const lpData = dataJs(lp.id, { LP: { id: lp.id, passMark: lp.passMark }, MODS, PHASES, Q });
+  const lpData = dataJs(lp.id, { LP: { id: lp.id, passMark: lp.passMark, code: lp.code, title: lp.title, summary: lp.summary }, MODS, PHASES, Q });
   const body = fill(src('pages/lp.html'), { ...common, LP_EYEBROW: esc(lp.eyebrow), LP_TITLE: esc(lp.title), LP_LEDE: esc(lp.lede), LP_ID: esc(lp.id), LP_PASS: String(lp.passMark), LP_REVIEWED: longDate(lp.reviewed), CTA: cta(lp.id) });
   const lpBody = GF ? body.replace(/<form class="form" data-lead="novedades"[\s\S]*?<\/form>/, `<p><a class="btn" href="${esc(GF)}" target="_blank" rel="noopener">Avísame del próximo learning path ↗</a></p>`).replace('Deja tu correo y te aviso cuando salga; nada más.', 'Deja tu correo en el formulario y marca que quieres recibir los próximos learning paths.') : body;
   const path = `/lp/${lp.slug}/`;
@@ -179,7 +179,7 @@ for (const lp of d.paths) {
       jsonld: { '@context': 'https://schema.org', '@type': 'Course', name: `${lp.code} · ${lp.title}`, description: lp.summary, inLanguage: 'es', url: C.siteUrl + path,
         provider: { '@type': 'Organization', name: C.cta.brand, url: C.cta.brandUrl }, isAccessibleForFree: true, educationalLevel: 'Básico a avanzado',
         datePublished: lp.published, dateModified: lp.reviewed, hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online', courseWorkload: 'PT50H' } } },
-    active: 'lp', body: lpBody, scripts: [lpData, assets['lp.js'], assets['forms.js']],
+    active: 'lp', body: lpBody, scripts: [lpData, assets['badge.js'], assets['lp.js'], assets['forms.js']],
   }));
   sitemap.push({ loc: path, lastmod: lp.reviewed });
 }

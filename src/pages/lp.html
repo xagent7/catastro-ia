@@ -32,6 +32,8 @@
   <div class="actions"><button class="btn" id="grade" type="button" disabled>Corregir</button><button class="btn ghost" id="reset" type="button">Reiniciar este modo</button><span class="progress" id="hint"></span></div>
   <div id="res" aria-live="polite"></div>
 
+  <section class="badge" id="badge" hidden aria-labelledby="badge-h"></section>
+
   <section class="notify" id="notify" hidden aria-labelledby="notify-h">
     <h3 id="notify-h">Recibe el próximo learning path</h3>
     <p class="lede">Se publica una ruta nueva cada mes. Deja tu correo y te aviso cuando salga; nada más.</p>
@@ -48,7 +50,7 @@
     </form>
   </section>
 
-  <p class="note">Se aprueba con {{LP_PASS}}%. Las alternativas se ordenan al azar en cada intento. Tus respuestas en curso y el mejor puntaje se guardan solo en este navegador. Datos de Claude Code verificados contra la documentación oficial el {{LP_REVIEWED}}; las funciones cambian seguido, así que conviene revisar la documentación antes de usar este examen en una certificación interna. ¿Encontraste un error? <a href="{{REPO_URL}}/issues/new?template=error-en-examen.yml" rel="noopener">Repórtalo</a>.</p>
+  <p class="note">Se aprueba con {{LP_PASS}}%. Si apruebas el examen completo obtienes una insignia de práctica para compartir en LinkedIn. Las alternativas se ordenan al azar en cada intento. Tus respuestas en curso y el mejor puntaje se guardan solo en este navegador. Datos de Claude Code verificados contra la documentación oficial el {{LP_REVIEWED}}; las funciones cambian seguido, así que conviene revisar la documentación antes de usar este examen en una certificación interna. ¿Encontraste un error? <a href="{{REPO_URL}}/issues/new?template=error-en-examen.yml" rel="noopener">Repórtalo</a>.</p>
 </section>
 
 {{CTA}}
