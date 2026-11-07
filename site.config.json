@@ -14,7 +14,7 @@
   "cta": {
     "brand": "Xäboli",
     "brandUrl": "https://xaboli.cl",
-    "headline": "Únete a la comunidad de Estrategas de Soluciones en la era de la IA",
+    "headline": "Únete a la comunidad de Estrategas de Soluciones en la era Agéntica",
     "body": "Personas que diseñan y construyen soluciones con IA y comparten lo que aprenden. Recibe cada nuevo learning path y ayúdanos a mejorar el contenido con tu opinión.",
     "button": "Quiero unirme"
   },
@@ -32,7 +32,7 @@
     "_nota": "Pega aquí el enlace público del Formulario de Google (termina en /viewform). Si queda vacío, se usan los formularios propios con Cloudflare D1."
   },
   "footerContact": {
-    "text": "¿Entrenamiento profesional inmersivo en IA para tu organización?",
+    "text": "¿Buscas entrenamientos profesionales inmersivos en IA y Agentes?",
     "email": "contacto@xaboli.cl"
   }
 }

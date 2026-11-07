@@ -187,7 +187,7 @@ for (const lp of d.paths) {
 
 // ── Privacidad y 404
 const PRIV = GF ? {
-  PRIV_ROWS: '<tr><td>Comunidad y feedback</td><td>Nombre y correo y, si los completas, tu ocupación, tu opinión sobre el contenido y los temas que te interesan.</td><td>Enviarte novedades de la comunidad (nuevas rutas y cambios del catastro) y usar tu opinión para mejorar el contenido.</td><td>Tu consentimiento, que entregas en el formulario, conforme a la Ley N° 19.628 sobre protección de la vida privada y la Ley N° 21.719 de protección de datos personales.</td></tr>',
+  PRIV_ROWS: '<tr><td>Comunidad y feedback</td><td>Nombre y correo y, si los completas, tu ocupación, tu opinión sobre el contenido y los temas que te interesan.</td><td>Enviarte novedades de la comunidad (nuevas rutas y cambios del catastro) y usar tu opinión para mejorar el contenido.</td><td>Tu consentimiento, que entregas en el formulario, conforme a la Ley N° 21.719 de protección de datos personales.</td></tr>',
   PRIV_META: '<p>El formulario no registra tu dirección IP ni tu cuenta de Google, salvo que el propio formulario lo indique. Tus respuestas del examen no se envían.</p>',
   PRIV_PROVIDERS: '<p>El sitio está alojado en Cloudflare. El formulario de contacto es un Formulario de Google y las respuestas se guardan en una planilla de Google de ' + esc(C.privacy.controller) + '; Google actúa como proveedor y puede procesar datos fuera de Chile con garantías contractuales. Al abrir el formulario, Google puede recibir datos técnicos de tu navegador según su propia política de privacidad. Las fuentes tipográficas se sirven desde este mismo sitio.</p>',
 } : {

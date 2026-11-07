@@ -322,9 +322,9 @@ Los datos están en [`data/`](data/) y se publican como JSON abierto en [academi
 
 **Oliver Fierro** · Enterprise Applied AI Lead · [LinkedIn](https://www.linkedin.com/in/oliverfierro)
 
-¿Construyes soluciones con IA? Únete a la comunidad de [Estrategas de Soluciones en la era de la IA](https://academia.xaboli.cl/#comunidad).
+¿Construyes soluciones con IA? Únete a la comunidad de [Estrategas de Soluciones en la era Agéntica](https://academia.xaboli.cl/#comunidad).
 
-¿Entrenamiento profesional inmersivo en IA para tu organización? Escríbenos a [contacto@xaboli.cl](mailto:contacto@xaboli.cl).
+¿Buscas entrenamientos profesionales inmersivos en IA y Agentes? Escríbenos a [contacto@xaboli.cl](mailto:contacto@xaboli.cl).
 
 ---
 
