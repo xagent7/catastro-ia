@@ -114,3 +114,5 @@ h3{font-family:var(--f-display);font-size:19px;line-height:1.2;margin:0 0 4px}
 .gform.link{display:flex;flex-direction:column;justify-content:center;gap:14px;padding:24px;color:var(--ink)}
 .gform.link p{color:var(--ink);margin:0}
 @media (max-width:560px){.gform iframe{height:1350px}}
+.foot-contact{color:var(--ink);font-weight:600}
+.band .gform a{color:var(--accent)}

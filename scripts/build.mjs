@@ -88,24 +88,23 @@ const top = active => `<div class="top">
     <a href="/"${active === 'home' ? ' aria-current="page"' : ''}>Catálogo</a>
     <a href="/#learning-paths"${active === 'lp' ? ' aria-current="page"' : ''}>Learning paths</a>
     <a href="${REPO_URL}" rel="noopener">GitHub</a>
-    <a class="cta-link" href="${active === 'home' ? '' : '/'}#equipos">Para equipos</a>
+    <a class="cta-link" href="${active === 'home' ? '' : '/'}#comunidad">Comunidad</a>
   </nav>
 </div>`;
 const googleBlock = () => gfEmbed
-  ? `<div class="gform"><iframe src="${esc(gfEmbed)}" title="Formulario de contacto para equipos" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">Cargando…</iframe><p class="fine">¿No ves el formulario? <a href="${esc(GF)}" target="_blank" rel="noopener">Ábrelo en una pestaña nueva</a>.</p></div>`
-  : `<div class="gform link"><p>Cuéntanos sobre tu equipo en un formulario de dos minutos.</p><a class="btn" href="${esc(GF)}" target="_blank" rel="noopener">${esc(C.cta.button)} ↗</a></div>`;
-const cta = page => `<section class="band" id="equipos" aria-labelledby="equipos-h">
+  ? `<div class="gform"><iframe src="${esc(gfEmbed)}" title="Formulario de comunidad y feedback" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">Cargando…</iframe><p class="fine">¿No ves el formulario? <a href="${esc(GF)}" target="_blank" rel="noopener">Ábrelo en una pestaña nueva</a>.</p></div>`
+  : `<div class="gform link"><p>Súmate a la comunidad o déjanos tu opinión: toma un par de minutos.</p><a class="btn" href="${esc(GF)}" target="_blank" rel="noopener">${esc(C.cta.button)} ↗</a></div>`;
+const cta = page => `<section class="band" id="comunidad" aria-labelledby="comunidad-h">
   <div>
-    <div class="kicker">Para equipos · ${esc(C.cta.brand)}</div>
-    <h2 id="equipos-h">${esc(C.cta.headline)}</h2>
+    <div class="kicker">Comunidad · ${esc(C.siteName)}</div>
+    <h2 id="comunidad-h">${esc(C.cta.headline)}</h2>
     <p>${esc(C.cta.body)}</p>
     <ul>
-      <li>Diagnóstico de cómo tu equipo usa hoy los agentes de código.</li>
-      <li>Bootstrap de repositorios y estándares compartidos: CLAUDE.md, skills, permisos y MCP.</li>
-      <li>Learning paths con examen por rol, como los de este catastro.</li>
-      <li>Desarrollo guiado por especificaciones, CI/CD agéntico y gobierno de agentes.</li>
+      <li>Un learning path nuevo cada mes, con examen e insignia.</li>
+      <li>Novedades del catastro: qué recursos entraron y cuáles salieron cada mes.</li>
+      <li>Acceso anticipado a rutas nuevas para que las pruebes antes que nadie.</li>
+      <li>Tu feedback decide qué temas y recursos entran al catastro.</li>
     </ul>
-    <p><a href="${esc(C.cta.brandUrl)}" rel="noopener">${esc(C.cta.brandUrl.replace(/^https:\/\//, ''))}</a></p>
   </div>
 ${GF ? googleBlock() : `  <form class="form" data-lead="equipo" data-ok-msg="Gracias. Te responderé en un plazo de 2 días hábiles." novalidate>
     <label>Nombre<input type="text" name="name" required maxlength="120" autocomplete="name"></label>
@@ -126,6 +125,7 @@ ${GF ? googleBlock() : `  <form class="form" data-lead="equipo" data-ok-msg="Gra
 </section>`;
 const foot = () => `<footer class="foot">
   <div>
+    ${C.footerContact ? `<p class="foot-contact">${esc(C.footerContact.text)} Escríbenos a <a href="mailto:${esc(C.footerContact.email)}">${esc(C.footerContact.email)}</a></p>` : ''}
     <p>Proyecto independiente. No está afiliado ni respaldado por Anthropic ni por los autores de los recursos listados; los nombres de productos y marcas pertenecen a sus dueños, y Claude es una marca de Anthropic.</p>
     <p>Contenido bajo licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es" rel="noopener license">CC BY 4.0</a>: puedes reutilizarlo citando «${esc(C.siteName)}». Código bajo licencia MIT. Datos abiertos en <a href="/data/resources.json">JSON</a>.</p>
   </div>
@@ -173,7 +173,7 @@ for (const lp of d.paths) {
   const Q = lp.exam ? lp.exam.questions.map(q => ({ m: q.module, lv: q.level, p: q.prompt, o: q.options, a: q.answer, e: q.explanation })) : [];
   const lpData = dataJs(lp.id, { LP: { id: lp.id, passMark: lp.passMark, code: lp.code, title: lp.title, summary: lp.summary }, MODS, PHASES, Q });
   const body = fill(src('pages/lp.html'), { ...common, LP_EYEBROW: esc(lp.eyebrow), LP_TITLE: esc(lp.title), LP_LEDE: esc(lp.lede), LP_ID: esc(lp.id), LP_PASS: String(lp.passMark), LP_REVIEWED: longDate(lp.reviewed), CTA: cta(lp.id) });
-  const lpBody = GF ? body.replace(/<form class="form" data-lead="novedades"[\s\S]*?<\/form>/, `<p><a class="btn" href="${esc(GF)}" target="_blank" rel="noopener">Avísame del próximo learning path ↗</a></p>`).replace('Deja tu correo y te aviso cuando salga; nada más.', 'Deja tu correo en el formulario y marca que quieres recibir los próximos learning paths.') : body;
+  const lpBody = GF ? body.replace(/<form class="form" data-lead="novedades"[\s\S]*?<\/form>/, `<p><a class="btn" href="${esc(GF)}" target="_blank" rel="noopener">Dar mi opinión o unirme ↗</a></p>`).replace('Se publica una ruta nueva cada mes. Deja tu correo y te aviso cuando salga; nada más.', 'Cuéntanos qué te sirvió y qué falta. Si quieres, súmate a la comunidad para recibir la próxima ruta.').replace('Recibe el próximo learning path', '¿Qué te pareció esta ruta?') : body;
   const path = `/lp/${lp.slug}/`;
   out(`lp/${lp.slug}/index.html`, page({
     meta: { title: `${lp.code} · ${lp.title} · ${C.siteName}`, description: `${lp.summary} ${lp.modules.length} módulos y examen interactivo de ${Q.length} preguntas.`, path, css: ['lp.css'], noindex: !!lp.unlisted,
@@ -187,7 +187,7 @@ for (const lp of d.paths) {
 
 // ── Privacidad y 404
 const PRIV = GF ? {
-  PRIV_ROWS: '<tr><td>Contacto y novedades</td><td>Los datos que completes en el formulario: nombre, correo, empresa, cargo, tamaño del equipo, interés y mensaje.</td><td>Responder tu solicitud sobre programas para equipos y, si lo marcas, avisarte de los próximos learning paths.</td><td>Tu consentimiento, que entregas en el formulario.</td></tr>',
+  PRIV_ROWS: '<tr><td>Comunidad y feedback</td><td>Nombre y correo y, si los completas, tu ocupación, tu opinión sobre el contenido y los temas que te interesan.</td><td>Enviarte novedades de la comunidad (nuevas rutas y cambios del catastro) y usar tu opinión para mejorar el contenido.</td><td>Tu consentimiento, que entregas en el formulario, conforme a la Ley N° 19.628 sobre protección de la vida privada y la Ley N° 21.719 de protección de datos personales.</td></tr>',
   PRIV_META: '<p>El formulario no registra tu dirección IP ni tu cuenta de Google, salvo que el propio formulario lo indique. Tus respuestas del examen no se envían.</p>',
   PRIV_PROVIDERS: '<p>El sitio está alojado en Cloudflare. El formulario de contacto es un Formulario de Google y las respuestas se guardan en una planilla de Google de ' + esc(C.privacy.controller) + '; Google actúa como proveedor y puede procesar datos fuera de Chile con garantías contractuales. Al abrir el formulario, Google puede recibir datos técnicos de tu navegador según su propia política de privacidad. Las fuentes tipográficas se sirven desde este mismo sitio.</p>',
 } : {

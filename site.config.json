@@ -14,9 +14,9 @@
   "cta": {
     "brand": "Xäboli",
     "brandUrl": "https://xaboli.cl",
-    "headline": "¿Tu equipo de ingeniería quiere adoptar Claude en todo el ciclo de desarrollo?",
-    "body": "Programas de adopción y entrenamiento para equipos de software: desde el bootstrap del repositorio y el desarrollo guiado por especificaciones hasta agentes de desarrollo y CI/CD agéntico, con los learning paths y exámenes de este catastro como base.",
-    "button": "Conversemos sobre tu equipo"
+    "headline": "Únete a la comunidad de Estrategas de Soluciones en la era de la IA",
+    "body": "Personas que diseñan y construyen soluciones con IA y comparten lo que aprenden. Recibe cada nuevo learning path y ayúdanos a mejorar el contenido con tu opinión.",
+    "button": "Quiero unirme"
   },
   "privacy": {
     "controller": "Xäboli",
@@ -30,5 +30,9 @@
     "provider": "google",
     "url": "https://docs.google.com/forms/d/e/1FAIpQLSd8PjJTQCtNdlbj-xXp8eVr7bvWnacFVS2TX50GlhXFcYhegA/viewform",
     "_nota": "Pega aquí el enlace público del Formulario de Google (termina en /viewform). Si queda vacío, se usan los formularios propios con Cloudflare D1."
+  },
+  "footerContact": {
+    "text": "¿Entrenamiento profesional inmersivo en IA para tu organización?",
+    "email": "contacto@xaboli.cl"
   }
 }

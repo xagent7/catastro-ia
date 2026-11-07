@@ -24,7 +24,7 @@ test('portada: catálogo, learning paths, universidades y formulario', { skip },
   assert.equal(doc.querySelectorAll('#catalog .card').length, R.length);
   assert.ok(doc.querySelectorAll('.lpcard').length >= 1);
   assert.ok(doc.querySelectorAll('.ucard').length >= 10);
-  assert.ok(doc.querySelector('form[data-lead="equipo"] [name=consent_contact][required]') || doc.querySelector('#equipos .gform'), 'formulario propio o de Google');
+  assert.ok(doc.querySelector('form[data-lead="equipo"] [name=consent_contact][required]') || doc.querySelector('#comunidad .gform'), 'formulario propio o de Google');
   assert.ok(doc.querySelector('link[rel=canonical]').href.startsWith('https://'));
   assert.ok(doc.querySelector('meta[property="og:image"]'));
   assert.match(readFileSync(new URL('index.html', DIST), 'utf8'), /<noscript>.*<li><a href="https:/s, 'listado sin JavaScript para buscadores');
