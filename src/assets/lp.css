@@ -91,3 +91,5 @@ ol.qs>li{background:var(--surface);border:1px solid var(--line);border-radius:12
   body.printing-diploma #diploma-print{display:block;width:100vw;height:auto}
 }
 .badge .btn.wa{background:#25D366;border-color:#25D366;color:#0d1112}
+.badge-note{margin:10px 0 0;padding:10px 12px;border-radius:8px;background:var(--chip);font-size:15px}
+.badge-note.ok{background:var(--ok-soft)}

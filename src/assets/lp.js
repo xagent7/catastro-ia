@@ -46,11 +46,17 @@ function progress(){
   document.getElementById('hint').textContent=st.graded?'Examen corregido. Reinicia para volver a intentarlo.':(a<n?`Faltan ${n-a} para poder corregir.`:'Todo respondido.');
 }
 function scoreOf(){let ok=0;cur.st.order.forEach(([qi])=>{if(cur.st.ans[qi]===Q[qi].a)ok++});return {ok,n:cur.st.order.length}}
+function badgeNote(pass,n){
+  if(cur.mode!=='all')return `<p class="badge-note">🏅 La insignia y el diploma se obtienen aprobando el <b>examen completo</b>: elige «Examen completo» en <b>Modo</b>, arriba.</p>`;
+  if(pass)return `<p class="badge-note ok">🏅 <b>Obtuviste tu insignia.</b> Más abajo puedes descargarla, agregarla a LinkedIn y generar tu diploma.</p>`;
+  const need=Math.ceil(PASS*n/100);
+  return `<p class="badge-note">🏅 Para obtener la insignia necesitas al menos ${PASS}% en el examen completo (${need} de ${n} correctas). Revisa las explicaciones y usa «Reiniciar este modo» para intentarlo de nuevo.</p>`;
+}
 function resultHTML(){
   const {st}=cur;let ok=0;const bm={};
   st.order.forEach(([qi])=>{const q=Q[qi];bm[q.m]=bm[q.m]||[0,0];bm[q.m][1]++;if(st.ans[qi]===q.a){ok++;bm[q.m][0]++}});
   const n=st.order.length,pct=Math.round(100*ok/n),pass=pct>=PASS;const best=store.get(KEY+'-best-'+cur.mode);
-  return `<div class="result ${pass?'pass':'fail'}"><div class="score">${ok}/${n} · ${pct}%</div><p><b>${pass?'Aprobado':'Aún no aprobado'}</b>. ${pass?'Dominas los conceptos de este tramo de la ruta.':'Revisa las explicaciones y los recursos de los módulos con menor puntaje.'} Mejor puntaje en este navegador: ${best??ok}/${n}.</p>
+  return `<div class="result ${pass?'pass':'fail'}"><div class="score">${ok}/${n} · ${pct}%</div><p><b>${pass?'Aprobado':'Aún no aprobado'}</b>. ${pass?'Dominas los conceptos de este tramo de la ruta.':'Revisa las explicaciones y los recursos de los módulos con menor puntaje.'} Mejor puntaje en este navegador: ${best??ok}/${n}.</p>${badgeNote(pass,n)}
   ${Object.keys(bm).length>1?`<div class="bymod">${Object.entries(bm).map(([m,[o,t]])=>`<div class="${o/t<PASS/100?'lo':'hi'}"><span>M${m} · ${esc(MODS[m-1].t)}</span><b>${o}/${t}</b></div>`).join('')}</div>`:''}</div>`;
 }
 document.getElementById('qs').addEventListener('change',e=>{const r=e.target;if(r.type!=='radio'||cur.st.graded)return;cur.st.ans[+r.name.slice(2)]=+r.value;save();progress()});
