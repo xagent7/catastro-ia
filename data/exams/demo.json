@@ -1,0 +1,44 @@
+{
+  "learningPath": "demo",
+  "questions": [
+    {
+      "module": 1,
+      "level": "B",
+      "prompt": "¿Qué empresa desarrolla Claude?",
+      "options": [
+        "Anthropic",
+        "OpenAI",
+        "Google DeepMind",
+        "Meta"
+      ],
+      "answer": 0,
+      "explanation": "Claude es la familia de modelos y productos de IA desarrollada por Anthropic."
+    },
+    {
+      "module": 1,
+      "level": "B",
+      "prompt": "En Claude Code, ¿qué archivo del repositorio guarda las instrucciones persistentes del proyecto que Claude lee al iniciar cada sesión?",
+      "options": [
+        "README.md",
+        "CLAUDE.md",
+        "package.json",
+        ".gitignore"
+      ],
+      "answer": 1,
+      "explanation": "CLAUDE.md es la memoria del proyecto: Claude Code lo carga al iniciar. Se puede generar un primer borrador con /init."
+    },
+    {
+      "module": 1,
+      "level": "B",
+      "prompt": "¿Qué es MCP (Model Context Protocol)?",
+      "options": [
+        "Un modelo de Claude optimizado para programar",
+        "Un formato de archivo para guardar conversaciones",
+        "Un estándar abierto para conectar aplicaciones de IA con herramientas y fuentes de datos externas",
+        "Un plan de suscripción para empresas"
+      ],
+      "answer": 2,
+      "explanation": "MCP es un protocolo abierto, impulsado por Anthropic, que permite conectar Claude y otras aplicaciones de IA con herramientas, APIs y datos mediante servidores MCP."
+    }
+  ]
+}

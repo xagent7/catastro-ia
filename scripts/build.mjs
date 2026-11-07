@@ -34,7 +34,8 @@ if (existsSync(join(ROOT, 'public'))) cpSync(join(ROOT, 'public'), DIST, { recur
 // ── Datos públicos (abiertos) y datos de página
 const client = toClient(d);
 const byId = Object.fromEntries(d.resources.map(r => [r.id, r]));
-const lpList = [...d.paths].sort((a, b) => b.published.localeCompare(a.published)).map(lp => ({
+const listed = d.paths.filter(lp => !lp.unlisted);
+const lpList = [...listed].sort((a, b) => b.published.localeCompare(a.published)).map(lp => ({
   code: lp.code, title: lp.title, summary: lp.summary, href: `/lp/${lp.slug}/`,
   modules: lp.modules.length, questions: lp.exam ? lp.exam.questions.length : 0, passMark: lp.passMark,
 }));
@@ -47,7 +48,7 @@ const catalogData = dataJs('catalog', { ...client, LPS: lpList });
 for (const f of ['categories', 'resources', 'relations', 'universities', 'meta', 'changelog']) out(`data/${f}.json`, JSON.stringify(d[f], null, 1));
 
 // ── Piezas comunes
-const head = ({ title, description, path, css = [], jsonld = null, type = 'website' }) => {
+const head = ({ title, description, path, css = [], jsonld = null, type = 'website', noindex = false }) => {
   const url = C.siteUrl + path;
   return `<!doctype html>
 <html lang="${C.language}">
@@ -55,7 +56,7 @@ const head = ({ title, description, path, css = [], jsonld = null, type = 'websi
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
-<meta name="description" content="${esc(description)}">
+<meta name="description" content="${esc(description)}">${noindex ? '\n<meta name="robots" content="noindex, nofollow">' : ''}
 <link rel="canonical" href="${esc(url)}">
 <meta name="author" content="${esc(C.cta.brand)}">
 <meta property="og:type" content="${type}">
@@ -151,7 +152,7 @@ const noscript = `<noscript><p class="lede">Activa JavaScript para filtrar y bus
   const items = d.resources.filter(r => r.category === c.id); if (!items.length) return '';
   return `<h2>${esc(c.name)}</h2><ul>${items.map(r => `<li><a href="${esc(r.url)}">${esc(r.name)}</a> — ${esc(r.description)}</li>`).join('')}</ul>`;
 }).join('')}</noscript>`;
-const latestLp = [...d.paths].sort((a, b) => b.published.localeCompare(a.published))[0];
+const latestLp = [...listed].sort((a, b) => b.published.localeCompare(a.published))[0];
 const promo = latestLp ? `<p class="promo"><b>Nuevo: ${esc(latestLp.code)} · ${esc(latestLp.title)}.</b> <span>${latestLp.modules.length} módulos y examen de ${latestLp.exam ? latestLp.exam.questions.length : 0} preguntas.</span> <a href="/lp/${latestLp.slug}/">Abrir la ruta →</a></p>` : '';
 const home = fill(src('pages/index.html'), { ...common, NOSCRIPT: noscript, PROMO: promo, CTA: cta('home') });
 const homeDesc = `Academia gratuita de IA en español: learning paths con examen y un catastro de ${d.resources.length} repositorios, cursos y herramientas, con mapa de relaciones y recursos de universidades top 10. Se actualiza cada mes.`;
@@ -175,13 +176,13 @@ for (const lp of d.paths) {
   const lpBody = GF ? body.replace(/<form class="form" data-lead="novedades"[\s\S]*?<\/form>/, `<p><a class="btn" href="${esc(GF)}" target="_blank" rel="noopener">Avísame del próximo learning path ↗</a></p>`).replace('Deja tu correo y te aviso cuando salga; nada más.', 'Deja tu correo en el formulario y marca que quieres recibir los próximos learning paths.') : body;
   const path = `/lp/${lp.slug}/`;
   out(`lp/${lp.slug}/index.html`, page({
-    meta: { title: `${lp.code} · ${lp.title} · ${C.siteName}`, description: `${lp.summary} ${lp.modules.length} módulos y examen interactivo de ${Q.length} preguntas.`, path, css: ['lp.css'],
+    meta: { title: `${lp.code} · ${lp.title} · ${C.siteName}`, description: `${lp.summary} ${lp.modules.length} módulos y examen interactivo de ${Q.length} preguntas.`, path, css: ['lp.css'], noindex: !!lp.unlisted,
       jsonld: { '@context': 'https://schema.org', '@type': 'Course', name: `${lp.code} · ${lp.title}`, description: lp.summary, inLanguage: 'es', url: C.siteUrl + path,
         provider: { '@type': 'Organization', name: C.cta.brand, url: C.cta.brandUrl }, isAccessibleForFree: true, educationalLevel: 'Básico a avanzado',
         datePublished: lp.published, dateModified: lp.reviewed, hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online', courseWorkload: 'PT50H' } } },
     active: 'lp', body: lpBody, scripts: [lpData, assets['badge.js'], assets['lp.js'], assets['forms.js']],
   }));
-  sitemap.push({ loc: path, lastmod: lp.reviewed });
+  if (!lp.unlisted) sitemap.push({ loc: path, lastmod: lp.reviewed });
 }
 
 // ── Privacidad y 404

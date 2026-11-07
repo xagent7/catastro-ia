@@ -1,0 +1,32 @@
+{
+  "id": "demo",
+  "slug": "demo",
+  "code": "DEMO",
+  "unlisted": true,
+  "title": "Prueba demo de Claude",
+  "eyebrow": "Prueba demo · 3 preguntas · no aparece en el catálogo",
+  "summary": "Prueba corta de tres preguntas básicas sobre Claude para probar el examen y la insignia de práctica.",
+  "lede": "Prueba corta de tres preguntas básicas sobre Claude. Sirve para probar el flujo completo: responder, corregir y generar la insignia de práctica. No aparece en el catálogo ni en buscadores.",
+  "published": "2026-11-07",
+  "reviewed": "2026-11-07",
+  "passMark": 75,
+  "phases": [],
+  "modules": [
+    {
+      "title": "Conceptos básicos de Claude",
+      "level": "B",
+      "objective": "Reconocer qué es Claude, quién lo desarrolla y dos conceptos clave del ecosistema: CLAUDE.md y MCP.",
+      "practice": "Abrir Claude Code en un repositorio y crear su CLAUDE.md con /init.",
+      "resources": [
+        {
+          "ref": "academy"
+        },
+        {
+          "name": "Memoria y CLAUDE.md",
+          "url": "https://code.claude.com/docs/en/memory",
+          "official": true
+        }
+      ]
+    }
+  ]
+}

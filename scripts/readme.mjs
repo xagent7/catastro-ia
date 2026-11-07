@@ -28,7 +28,7 @@ let md = `<!-- Archivo generado por scripts/readme.mjs a partir de /data. No lo 
 
 [![Licencia del contenido: CC BY 4.0](https://img.shields.io/badge/contenido-CC%20BY%204.0-blue)](LICENSE-CONTENT.md) [![Licencia del código: MIT](https://img.shields.io/badge/c%C3%B3digo-MIT-green)](LICENSE) [![Validación](${REPO}/actions/workflows/ci.yml/badge.svg)](${REPO}/actions/workflows/ci.yml) [![Enlaces](${REPO}/actions/workflows/enlaces.yml/badge.svg)](${REPO}/actions/workflows/enlaces.yml)
 
-| ${d.resources.length} recursos | ${gh} repositorios de GitHub | ${d.categories.length} categorías | ${d.relations.length} relaciones | ${uniCount} recursos universitarios | ${d.paths.length} learning path${d.paths.length === 1 ? '' : 's'} |
+| ${d.resources.length} recursos | ${gh} repositorios de GitHub | ${d.categories.length} categorías | ${d.relations.length} relaciones | ${uniCount} recursos universitarios | ${d.paths.filter(lp => !lp.unlisted).length} learning path${d.paths.filter(lp => !lp.unlisted).length === 1 ? '' : 's'} |
 |:-:|:-:|:-:|:-:|:-:|:-:|
 
 ## Qué lo hace distinto
@@ -44,7 +44,7 @@ let md = `<!-- Archivo generado por scripts/readme.mjs a partir de /data. No lo 
 
 | Ruta | Módulos | Examen | |
 |---|:-:|:-:|---|
-${d.paths.map(lp => `| **${lp.code} · ${cell(lp.title)}**<br>${cell(lp.summary)} | ${lp.modules.length} | ${lp.exam ? lp.exam.questions.length + ' preguntas' : '—'} | [Abrir](${C.siteUrl}/lp/${lp.slug}/) |`).join('\n')}
+${d.paths.filter(lp => !lp.unlisted).map(lp => `| **${lp.code} · ${cell(lp.title)}**<br>${cell(lp.summary)} | ${lp.modules.length} | ${lp.exam ? lp.exam.questions.length + ' preguntas' : '—'} | [Abrir](${C.siteUrl}/lp/${lp.slug}/) |`).join('\n')}
 
 Se publica una ruta nueva cada mes. Para recibir el aviso, deja tu correo al final de cualquier examen en el sitio.
 
