@@ -90,3 +90,4 @@ ol.qs>li{background:var(--surface);border:1px solid var(--line);border-radius:12
   body.printing-diploma > *:not(#diploma-print){display:none !important}
   body.printing-diploma #diploma-print{display:block;width:100vw;height:auto}
 }
+.badge .btn.wa{background:#25D366;border-color:#25D366;color:#0d1112}

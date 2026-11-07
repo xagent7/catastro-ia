@@ -109,6 +109,11 @@
             <a class="btn ghost" id="badge-li" target="_blank" rel="noopener">3. Publicar en LinkedIn ↗</a>
           </div>
           <p class="fine" id="badge-msg" role="status">LinkedIn no permite adjuntar la imagen automáticamente: al abrir la publicación, pega el texto y adjunta la imagen descargada.</p>
+          ${LP.wa ? `<div class="badge-more badge-wa">
+            <h4>Únete al grupo de la comunidad</h4>
+            <p class="fine">Completaste la ruta: ya puedes entrar al grupo de WhatsApp de Estrategas de Soluciones en la era Agéntica. Tu solicitud la aprueba un administrador. Al unirte, tu número queda visible para los demás miembros (<a href="/privacidad/">más detalles</a>).</p>
+            <a class="btn wa" href="${LP.wa}" target="_blank" rel="noopener">Pedir acceso al grupo de WhatsApp ↗</a>
+          </div>` : ''}
           <div class="badge-more">
             <h4>Guárdala en tu perfil</h4>
             <p class="fine">Agrégala a <b>Licencias y certificaciones</b> de tu perfil de LinkedIn: así queda tu historial de insignias de la Academia en un solo lugar.</p>
