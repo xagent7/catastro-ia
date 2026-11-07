@@ -116,3 +116,8 @@ h3{font-family:var(--f-display);font-size:19px;line-height:1.2;margin:0 0 4px}
 @media (max-width:560px){.gform iframe{height:1350px}}
 .foot-contact{color:var(--ink);font-weight:600}
 .band .gform a{color:var(--accent)}
+.band-actions{margin-top:18px !important}
+.band .btn.wa{background:#25D366;border-color:#25D366;color:#0d1112}
+.band .fine-band{font-size:13px;margin-top:8px}
+.band .fine-band a{color:var(--band-ink)}
+.lp-actions{display:flex;flex-wrap:wrap;gap:8px}

@@ -105,6 +105,7 @@ const cta = page => `<section class="band" id="comunidad" aria-labelledby="comun
       <li>Acceso anticipado a rutas nuevas para que las pruebes antes que nadie.</li>
       <li>Tu feedback decide qué temas y recursos entran al catastro.</li>
     </ul>
+    ${C.community && C.community.whatsapp ? `<p class="band-actions"><a class="btn wa" href="${esc(C.community.whatsapp)}" target="_blank" rel="noopener">Unirme al grupo de WhatsApp ↗</a></p><p class="fine-band">Al unirte, tu número queda visible para los demás miembros. <a href="/privacidad/">Más detalles</a>.</p>` : ''}
   </div>
 ${GF ? googleBlock() : `  <form class="form" data-lead="equipo" data-ok-msg="Gracias. Te responderé en un plazo de 2 días hábiles." novalidate>
     <label>Nombre<input type="text" name="name" required maxlength="120" autocomplete="name"></label>
@@ -173,7 +174,7 @@ for (const lp of d.paths) {
   const Q = lp.exam ? lp.exam.questions.map(q => ({ m: q.module, lv: q.level, p: q.prompt, o: q.options, a: q.answer, e: q.explanation })) : [];
   const lpData = dataJs(lp.id, { LP: { id: lp.id, passMark: lp.passMark, code: lp.code, title: lp.title, summary: lp.summary }, MODS, PHASES, Q });
   const body = fill(src('pages/lp.html'), { ...common, LP_EYEBROW: esc(lp.eyebrow), LP_TITLE: esc(lp.title), LP_LEDE: esc(lp.lede), LP_ID: esc(lp.id), LP_PASS: String(lp.passMark), LP_REVIEWED: longDate(lp.reviewed), CTA: cta(lp.id) });
-  const lpBody = GF ? body.replace(/<form class="form" data-lead="novedades"[\s\S]*?<\/form>/, `<p><a class="btn" href="${esc(GF)}" target="_blank" rel="noopener">Dar mi opinión o unirme ↗</a></p>`).replace('Se publica una ruta nueva cada mes. Deja tu correo y te aviso cuando salga; nada más.', 'Cuéntanos qué te sirvió y qué falta. Si quieres, súmate a la comunidad para recibir la próxima ruta.').replace('Recibe el próximo learning path', '¿Qué te pareció esta ruta?') : body;
+  const lpBody = GF ? body.replace(/<form class="form" data-lead="novedades"[\s\S]*?<\/form>/, `<p class="lp-actions"><a class="btn" href="${esc(GF)}" target="_blank" rel="noopener">Dar mi opinión o unirme ↗</a>${C.community && C.community.whatsapp ? ` <a class="btn ghost" href="${esc(C.community.whatsapp)}" target="_blank" rel="noopener">Grupo de WhatsApp ↗</a>` : ''}</p>`).replace('Se publica una ruta nueva cada mes. Deja tu correo y te aviso cuando salga; nada más.', 'Cuéntanos qué te sirvió y qué falta. Si quieres, súmate a la comunidad para recibir la próxima ruta.').replace('Recibe el próximo learning path', '¿Qué te pareció esta ruta?') : body;
   const path = `/lp/${lp.slug}/`;
   out(`lp/${lp.slug}/index.html`, page({
     meta: { title: `${lp.code} · ${lp.title} · ${C.siteName}`, description: `${lp.summary} ${lp.modules.length} módulos y examen interactivo de ${Q.length} preguntas.`, path, css: ['lp.css'], noindex: !!lp.unlisted,

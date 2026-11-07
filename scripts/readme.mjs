@@ -85,7 +85,7 @@ Los datos están en [\`data/\`](data/) y se publican como JSON abierto en [${C.s
 
 **${C.author.name}** · ${C.author.title} · [LinkedIn](${C.author.linkedin})
 
-¿Construyes soluciones con IA? Únete a la comunidad de [Estrategas de Soluciones en la era Agéntica](${C.siteUrl}/#comunidad).
+¿Construyes soluciones con IA? Únete a la comunidad de [Estrategas de Soluciones en la era Agéntica](${C.siteUrl}/#comunidad)${C.community && C.community.whatsapp ? ` o entra directo al [grupo de WhatsApp](${C.community.whatsapp})` : ''}.
 
 ¿Buscas entrenamientos profesionales inmersivos en IA y Agentes? Escríbenos a [${C.footerContact.email}](mailto:${C.footerContact.email}).
 
