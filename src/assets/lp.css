@@ -80,3 +80,13 @@ ol.qs>li{background:var(--surface);border:1px solid var(--line);border-radius:12
 .badge-actions{display:flex;flex-wrap:wrap;gap:8px}
 .badge .fine{font-size:13px;color:var(--muted);margin:0}
 @media (max-width:760px){.badge-grid{grid-template-columns:1fr}}
+
+.badge-more{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.badge-more h4{margin:0;font-family:var(--f-display);font-size:16px}
+#diploma-print{display:none}
+@media print{
+  @page{size:letter landscape;margin:0}
+  body.printing-diploma{padding:0;background:#fff}
+  body.printing-diploma > *:not(#diploma-print){display:none !important}
+  body.printing-diploma #diploma-print{display:block;width:100vw;height:auto}
+}
