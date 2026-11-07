@@ -65,7 +65,7 @@ Usa enlaces con UTM en tus publicaciones para saber de dónde vienen los contact
 
 ## 6. Correo de contacto
 
-La política de privacidad publica `contacto@xaboli.cl` (configurable en `site.config.json` → `privacy.contactEmail`). Créalo gratis con **Email → Email Routing** en la zona `xaboli.cl`, reenviando a tu correo personal. Debe existir antes de publicar: es el canal para ejercer derechos de datos personales.
+La política de privacidad publica `negocios@xaboli.cl` (configurable en `site.config.json` → `privacy.contactEmail`). Créalo gratis con **Email → Email Routing** en la zona `xaboli.cl`, reenviando a tu correo personal. Debe existir antes de publicar: es el canal para ejercer derechos de datos personales.
 
 ## 7. Ajustes de la zona
 

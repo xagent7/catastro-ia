@@ -324,7 +324,7 @@ Los datos están en [`data/`](data/) y se publican como JSON abierto en [academi
 
 ¿Construyes soluciones con IA? Únete a la comunidad de [Estrategas de Soluciones en la era Agéntica](https://academia.xaboli.cl/#comunidad).
 
-¿Buscas entrenamientos profesionales inmersivos en IA y Agentes? Escríbenos a [contacto@xaboli.cl](mailto:contacto@xaboli.cl).
+¿Buscas entrenamientos profesionales inmersivos en IA y Agentes? Escríbenos a [negocios@xaboli.cl](mailto:negocios@xaboli.cl).
 
 ---
 

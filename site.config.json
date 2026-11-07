@@ -20,7 +20,7 @@
   },
   "privacy": {
     "controller": "Xäboli",
-    "contactEmail": "contacto@xaboli.cl",
+    "contactEmail": "negocios@xaboli.cl",
     "version": "2026-10-24",
     "retentionMonths": 24
   },
@@ -33,6 +33,6 @@
   },
   "footerContact": {
     "text": "¿Buscas entrenamientos profesionales inmersivos en IA y Agentes?",
-    "email": "contacto@xaboli.cl"
+    "email": "negocios@xaboli.cl"
   }
 }
