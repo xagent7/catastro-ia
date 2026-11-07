@@ -230,6 +230,6 @@ out('_headers', `/*
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=3600
 `);
-out('_redirects', d.paths.map(lp => `/${lp.id} /lp/${lp.slug}/ 301`).join('\n') + '\n');
+out('_redirects', [...d.paths.map(lp => `/${lp.id} /lp/${lp.slug}/ 301`), ...Object.entries(C.shortLinks || {}).filter(([k]) => k.startsWith('/')).map(([k, v]) => `${k} ${v} 302`)].join('\n') + '\n');
 
 console.log(`Sitio generado en dist/: ${d.resources.length} recursos, ${d.relations.length} relaciones, ${d.paths.length} learning path(s).`);

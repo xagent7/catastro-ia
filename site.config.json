@@ -37,5 +37,9 @@
   },
   "community": {
     "whatsapp": "https://chat.whatsapp.com/HBm3nCMFgCvH5n3rGufBN6"
+  },
+  "shortLinks": {
+    "_nota": "Enlaces cortos para campañas: ruta corta → destino (redirección 302, se puede cambiar sin romper enlaces publicados).",
+    "/reto": "/lp/sdlc-ia/?utm_source=linkedin&utm_medium=post&utm_campaign=reto-lp8"
   }
 }
