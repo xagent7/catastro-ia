@@ -814,5 +814,65 @@
     "to": "bootcamp14",
     "type": "comp",
     "label": "Checklist de revisión para los proyectos del bootcamp"
+  },
+  {
+    "from": "owaspai",
+    "to": "redteam",
+    "type": "pre",
+    "label": "Primero el modelo de amenazas; después las pruebas de red teaming"
+  },
+  {
+    "from": "redteam",
+    "to": "nemoguard",
+    "type": "comp",
+    "label": "El red teaming pone a prueba los guardrails configurados"
+  },
+  {
+    "from": "deepsec",
+    "to": "ossscan",
+    "type": "comp",
+    "label": "Escaneo de tu propio código frente a un servicio de escaneo para proyectos open source"
+  },
+  {
+    "from": "egm",
+    "to": "speckit",
+    "type": "alt",
+    "label": "Dos formas de especificar antes de codificar; EGM agrega revisión adversarial con subagentes"
+  },
+  {
+    "from": "superp",
+    "to": "egm",
+    "type": "comp",
+    "label": "Disciplina de ejecución sobre un diseño revisado de forma adversarial"
+  },
+  {
+    "from": "dlai",
+    "to": "dlaictx",
+    "type": "fam",
+    "label": "Curso del catálogo de DeepLearning.AI"
+  },
+  {
+    "from": "dlaictx",
+    "to": "hfcontext",
+    "type": "comp",
+    "label": "Recuperación y memoria del contexto frente a context engineering para agentes de código"
+  },
+  {
+    "from": "dlai",
+    "to": "dlailoop",
+    "type": "fam",
+    "label": "Curso del catálogo de DeepLearning.AI"
+  },
+  {
+    "from": "deepag",
+    "to": "dlailoop",
+    "type": "pre",
+    "label": "Conocer el harness antes de construir bucles de verificación y mejora sobre él"
+  },
+  {
+    "from": "asp",
+    "to": "agcli",
+    "type": "alt",
+    "label": "agents-cli reemplaza a Agent Starter Pack, archivado en octubre de 2026"
   }
 ]

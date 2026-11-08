@@ -446,7 +446,10 @@
     "level": "Intermedio → Avanzado",
     "confidence": "contrastada",
     "description": "Plantillas de agentes de IA generativa listas para producción en Google Cloud. Resuelve despliegue y operación, evaluación, personalización y observabilidad, con CI/CD e infraestructura incluidos.",
-    "use": "Úsalo en el módulo de “agente a producción”: toma un agente de ADK y despliégalo con esta plantilla."
+    "use": "Úsalo en el módulo de “agente a producción”: toma un agente de ADK y despliégalo con esta plantilla.",
+    "warning": "Google archivó el repositorio el 28 de octubre de 2026 y quedó en solo lectura; recomienda migrar a google/agents-cli.",
+    "updated": "2026-11-01",
+    "updateNote": "Repositorio archivado; se recomienda google/agents-cli"
   },
   {
     "id": "agcli",
@@ -523,15 +526,17 @@
   },
   {
     "id": "ecc",
-    "name": "affaan-m/everything-claude-code (ECC)",
-    "url": "https://github.com/affaan-m/everything-claude-code",
+    "name": "affaan-m/ECC (everything-claude-code)",
+    "url": "https://github.com/affaan-m/ECC",
     "category": "harness",
     "type": "Repo · sistema",
     "purpose": "construir",
     "level": "Intermedio → Avanzado",
     "confidence": "segun_proyecto",
-    "description": "Sistema de optimización de harness para agentes: skills, “instintos”, memoria, seguridad y desarrollo guiado por investigación, para Claude Code, Codex, OpenCode, Cursor y otros. También se publica como affaan-m/ECC.",
-    "use": "Úsalo como configuración avanzada de referencia para comparar con Superpowers en una ruta de ingeniería agéntica."
+    "description": "Sistema de optimización de harness para agentes: skills, “instintos”, memoria, seguridad y desarrollo guiado por investigación, para Claude Code, Codex, OpenCode, Cursor y otros. Antes se llamaba affaan-m/everything-claude-code.",
+    "use": "Úsalo como configuración avanzada de referencia para comparar con Superpowers en una ruta de ingeniería agéntica.",
+    "updated": "2026-11-01",
+    "updateNote": "El repositorio ahora se publica como affaan-m/ECC; enlace actualizado"
   },
   {
     "id": "superp",
@@ -766,6 +771,20 @@
     "use": "Úsalo en el módulo de gobernanza de proyectos con agentes, para líderes técnicos."
   },
   {
+    "id": "egm",
+    "name": "google/elephant-goldfish-model",
+    "url": "https://github.com/google/elephant-goldfish-model",
+    "category": "sdd",
+    "type": "Repo · skills y plugin",
+    "purpose": "construir",
+    "level": "Intermedio",
+    "confidence": "segun_proyecto",
+    "description": "Flujo de “diseño antes de código” que Google usa internamente: un agente “elefante”, con todo el contexto, redacta la especificación, y subagentes “pez dorado”, sin historial, la revisan de forma adversarial para detectar supuestos ocultos. Se distribuye como skills (brainstorm, draft, review, drift report) para Claude Code, Codex, Antigravity y Cowork.",
+    "use": "Úsalo en el módulo de especificaciones para enseñar revisión adversarial con contexto limpio, junto a spec-kit u OpenSpec.",
+    "warning": "El README aclara que no es un producto con soporte oficial de Google.",
+    "added": "2026-11-01"
+  },
+  {
     "id": "graphify",
     "name": "Graphify-Labs/graphify",
     "url": "https://github.com/Graphify-Labs/graphify",
@@ -779,15 +798,17 @@
   },
   {
     "id": "understand",
-    "name": "Lum1104/Understand-Anything",
-    "url": "https://github.com/Lum1104/Understand-Anything",
+    "name": "Egonex-AI/Understand-Anything",
+    "url": "https://github.com/Egonex-AI/Understand-Anything",
     "category": "code",
     "type": "Repo",
     "purpose": "construir",
     "level": "Intermedio",
     "confidence": "segun_proyecto",
-    "description": "“Graphs that teach > graphs that impress”: convierte código o una base de conocimiento (como un wiki de LLM al estilo Karpathy) en un grafo interactivo para explorar, buscar y hacer preguntas. Funciona con varios agentes.",
-    "use": "Su foco pedagógico lo hace ideal para onboarding de desarrolladores a un código base."
+    "description": "“Graphs that teach > graphs that impress”: convierte código o una base de conocimiento (como un wiki de LLM al estilo Karpathy) en un grafo interactivo para explorar, buscar y hacer preguntas. Funciona con varios agentes. Antes estaba en Lum1104/Understand-Anything.",
+    "use": "Su foco pedagógico lo hace ideal para onboarding de desarrolladores a un código base.",
+    "updated": "2026-11-01",
+    "updateNote": "Repositorio transferido de Lum1104 a Egonex-AI; enlace actualizado"
   },
   {
     "id": "codeflow",
@@ -1145,15 +1166,17 @@
   },
   {
     "id": "omnivoice",
-    "name": "debpalash/OmniVoice-Studio",
-    "url": "https://github.com/debpalash/OmniVoice-Studio",
+    "name": "debpalash/VoiceStudio (antes OmniVoice-Studio)",
+    "url": "https://github.com/debpalash/VoiceStudio",
     "category": "media",
     "type": "Repo · app de escritorio",
     "purpose": "construir",
     "level": "Intermedio",
     "confidence": "segun_proyecto",
-    "description": "Alternativa open source a ElevenLabs como app de escritorio: clonación y diseño de voz local, doblaje y dictado.",
-    "use": "Sirve para producción de audio y podcasts, y como ejemplo de IA de voz en local."
+    "description": "Alternativa open source y totalmente local a ElevenLabs: clonación y diseño de voz, doblaje de video, dictado, transcripción y creación de audiolibros. Antes se llamaba OmniVoice-Studio y usa el modelo OmniVoice.",
+    "use": "Sirve para producción de audio y podcasts, y como ejemplo de IA de voz en local.",
+    "updated": "2026-11-01",
+    "updateNote": "Repositorio renombrado a VoiceStudio; enlace y descripción actualizados"
   },
   {
     "id": "presenton",
@@ -1214,8 +1237,10 @@
     "confidence": "contrastada",
     "description": "Más de 100 cursos cortos (1 a 2 horas, con notebooks) que DeepLearning.AI produce con empresas como Anthropic, LangChain, crewAI, Neo4j o AMD. Para los temas de este catastro destacan: Agentic AI, MCP con Anthropic, Claude Code, computer use con Anthropic, RAG, memoria de agentes con LangGraph y post-training de LLMs.",
     "use": "Sirve para cerrar un tema concreto en una tarde; cada módulo de una ruta puede apoyarse en uno de estos cursos.",
-    "warning": "El acceso es gratuito por tiempo limitado durante la beta de la plataforma; el certificado y las tareas evaluadas requieren la suscripción PRO.",
-    "added": "2026-10-18"
+    "warning": "Los videos de los cursos se pueden ver gratis y algunos cursos aún indican acceso gratuito por tiempo limitado durante la beta de la plataforma. El certificado, los laboratorios y las tareas evaluadas requieren la suscripción PRO (25 USD/mes en plan anual o 30 USD/mes en plan mensual).",
+    "added": "2026-10-18",
+    "updated": "2026-11-01",
+    "updateNote": "Gratuidad aclarada: videos gratis; PRO para certificado y evaluaciones"
   },
   {
     "id": "dlaimcp",
@@ -1241,7 +1266,10 @@
     "confidence": "segun_proyecto",
     "description": "Curso de DeepLearning.AI sobre cómo diseñar flujos agénticos a partir de patrones como reflexión, uso de herramientas, planificación y colaboración multiagente, con énfasis en evaluar y mejorar el sistema.",
     "use": "Sirve como marco de patrones al inicio de una ruta de agentes, antes de elegir framework.",
-    "added": "2026-10-18"
+    "warning": "Se puede auditar gratis; las evaluaciones y el certificado requieren la suscripción PRO de DeepLearning.AI.",
+    "added": "2026-10-18",
+    "updated": "2026-11-01",
+    "updateNote": "Advertencia de gratuidad: la página ya no lo ofrece como gratis durante la beta"
   },
   {
     "id": "dlaicc",
@@ -1337,7 +1365,7 @@
   {
     "id": "nvdli",
     "name": "NVIDIA Deep Learning Institute",
-    "url": "https://learn.nvidia.com/en-us/training/find-training",
+    "url": "https://www.nvidia.com/en-us/training/find-training/",
     "category": "plat",
     "type": "Plataforma de cursos",
     "purpose": "aprender",
@@ -1346,7 +1374,37 @@
     "description": "Catálogo de cursos de NVIDIA sobre deep learning, IA generativa, computación acelerada y ciencia de datos. Entre los gratuitos están Getting Started with Deep Learning, An Even Easier Introduction to CUDA y Getting Started with AI on Jetson Nano; el buscador permite filtrar por cursos gratis.",
     "use": "Sirve para la parte de hardware y GPU de una ruta de inferencia.",
     "warning": "La mayoría de los cursos avanzados y las certificaciones de NVIDIA son pagados; solo una parte del catálogo es gratuita.",
-    "added": "2026-10-18"
+    "added": "2026-10-18",
+    "updated": "2026-11-01",
+    "updateNote": "El catálogo se trasladó a nvidia.com; enlace actualizado"
+  },
+  {
+    "id": "dlaictx",
+    "name": "Context Engineering (DeepLearning.AI y Chroma)",
+    "url": "https://www.deeplearning.ai/courses/context-engineering",
+    "category": "plat",
+    "type": "Curso",
+    "purpose": "aprender",
+    "level": "Intermedio",
+    "confidence": "segun_proyecto",
+    "description": "Curso de unas 19 horas de DeepLearning.AI con Jeff Huber (Chroma) sobre cómo dar a un agente la información correcta en el momento justo: context rot, búsqueda agéntica léxica, semántica e híbrida, poda y compactación del contexto, y memoria entre sesiones.",
+    "use": "Complementa el Context Course de Hugging Face con el lado de recuperación y memoria del contexto.",
+    "warning": "Los videos son gratuitos; las tareas evaluadas y el certificado requieren la suscripción PRO de DeepLearning.AI.",
+    "added": "2026-11-01"
+  },
+  {
+    "id": "dlailoop",
+    "name": "Loop Engineering with LangChain Deep Agents",
+    "url": "https://www.deeplearning.ai/courses/loop-engineering-with-langchain-deep-agents",
+    "category": "plat",
+    "type": "Curso corto",
+    "purpose": "aprender",
+    "level": "Intermedio",
+    "confidence": "segun_proyecto",
+    "description": "Curso corto (1 h 16 min) de DeepLearning.AI y LangChain sobre cuatro bucles alrededor de un agente: el bucle del propio agente, la verificación contra criterios explícitos, la activación por eventos (Slack o Jira) y la mejora iterativa a partir de trazas, aplicados a un agente que revisa requisitos de software.",
+    "use": "Es el laboratorio práctico de Deep Agents para el módulo de evaluación y mejora continua de agentes.",
+    "warning": "Los videos son gratuitos; las tareas evaluadas requieren la suscripción PRO de DeepLearning.AI.",
+    "added": "2026-11-01"
   },
   {
     "id": "transformers",
@@ -1389,8 +1447,8 @@
   },
   {
     "id": "nemoguard",
-    "name": "NVIDIA/NeMo-Guardrails",
-    "url": "https://github.com/NVIDIA/NeMo-Guardrails",
+    "name": "NVIDIA-NeMo/Guardrails (NeMo Guardrails)",
+    "url": "https://github.com/NVIDIA-NeMo/Guardrails",
     "category": "sec",
     "type": "Repo · toolkit",
     "purpose": "construir",
@@ -1398,7 +1456,36 @@
     "confidence": "contrastada",
     "description": "Toolkit open source de NVIDIA para agregar guardrails programables a aplicaciones con LLMs: restricción de temas, seguridad de contenido, detección de jailbreaks y verificación de hechos, definidos con el lenguaje Colang.",
     "use": "Es un control concreto para el módulo de gobernanza: qué puede y qué no puede responder un asistente.",
-    "added": "2026-10-18"
+    "added": "2026-10-18",
+    "updated": "2026-11-01",
+    "updateNote": "Repositorio trasladado a NVIDIA-NeMo/Guardrails; enlace actualizado"
+  },
+  {
+    "id": "redteam",
+    "name": "OWASP GenAI Red Teaming Manual v1.0",
+    "url": "https://genai.owasp.org/resource/genai-red-teaming-manual-version-1-0/",
+    "category": "sec",
+    "type": "Guía oficial · PDF",
+    "purpose": "aprender",
+    "level": "Intermedio → Avanzado",
+    "confidence": "segun_proyecto",
+    "description": "Manual del OWASP GenAI Security Project, publicado en octubre de 2026, para evaluar la seguridad y robustez de sistemas de IA generativa con una metodología de ocho fases, de la planificación a la remediación. Cubre modelos, aplicaciones, interfaces multimodales y agentes.",
+    "use": "Sirve como guía del ejercicio de red teaming de un módulo de seguridad, después del modelo de amenazas.",
+    "added": "2026-11-01"
+  },
+  {
+    "id": "ossscan",
+    "name": "anthropics/oss-scanner",
+    "url": "https://github.com/anthropics/oss-scanner",
+    "category": "sec",
+    "type": "Repo · servicio",
+    "purpose": "construir",
+    "level": "Intermedio",
+    "confidence": "segun_proyecto",
+    "description": "Servicio de Anthropic, lanzado en octubre de 2026, que usa Claude en una máquina virtual aislada para buscar vulnerabilidades en repositorios open source críticos. Los mantenedores inscriben su proyecto con un PR y reciben informes con pasos para reproducir el fallo y un parche propuesto.",
+    "use": "Es un caso de agentes aplicados a seguridad a escala; compáralo con deepsec y discute cómo validar informes generados por IA.",
+    "warning": "Los informes los genera un modelo sin revisión humana: hay que verificarlos antes de actuar.",
+    "added": "2026-11-01"
   },
   {
     "id": "nvgenai",

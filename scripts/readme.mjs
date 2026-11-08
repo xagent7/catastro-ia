@@ -51,7 +51,7 @@ Se publica una ruta nueva cada mes. Para recibir el aviso, deja tu correo al fin
 ## Contenido
 
 ${d.categories.filter(c => d.resources.some(r => r.category === c.id)).map(c => `- [${c.name}](#${anchor(c.name)}) (${d.resources.filter(r => r.category === c.id).length})`).join('\n')}
-- [Universidades top 10 (QS 2026)](#universidades-top-10-qs-2026) (${uniCount})
+- [Universidades top 10 (QS 2027)](#universidades-top-10-qs-2027) (${uniCount})
 - [Novedades](#novedades)
 
 > **Leyenda.** 🛠️ para construir · 📘 para aprender · ✅ descripción contrastada · 🔎 según el proyecto (lo que declaran sus autores) · ⚠️ tiene advertencia · 🆕 agregado en los últimos ${d.meta.freshDays} días
@@ -68,8 +68,8 @@ for (const c of d.categories) {
     return `| ${flags} [**${cell(r.name)}**](${r.url})<br><sub>${cell(r.description)}</sub> | ${cell(r.type)} · ${cell(r.level)} | ${cell(r.use)}${r.warning ? `<br>⚠️ *${cell(r.warning)}*` : ''}${rel.length ? `<br><sub>Se relaciona con: ${cell(rel.join(', '))}</sub>` : ''} |`;
   }).join('\n') + '\n\n';
 }
-md += `## Universidades top 10 (QS 2026)\n\nRecursos gratuitos de IA que publican las diez primeras universidades del QS World University Rankings 2026. Algunos cursos son gratis para aprender, pero cobran el certificado.\n\n| # | Universidad | Recurso | Tipo · nivel |\n|:-:|---|---|---|\n`;
-for (const g of d.universities) for (const it of g.items) md += `| ${g.rank} | ${cell(g.university)} | [**${cell(it.name)}**](${it.url})${it.repo ? ` · [repo](${it.repo})` : ''}<br><sub>${cell(it.description)}</sub> | ${cell(it.type)} · ${cell(it.level)} |\n`;
+md += `## Universidades top 10 (QS 2027)\n\nRecursos gratuitos de IA que publican las diez primeras universidades del QS World University Rankings 2027. Algunos cursos son gratis para aprender, pero cobran el certificado.\n\n| # | Universidad | Recurso | Tipo · nivel |\n|:-:|---|---|---|\n`;
+for (const g of d.universities) for (const it of g.items) md += `| ${g.tie ? '=' : ''}${g.rank} | ${cell(g.university)} | [**${cell(it.name)}**](${it.url})${it.repo ? ` · [repo](${it.repo})` : ''}<br><sub>${cell(it.description)}</sub> | ${cell(it.type)} · ${cell(it.level)} |\n`;
 md += `\n## Novedades\n\n${d.changelog.slice(0, 3).map(l => `**${longDate(l.date)}.** ${l.summary}`).join('\n\n')}\n\nEl detalle está en la pestaña [Novedades](${C.siteUrl}/#novedades) del sitio y en el [historial de commits](${REPO}/commits/${C.github.branch}).\n\n`;
 md += `## Cómo contribuir
 

@@ -90,7 +90,7 @@ function startGraph(){ if(gStarted)return; gStarted=true;
  document.getElementById('legend').innerHTML=Object.entries(CATS).map(([k,v])=>`<span><i style="width:10px;height:10px;border-radius:50%;background:var(--c-${k});display:inline-block"></i>${v.n}</span>`).join('')+
   `<span><i class="lg-line"></i>se complementa / prerrequisito</span><span><i class="lg-line alt"></i>alternativa</span><span>Tamaño = número de relaciones</span>`;
 }
-document.getElementById('unis').innerHTML=U.map(g=>`<div class="uni"><div class="rk">${g.rk}<small>QS 2026</small></div><div><h3>${esc(g.uni)}</h3><p class="pais">${esc(g.pais)}</p><div class="ugrid">${g.items.map(it=>`<article class="ucard">
+document.getElementById('unis').innerHTML=U.map(g=>`<div class="uni"><div class="rk">${g.rk}<small>QS 2027</small></div><div><h3>${esc(g.uni)}</h3><p class="pais">${esc(g.pais)}</p><div class="ugrid">${g.items.map(it=>`<article class="ucard">
  <a class="slug" href="${esc(it.u)}" target="_blank" rel="noopener">${esc(it.n)}</a>
  <div class="badges">${flag(it)}<span class="b">${esc(it.t)}</span><span class="b">${esc(it.lv)}</span>${it.conf!=='k'?'<span class="b r" title="Basada en la descripción publicada por la universidad">según el sitio del curso</span>':''}</div>
  <p>${esc(it.d)}</p>

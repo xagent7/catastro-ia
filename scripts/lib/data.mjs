@@ -74,6 +74,7 @@ export function validate(d) {
   d.universities.forEach((g, i) => {
     const w = `universities[${i}] (${g.university})`;
     if (!Number.isInteger(g.rank) || !g.university || !g.country) err(w, 'faltan rank, university o country');
+    if (g.tie != null && typeof g.tie !== 'boolean') err(w, 'tie debe ser true o false');
     (g.items || []).forEach((it, j) => {
       const wi = `${w}.items[${j}]`;
       for (const k of ['name', 'url', 'type', 'level', 'confidence', 'description']) if (!it[k]) err(wi, `falta "${k}"`);
@@ -140,7 +141,7 @@ export function toClient(d) {
   });
   const CATS = Object.fromEntries(d.categories.map(c => [c.id, { n: c.name, d: c.description }]));
   const E = d.relations.map(e => [e.from, e.to, e.type, e.label]);
-  const U = d.universities.map(g => ({ rk: g.rank, uni: g.university, pais: g.country, items: g.items.map(it => {
+  const U = d.universities.map(g => ({ rk: (g.tie ? '=' : '') + g.rank, uni: g.university, pais: g.country, items: g.items.map(it => {
     const o = { n: it.name, u: it.url, t: it.type, lv: it.level, conf: CONFIDENCE[it.confidence], d: it.description, rel: (it.relations || []).map(r => [r.to, r.type, r.label]) };
     if (it.repo) o.repo = it.repo; if (it.warning) o.w = it.warning; if (it.added) o.nw = it.added; return o;
   }) }));

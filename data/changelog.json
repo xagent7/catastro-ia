@@ -1,5 +1,104 @@
 [
   {
+    "date": "2026-11-01",
+    "summary": "Revisión mensual de noviembre: entran cinco recursos (manual de red teaming de OWASP, OSS Scanner de Anthropic, skills Elephant-Goldfish de Google y dos cursos de DeepLearning.AI), se actualizan seis enlaces que cambiaron de dirección, se marca como archivado Agent Starter Pack, se aclara la gratuidad de DeepLearning.AI y Coursera, y la pestaña de universidades pasa al ranking QS 2027. Además, cada recurso lleva ahora una etiqueta de propósito: Construir (repositorios versionados que se instalan o ejecutan) o Aprender (cursos, libros, tutoriales, guías, especificaciones y metodologías); el catálogo muestra primero lo que sirve para construir.",
+    "items": [
+      {
+        "change": "agregado",
+        "name": "Loop Engineering with LangChain Deep Agents",
+        "id": "dlailoop"
+      },
+      {
+        "change": "agregado",
+        "name": "Context Engineering (DeepLearning.AI y Chroma)",
+        "id": "dlaictx"
+      },
+      {
+        "change": "agregado",
+        "name": "google/elephant-goldfish-model",
+        "id": "egm"
+      },
+      {
+        "change": "agregado",
+        "name": "anthropics/oss-scanner",
+        "id": "ossscan"
+      },
+      {
+        "change": "agregado",
+        "name": "OWASP GenAI Red Teaming Manual v1.0",
+        "id": "redteam"
+      },
+      {
+        "change": "actualizado",
+        "name": "affaan-m/ECC (everything-claude-code)",
+        "id": "ecc",
+        "note": "El repositorio ahora se publica como affaan-m/ECC; enlace actualizado"
+      },
+      {
+        "change": "actualizado",
+        "name": "Egonex-AI/Understand-Anything",
+        "id": "understand",
+        "note": "Repositorio transferido de Lum1104 a Egonex-AI; enlace actualizado"
+      },
+      {
+        "change": "actualizado",
+        "name": "NVIDIA-NeMo/Guardrails (NeMo Guardrails)",
+        "id": "nemoguard",
+        "note": "Repositorio trasladado a NVIDIA-NeMo/Guardrails; enlace actualizado"
+      },
+      {
+        "change": "actualizado",
+        "name": "debpalash/VoiceStudio (antes OmniVoice-Studio)",
+        "id": "omnivoice",
+        "note": "Repositorio renombrado a VoiceStudio; enlace y descripción actualizados"
+      },
+      {
+        "change": "actualizado",
+        "name": "NVIDIA Deep Learning Institute",
+        "id": "nvdli",
+        "note": "El catálogo se trasladó a nvidia.com; enlace actualizado"
+      },
+      {
+        "change": "actualizado",
+        "name": "GoogleCloudPlatform/agent-starter-pack",
+        "id": "asp",
+        "note": "Repositorio archivado; se recomienda google/agents-cli"
+      },
+      {
+        "change": "actualizado",
+        "name": "DeepLearning.AI · cursos cortos",
+        "id": "dlai",
+        "note": "Gratuidad aclarada: videos gratis; PRO para certificado y evaluaciones"
+      },
+      {
+        "change": "actualizado",
+        "name": "Agentic AI (DeepLearning.AI)",
+        "id": "dlaiag",
+        "note": "Advertencia de gratuidad: la página ya no lo ofrece como gratis durante la beta"
+      },
+      {
+        "change": "actualizado",
+        "name": "Mathematics for Machine Learning (Coursera) (Imperial College London)",
+        "note": "Dejó de figurar como gratuito en Coursera"
+      },
+      {
+        "change": "actualizado",
+        "name": "Probabilistic Artificial Intelligence (ETH Zurich)",
+        "note": "Enlace corregido: el anterior apuntaba a otro artículo de arXiv"
+      },
+      {
+        "change": "actualizado",
+        "name": "CS6101 · Large Language Models (WING) (National University of Singapore)",
+        "note": "Enlace actualizado a la nueva dirección del grupo WING"
+      },
+      {
+        "change": "actualizado",
+        "name": "Universidades top 10",
+        "note": "Se actualiza al QS World University Rankings 2027 (publicado en junio de 2026): mismas diez universidades, con Caltech 7.ª, ETH Zurich y UCL empatadas en el 8.º puesto y NUS 10.ª"
+      }
+    ]
+  },
+  {
     "date": "2026-10-18",
     "summary": "Se agregan plataformas de formación (DeepLearning.AI, Hugging Face y NVIDIA), Claude Academy, las especificaciones MCP y A2A, y una sección con recursos gratuitos de las 10 mejores universidades del ranking QS 2026. Los artículos se reemplazan por sus recursos originales.",
     "items": [
