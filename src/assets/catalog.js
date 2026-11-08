@@ -30,9 +30,12 @@ function card(r){
  </article>`;
 }
 function renderCats(){
- const counts={};R.forEach(r=>counts[r.c]=(counts[r.c]||0)+1);
- const nNew=R.filter(isFresh).length;
- document.getElementById('cats').innerHTML=`<button class="cat" aria-pressed="${fCat===null&&!fNew}" data-c="">Todas <em>${R.length}</em></button>`+(nNew?`<button class="cat" aria-pressed="${fNew}" data-c="__new">Nuevos y actualizados <em>${nNew}</em></button>`:'')+Object.entries(CATS).filter(([k])=>counts[k]).map(([k,v])=>`<button class="cat" style="--cc:var(--c-${k})" aria-pressed="${fCat===k&&!fNew}" data-c="${k}"><i></i>${v.n} <em>${counts[k]}</em></button>`).join('');
+ const base=R.filter(r=>!fKind||r.k===fKind);
+ const counts={};base.forEach(r=>counts[r.c]=(counts[r.c]||0)+1);
+ if(fCat&&!counts[fCat])fCat=null;
+ const nNew=base.filter(isFresh).length;
+ if(fNew&&!nNew)fNew=false;
+ document.getElementById('cats').innerHTML=`<button class="cat" aria-pressed="${fCat===null&&!fNew}" data-c="">Todas <em>${base.length}</em></button>`+(nNew?`<button class="cat" aria-pressed="${fNew}" data-c="__new">Nuevos y actualizados <em>${nNew}</em></button>`:'')+Object.entries(CATS).filter(([k])=>counts[k]).map(([k,v])=>`<button class="cat" style="--cc:var(--c-${k})" aria-pressed="${fCat===k&&!fNew}" data-c="${k}"><i></i>${v.n} <em>${counts[k]}</em></button>`).join('');
 }
 function renderCatalog(){
  const q=document.getElementById('q').value.trim().toLowerCase();
@@ -45,7 +48,7 @@ function renderCatalog(){
 }
 document.getElementById('cats').addEventListener('click',e=>{const b=e.target.closest('.cat');if(!b)return;if(b.dataset.c==='__new'){fNew=!fNew;fCat=null}else{fNew=false;fCat=b.dataset.c||null}renderCats();renderCatalog()});
 document.getElementById('q').addEventListener('input',renderCatalog);
-document.getElementById('kind').addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;fKind=b.dataset.k;document.querySelectorAll('#kind button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderCatalog()});
+document.getElementById('kind').addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;fKind=b.dataset.k;document.querySelectorAll('#kind button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderCats();renderCatalog()});
 document.addEventListener('click',e=>{const a=e.target.closest('a[data-go]');if(!a)return;e.preventDefault();
  if(document.getElementById('p-cat').hidden)selectTab('t-cat');
  fCat=null;fNew=false;fKind='';document.querySelectorAll('#kind button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===''));document.getElementById('q').value='';renderCats();renderCatalog();
@@ -110,6 +113,10 @@ document.getElementById('lps').innerHTML=LPS.map(p=>`<article class="lpcard${p.s
 renderCats();renderCatalog();
 const HT={'#mapa':'t-rel','#universidades':'t-uni','#novedades':'t-new','#learning-paths':'t-lp','#catalogo':'t-cat'};
 let saved=null;try{saved=localStorage.getItem('catastro-pub-tab')}catch(e){}
-if(HT[location.hash])selectTab(HT[location.hash]);else if(saved&&document.getElementById(saved))selectTab(saved);
-window.addEventListener('hashchange',()=>{if(HT[location.hash])selectTab(HT[location.hash])});
+const toTabs=()=>{const t=document.getElementById('tabs');if(t)t.scrollIntoView({block:'start'})};
+function goHash(h){if(!HT[h])return false;selectTab(HT[h]);toTabs();return true}
+if(HT[location.hash]){selectTab(HT[location.hash]);requestAnimationFrame(()=>setTimeout(toTabs,60))}else if(saved&&document.getElementById(saved))selectTab(saved);
+window.addEventListener('hashchange',()=>goHash(location.hash));
+// Enlaces del menú a una pestaña de esta misma página: cambian de pestaña y bajan hasta ella, aunque el hash no cambie
+document.querySelectorAll('a[href^="/#"],a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const u=new URL(a.href,location.href);if(u.pathname!==location.pathname||!HT[u.hash])return;e.preventDefault();try{history.replaceState(null,'',u.hash)}catch(_){}goHash(u.hash)}));
 document.querySelectorAll('[data-tab]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();selectTab(a.dataset.tab);document.getElementById('tabs').scrollIntoView({block:'start'})}));
