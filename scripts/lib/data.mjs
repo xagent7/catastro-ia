@@ -8,6 +8,7 @@ const read = p => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
 
 export const CONFIDENCE = { contrastada: 'k', segun_proyecto: 'r' };
 export const REL_TYPES = ['comp', 'alt', 'pre', 'fam'];
+export const PURPOSES = { construir: 'b', aprender: 'a' };
 export const LEVELS = { B: 'Básico', I: 'Intermedio', A: 'Avanzado' };
 
 export function loadAll() {
@@ -45,11 +46,12 @@ export function validate(d) {
   const ids = new Set(); const urls = new Map();
   d.resources.forEach((r, i) => {
     const w = `resources[${i}] (${r.id || '?'})`;
-    for (const k of ['id', 'name', 'url', 'category', 'type', 'level', 'confidence', 'description', 'use']) if (!r[k]) err(w, `falta "${k}"`);
+    for (const k of ['id', 'name', 'url', 'category', 'type', 'purpose', 'level', 'confidence', 'description', 'use']) if (!r[k]) err(w, `falta "${k}"`);
     if (r.id && !/^[a-z0-9_]+$/.test(r.id)) err(w, 'el id solo admite minúsculas, números y _');
     if (ids.has(r.id)) err(w, 'id duplicado');
     ids.add(r.id);
     if (!cats.has(r.category)) err(w, `categoría inexistente "${r.category}"`);
+    if (r.purpose && !(r.purpose in PURPOSES)) err(w, `purpose debe ser ${Object.keys(PURPOSES).join(' o ')}`);
     if (!(r.confidence in CONFIDENCE)) err(w, `confidence debe ser ${Object.keys(CONFIDENCE).join(' o ')}`);
     if (r.url && !isUrl(r.url)) err(w, 'la URL debe ser https válida');
     if (r.url) { const key = r.url.replace(/\/+$/, '').toLowerCase(); if (urls.has(key)) err(w, `URL repetida con ${urls.get(key)}`); urls.set(key, r.id); }
@@ -132,7 +134,7 @@ export function validate(d) {
 // Formato compacto que consumen las páginas (claves cortas)
 export function toClient(d) {
   const res = d.resources.map(r => {
-    const o = { id: r.id, n: r.name, u: r.url, c: r.category, t: r.type, lv: r.level, conf: CONFIDENCE[r.confidence], d: r.description, uso: r.use };
+    const o = { id: r.id, n: r.name, u: r.url, c: r.category, k: PURPOSES[r.purpose], t: r.type, lv: r.level, conf: CONFIDENCE[r.confidence], d: r.description, uso: r.use };
     if (r.warning) o.w = r.warning; if (r.added) o.nw = r.added; if (r.updated) { o.up = r.updated; o.upn = r.updateNote; }
     return o;
   });

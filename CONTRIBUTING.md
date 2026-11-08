@@ -21,6 +21,7 @@ Gracias por ayudar a mantener el catastro. Todo el contenido vive en `data/` com
   "url": "https://github.com/organizacion/proyecto",
   "category": "harness",
   "type": "Repo · skills",
+  "purpose": "construir",
   "level": "Intermedio",
   "confidence": "segun_proyecto",
   "description": "Qué es, en dos o tres frases.",
@@ -31,6 +32,7 @@ Gracias por ayudar a mantener el catastro. Todo el contenido vive en `data/` com
 
    - `id`: minúsculas, números y `_`; único.
    - `category`: uno de los `id` de `data/categories.json`.
+   - `purpose`: `construir` (repositorio versionado, con commits o releases en los últimos 6 meses, que se instala o ejecuta para construir o habilitar algo: frameworks, librerías, CLIs, servidores, motores de inferencia, plantillas, apps, modelos open-weight, skills o plugins instalables) o `aprender` (cursos, libros, tutoriales, roadmaps, índices, guías, documentación, especificaciones como MCP o A2A, metodologías, aunque estén en GitHub; también los tutoriales donde se construye algo para entender cómo funciona y los recursos universitarios).
    - `confidence`: `contrastada` o `segun_proyecto`.
    - `added` / `updated` (con `updateNote`): fechas `AAAA-MM-DD`; activan las etiquetas NUEVO y ACTUALIZADO durante `freshDays` días.
 

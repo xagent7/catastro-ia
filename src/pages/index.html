@@ -2,7 +2,7 @@
 <header>
   <div class="eyebrow">Academia de IA Xäboli · gratuita y en español · se actualiza cada mes</div>
   <h1>Rutas de aprendizaje de IA y el catastro abierto que las alimenta</h1>
-  <p class="lede">Learning paths con examen interactivo y un catálogo curado de repositorios, frameworks, cursos y documentación oficial de inteligencia artificial, clasificados por tema. Cada ficha explica qué es el recurso, para qué sirve en una ruta de aprendizaje y con qué otros recursos se complementa. Incluye recursos gratuitos de las 10 mejores universidades del mundo.</p>
+  <p class="lede">Learning paths con examen interactivo y un catálogo curado de repositorios, frameworks, cursos y documentación oficial de inteligencia artificial, clasificados por tema. Cada ficha indica si sirve para construir o para aprender, explica qué es el recurso, para qué sirve en una ruta de aprendizaje y con qué otros recursos se complementa. Incluye recursos gratuitos de las 10 mejores universidades del mundo.</p>
   <div class="stats" id="stats"></div>
   <div class="updated" id="updated"></div>
   {{PROMO}}
@@ -19,6 +19,7 @@
 <section id="p-cat" role="tabpanel" aria-labelledby="t-cat">
   <div class="toolbar">
     <input id="q" type="search" placeholder="Buscar por nombre o tema (ej. RAG, skills, vLLM, seguridad)" aria-label="Buscar en el catálogo">
+    <div class="seg" id="kind" role="group" aria-label="Filtrar por propósito"><button type="button" data-k="b" aria-pressed="true" title="Repositorios versionados que se instalan o ejecutan para construir o habilitar algo">Para construir</button><button type="button" data-k="a" aria-pressed="false" title="Cursos, libros, tutoriales, guías, especificaciones y metodologías">Para aprender</button><button type="button" data-k="" aria-pressed="false">Todo</button></div>
     <span class="count" id="count"></span>
   </div>
   <div class="cats" id="cats"></div>
@@ -47,6 +48,7 @@
   <div class="log" id="log"></div>
   <div class="crit"><h3>Criterio de inclusión</h3><ul>
    <li>Solo recursos directos: repositorios, cursos, libros, herramientas y documentación oficial. No se incluyen artículos, noticias ni posts.</li>
+   <li>Cada recurso lleva una etiqueta de propósito. <b>Construir</b>: repositorios versionados (con releases o commits recientes) que se instalan o ejecutan para construir o habilitar algo concreto. <b>Aprender</b>: cursos, libros, tutoriales, guías, documentación, especificaciones y metodologías, aunque estén en GitHub. El catálogo muestra primero lo que sirve para construir.</li>
    <li>Gratuitos o con una versión gratuita útil; si el certificado o parte del contenido es pagado, se indica.</li>
    <li>Cada recurso se relaciona con al menos otro del catálogo.</li>
    <li>Los recursos con riesgos (de seguridad, de términos de uso o afirmaciones no verificadas) se incluyen solo como casos de estudio y con advertencia.</li>

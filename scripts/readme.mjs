@@ -54,16 +54,16 @@ ${d.categories.filter(c => d.resources.some(r => r.category === c.id)).map(c => 
 - [Universidades top 10 (QS 2026)](#universidades-top-10-qs-2026) (${uniCount})
 - [Novedades](#novedades)
 
-> **Leyenda.** ✅ descripción contrastada · 🔎 según el proyecto (lo que declaran sus autores) · ⚠️ tiene advertencia · 🆕 agregado en los últimos ${d.meta.freshDays} días
+> **Leyenda.** 🛠️ para construir · 📘 para aprender · ✅ descripción contrastada · 🔎 según el proyecto (lo que declaran sus autores) · ⚠️ tiene advertencia · 🆕 agregado en los últimos ${d.meta.freshDays} días
 
 `;
 const fresh = iso => iso && (Date.parse(d.meta.updated) - Date.parse(iso)) / 864e5 <= d.meta.freshDays;
 for (const c of d.categories) {
-  const items = d.resources.filter(r => r.category === c.id).sort((a, b) => relCount(b.id) - relCount(a.id) || a.name.localeCompare(b.name));
+  const items = d.resources.filter(r => r.category === c.id).sort((a, b) => (a.purpose === b.purpose ? 0 : a.purpose === 'construir' ? -1 : 1) || relCount(b.id) - relCount(a.id) || a.name.localeCompare(b.name));
   if (!items.length) continue;
   md += `## ${c.name}\n\n${c.description}\n\n| Recurso | Tipo · nivel | Para qué sirve |\n|---|---|---|\n`;
   md += items.map(r => {
-    const flags = (r.confidence === 'contrastada' ? '✅' : '🔎') + (r.warning ? ' ⚠️' : '') + (fresh(r.added) ? ' 🆕' : '');
+    const flags = (r.purpose === 'construir' ? '🛠️ ' : '📘 ') + (r.confidence === 'contrastada' ? '✅' : '🔎') + (r.warning ? ' ⚠️' : '') + (fresh(r.added) ? ' 🆕' : '');
     const rel = d.relations.filter(e => e.from === r.id || e.to === r.id).slice(0, 4).map(e => short(byId[e.from === r.id ? e.to : e.from].name).split('/').pop());
     return `| ${flags} [**${cell(r.name)}**](${r.url})<br><sub>${cell(r.description)}</sub> | ${cell(r.type)} · ${cell(r.level)} | ${cell(r.use)}${r.warning ? `<br>⚠️ *${cell(r.warning)}*` : ''}${rel.length ? `<br><sub>Se relaciona con: ${cell(rel.join(', '))}</sub>` : ''} |`;
   }).join('\n') + '\n\n';

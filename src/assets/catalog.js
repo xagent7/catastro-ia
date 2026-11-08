@@ -16,12 +16,13 @@ document.getElementById('stats').innerHTML=[
  [R.length,"recursos"],[R.filter(r=>/github\.com/.test(r.u)).length,"repositorios de GitHub"],[Object.keys(CATS).length,"categorías"],[E.length,"relaciones"],[U.reduce((a,g)=>a+g.items.length,0),"recursos universitarios"]
 ].map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
 
-let fCat=null;
+let fCat=null, fKind='b';
+const KB={b:['Construir','kb','Se instala o ejecuta para construir algo'],a:['Aprender','ka','Curso, guía, documentación o material de estudio']};
 function card(r){
  const rel=relOf(r.id);
  return `<article class="card" id="r-${r.id}" style="--cc:var(--c-${r.c})">
   <a class="slug" href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.n)}</a>
-  <div class="badges">${flag(r)}<span class="b">${esc(r.t)}</span><span class="b">${esc(r.lv)}</span>${r.conf!=='k'?'<span class="b r" title="Basada en la descripción publicada por sus autores">según el proyecto</span>':''}</div>
+  <div class="badges">${flag(r)}${KB[r.k]?`<span class="b ${KB[r.k][1]}" title="${KB[r.k][2]}">${KB[r.k][0]}</span>`:''}<span class="b">${esc(r.t)}</span><span class="b">${esc(r.lv)}</span>${r.conf!=='k'?'<span class="b r" title="Basada en la descripción publicada por sus autores">según el proyecto</span>':''}</div>
   <p>${esc(r.d)}</p>
   <p class="uso"><b>Para qué sirve:</b> ${esc(r.uso)}</p>
   ${r.w?`<div class="warn">${esc(r.w)}</div>`:''}
@@ -35,18 +36,19 @@ function renderCats(){
 }
 function renderCatalog(){
  const q=document.getElementById('q').value.trim().toLowerCase();
- const list=R.filter(r=>(!fNew||isFresh(r))&&(!fCat||r.c===fCat)&&(!q||(r.n+' '+r.d+' '+r.uso+' '+r.t).toLowerCase().includes(q)));
+ const list=R.filter(r=>(!fKind||r.k===fKind)&&(!fNew||isFresh(r))&&(!fCat||r.c===fCat)&&(!q||(r.n+' '+r.d+' '+r.uso+' '+r.t).toLowerCase().includes(q)));
  document.getElementById('count').textContent=list.length+' de '+R.length+' recursos';
  let html='';
- Object.entries(CATS).forEach(([k,v])=>{const items=list.filter(r=>r.c===k).sort((a,b)=>deg[b.id]-deg[a.id]||a.n.localeCompare(b.n)); if(!items.length)return;
+ Object.entries(CATS).forEach(([k,v])=>{const items=list.filter(r=>r.c===k).sort((a,b)=>(a.k===b.k?0:a.k==='b'?-1:1)||deg[b.id]-deg[a.id]||a.n.localeCompare(b.n)); if(!items.length)return;
   html+=`<div class="section-h" style="--cc:var(--c-${k})"><i></i><h2>${v.n}</h2></div><p class="lede" style="margin:-4px 0 12px">${v.d}</p><div class="grid">${items.map(card).join('')}</div>`;});
  document.getElementById('catalog').innerHTML=html||'<p class="lede">No hay recursos que coincidan con la búsqueda.</p>';
 }
 document.getElementById('cats').addEventListener('click',e=>{const b=e.target.closest('.cat');if(!b)return;if(b.dataset.c==='__new'){fNew=!fNew;fCat=null}else{fNew=false;fCat=b.dataset.c||null}renderCats();renderCatalog()});
 document.getElementById('q').addEventListener('input',renderCatalog);
+document.getElementById('kind').addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;fKind=b.dataset.k;document.querySelectorAll('#kind button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderCatalog()});
 document.addEventListener('click',e=>{const a=e.target.closest('a[data-go]');if(!a)return;e.preventDefault();
  if(document.getElementById('p-cat').hidden)selectTab('t-cat');
- fCat=null;fNew=false;document.getElementById('q').value='';renderCats();renderCatalog();
+ fCat=null;fNew=false;fKind='';document.querySelectorAll('#kind button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===''));document.getElementById('q').value='';renderCats();renderCatalog();
  const el=document.getElementById('r-'+a.dataset.go);if(el){el.scrollIntoView({block:'center'});el.style.boxShadow='0 0 0 2px var(--accent)';setTimeout(()=>el.style.boxShadow='',1600)}});
 
 const tabs=[...document.querySelectorAll('#tabs button')];

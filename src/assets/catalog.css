@@ -91,3 +91,10 @@
 .promo b{font-family:var(--f-display)}
 .promo a{font-weight:600}
 .foot-note{margin-top:34px;font-size:13px;color:var(--muted);max-width:80ch}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--surface)}
+.seg button{all:unset;cursor:pointer;padding:8px 12px;font-size:14px;font-weight:600;color:var(--muted);white-space:nowrap}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.b.kb{color:var(--kb);background:var(--kb-soft);font-weight:600}
+.b.ka{color:var(--ka);background:var(--ka-soft);font-weight:600}

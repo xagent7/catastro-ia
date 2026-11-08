@@ -9,7 +9,7 @@
 
 :root{
   --bg:#F2F5F4; --surface:#FFFFFF; --ink:#14211E; --muted:#56665F; --line:#D5DEDA; --chip:#E9EEEC;
-  --accent:#2446A8; --accent-ink:#FFFFFF; --accent-soft:#E4EAFB;
+  --accent:#2446A8; --accent-ink:#FFFFFF; --accent-soft:#E4EAFB; --kb:#1F6B45; --kb-soft:#DDF1E6; --ka:#6A4A12; --ka-soft:#F3EAD8;
   --ok:#1F7A4D; --ok-soft:#E1F2E8; --bad:#B42318; --bad-soft:#FBE6E3; --warn:#9A5B08; --warn-soft:#FBF0DC;
   --band:#14211E; --band-ink:#F2F5F4; --band-muted:#B8C6C0;
   --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
@@ -21,14 +21,14 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0E1412; --surface:#161F1C; --ink:#E5EDEA; --muted:#9BABA5; --line:#2A3631; --chip:#1F2A26;
-  --accent:#8EA8FF; --accent-ink:#0E1412; --accent-soft:#1D2742;
+  --accent:#8EA8FF; --accent-ink:#0E1412; --accent-soft:#1D2742; --kb:#6FD3A0; --kb-soft:#173126; --ka:#E3C48A; --ka-soft:#2D2516;
   --ok:#5CC48E; --ok-soft:#14291F; --bad:#FF8A7A; --bad-soft:#341A17; --warn:#E3A64A; --warn-soft:#2E2414;
   --band:#1A2622; --band-ink:#E5EDEA; --band-muted:#9BABA5;
   --c-fund:#79A6FF; --c-llm:#B595FF; --c-prompt:#FF9A63; --c-agents:#43C9A3; --c-google:#E2BD4A; --c-harness:#FF7EAA;
   --c-sdd:#98A6FF; --c-code:#4FC6E0; --c-rag:#7FCB6A; --c-infer:#E39A6A; --c-sec:#FF8A7A; --c-media:#E487DF; --c-apps:#8DB5C8; --c-cert:#A9B4C0; --c-plat:#F0A060; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0E1412; --surface:#161F1C; --ink:#E5EDEA; --muted:#9BABA5; --line:#2A3631; --chip:#1F2A26;
-  --accent:#8EA8FF; --accent-ink:#0E1412; --accent-soft:#1D2742;
+  --accent:#8EA8FF; --accent-ink:#0E1412; --accent-soft:#1D2742; --kb:#6FD3A0; --kb-soft:#173126; --ka:#E3C48A; --ka-soft:#2D2516;
   --ok:#5CC48E; --ok-soft:#14291F; --bad:#FF8A7A; --bad-soft:#341A17; --warn:#E3A64A; --warn-soft:#2E2414;
   --band:#1A2622; --band-ink:#E5EDEA; --band-muted:#9BABA5;
   --c-fund:#79A6FF; --c-llm:#B595FF; --c-prompt:#FF9A63; --c-agents:#43C9A3; --c-google:#E2BD4A; --c-harness:#FF7EAA;
