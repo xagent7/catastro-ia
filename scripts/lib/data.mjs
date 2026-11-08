@@ -18,6 +18,8 @@ export function loadAll() {
   const universities = read('data/universities.json');
   const meta = read('data/meta.json');
   const changelog = read('data/changelog.json');
+  let reviewed = [];
+  try { reviewed = read('data/revisados.json'); } catch { /* sin registro aún */ }
   const paths = readdirSync(join(ROOT, 'data/learning-paths')).filter(f => f.endsWith('.json')).sort()
     .map(f => {
       const lp = read('data/learning-paths/' + f);
@@ -25,7 +27,7 @@ export function loadAll() {
       try { exam = read('data/exams/' + f); } catch { /* ruta sin examen */ }
       return { ...lp, file: f, exam };
     });
-  return { config, categories, resources, relations, universities, meta, changelog, paths };
+  return { config, categories, resources, relations, universities, meta, changelog, paths, reviewed };
 }
 
 const isDate = s => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) && !Number.isNaN(Date.parse(s));
@@ -81,6 +83,19 @@ export function validate(d) {
   });
   if (!isDate(d.meta.updated)) err('meta', 'updated inválido');
   d.changelog.forEach((l, i) => { if (!isDate(l.date) || !l.summary || !Array.isArray(l.items)) err(`changelog[${i}]`, 'faltan date, summary o items'); });
+  const DECISIONS = ['descartado', 'en_espera'];
+  const revUrls = new Set();
+  (d.reviewed || []).forEach((r, i) => {
+    const w = `revisados[${i}] (${r.url || '?'})`;
+    if (!isUrl(r.url)) err(w, 'la URL debe ser https válida');
+    if (!isDate(r.date)) err(w, 'date debe tener formato AAAA-MM-DD');
+    if (!DECISIONS.includes(r.decision)) err(w, `decision debe ser ${DECISIONS.join(' o ')}`);
+    if (!r.reason) err(w, 'falta reason');
+    const key = (r.url || '').replace(/\/+$/, '').toLowerCase();
+    if (revUrls.has(key)) err(w, 'URL repetida en revisados');
+    if (urls.has(key)) err(w, `ya está en el catálogo como ${urls.get(key)}; quítala de revisados`);
+    revUrls.add(key);
+  });
   const lpIds = new Set();
   d.paths.forEach(lp => {
     const w = `learning-paths/${lp.file}`;

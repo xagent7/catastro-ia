@@ -11,6 +11,19 @@
    - Ejecutar `npm run validate && npm run readme && npm run build`.
 3. **Revisión:** Cloudflare Pages publica una vista previa del PR. Si se ve bien, merge a `main` y el sitio se actualiza solo.
 
+## Fuentes de recursos nuevos
+
+1. **Principal: documento de Oliver** «Recursos nuevos - Catastro IA» (Google Docs, carpeta Notas ICloud). Cada línea bajo PENDIENTES es un enlace con un comentario opcional. La tarea lo **lee, nunca lo edita**.
+2. **Complemento: búsqueda web** del mes.
+
+Para no evaluar dos veces lo mismo, todo enlace revisado que **no** entra al catálogo se registra en `data/revisados.json`:
+
+```json
+{ "url": "https://…", "name": "…", "date": "AAAA-MM-DD", "decision": "descartado", "reason": "es un artículo, no un recurso directo", "source": "doc" }
+```
+
+`decision` es `descartado` (no entra) o `en_espera` (revisar más adelante, por ejemplo un repositorio muy nuevo). `source` es `doc` o `web`. Un enlace que ya está en `resources.json` no va en este archivo; la validación lo impide.
+
 ## Instrucción sugerida para la tarea programada
 
 > Clona `xagent7/catastro-ia`, crea la rama `actualizacion/AAAA-MM`, lee el último issue con la etiqueta `enlaces` y aplica sus correcciones. Busca recursos nuevos para las categorías de `data/categories.json` siguiendo `CONTRIBUTING.md` (solo recursos directos, gratuitos, con al menos una relación). Registra los cambios en `data/changelog.json`, actualiza `data/meta.json`, ejecuta `npm run validate`, `npm run readme` y `npm run build`, y abre un pull request con el resumen. No elimines un recurso por una sola falla y no hagas merge.
