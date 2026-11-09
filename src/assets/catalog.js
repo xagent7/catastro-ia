@@ -16,13 +16,15 @@ document.getElementById('stats').innerHTML=[
  [R.length,"recursos"],[R.filter(r=>/github\.com/.test(r.u)).length,"repositorios de GitHub"],[Object.keys(CATS).length,"categorías"],[E.length,"relaciones"],[U.reduce((a,g)=>a+g.items.length,0),"recursos universitarios"]
 ].map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
 
-let fCat=null, fKind='b';
+let fCat=null, fKind='b', fFmt='', fLv='';
+const FMT_ORDER=[];R.forEach(r=>{if(!FMT_ORDER.some(x=>x[0]===r.f))FMT_ORDER.push([r.f,r.t,r.k])});FMT_ORDER.sort((a,b)=>(a[2]===b[2]?0:a[2]==='b'?-1:1)||a[1].localeCompare(b[1]));
+const pre=r=>(!fKind||r.k===fKind)&&(!fLv||r.lv===fLv);
 const KB={b:['Construir','kb','Se instala o ejecuta para construir algo'],a:['Aprender','ka','Curso, guía, documentación o material de estudio']};
 function card(r){
  const rel=relOf(r.id);
  return `<article class="card" id="r-${r.id}" style="--cc:var(--c-${r.c})">
   <a class="slug" href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.n)}</a>
-  <div class="badges">${flag(r)}${KB[r.k]?`<span class="b ${KB[r.k][1]}" title="${KB[r.k][2]}">${KB[r.k][0]}</span>`:''}<span class="b">${esc(r.t)}</span><span class="b">${esc(r.lv)}</span>${r.conf!=='k'?'<span class="b r" title="Basada en la descripción publicada por sus autores">según el proyecto</span>':''}</div>
+  <div class="badges">${flag(r)}${KB[r.k]?`<span class="b ${KB[r.k][1]}" title="${KB[r.k][2]}">${KB[r.k][0]}</span>`:''}<span class="b" title="Formato">${esc(r.t)}</span><span class="b" title="Nivel de entrada">${esc(r.lv)}</span>${r.conf!=='k'?'<span class="b r" title="Basada en la descripción publicada por sus autores">según el proyecto</span>':''}</div>
   <p>${esc(r.d)}</p>
   <p class="uso"><b>Para qué sirve:</b> ${esc(r.uso)}</p>
   ${r.w?`<div class="warn">${esc(r.w)}</div>`:''}
@@ -30,7 +32,10 @@ function card(r){
  </article>`;
 }
 function renderCats(){
- const base=R.filter(r=>!fKind||r.k===fKind);
+ const fc={};R.filter(pre).forEach(r=>fc[r.f]=(fc[r.f]||0)+1);
+ if(fFmt&&!fc[fFmt])fFmt='';
+ document.getElementById('fmts').innerHTML=`<button class="fmt" aria-pressed="${!fFmt}" data-f="">Todos los formatos</button>`+FMT_ORDER.filter(([f])=>fc[f]).map(([f,l])=>`<button class="fmt" aria-pressed="${fFmt===f}" data-f="${f}">${esc(l)} <em>${fc[f]}</em></button>`).join('');
+ const base=R.filter(r=>pre(r)&&(!fFmt||r.f===fFmt));
  const counts={};base.forEach(r=>counts[r.c]=(counts[r.c]||0)+1);
  if(fCat&&!counts[fCat])fCat=null;
  const nNew=base.filter(isFresh).length;
@@ -39,7 +44,7 @@ function renderCats(){
 }
 function renderCatalog(){
  const q=document.getElementById('q').value.trim().toLowerCase();
- const list=R.filter(r=>(!fKind||r.k===fKind)&&(!fNew||isFresh(r))&&(!fCat||r.c===fCat)&&(!q||(r.n+' '+r.d+' '+r.uso+' '+r.t).toLowerCase().includes(q)));
+ const list=R.filter(r=>pre(r)&&(!fFmt||r.f===fFmt)&&(!fNew||isFresh(r))&&(!fCat||r.c===fCat)&&(!q||(r.n+' '+r.d+' '+r.uso+' '+r.t).toLowerCase().includes(q)));
  document.getElementById('count').textContent=list.length+' de '+R.length+' recursos';
  let html='';
  Object.entries(CATS).forEach(([k,v])=>{const items=list.filter(r=>r.c===k).sort((a,b)=>(a.k===b.k?0:a.k==='b'?-1:1)||deg[b.id]-deg[a.id]||a.n.localeCompare(b.n)); if(!items.length)return;
@@ -48,10 +53,12 @@ function renderCatalog(){
 }
 document.getElementById('cats').addEventListener('click',e=>{const b=e.target.closest('.cat');if(!b)return;if(b.dataset.c==='__new'){fNew=!fNew;fCat=null}else{fNew=false;fCat=b.dataset.c||null}renderCats();renderCatalog()});
 document.getElementById('q').addEventListener('input',renderCatalog);
-document.getElementById('kind').addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;fKind=b.dataset.k;document.querySelectorAll('#kind button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderCats();renderCatalog()});
+document.getElementById('fmts').addEventListener('click',e=>{const b=e.target.closest('.fmt');if(!b)return;fFmt=b.dataset.f;renderCats();renderCatalog()});
+document.getElementById('lvl').addEventListener('change',e=>{fLv=e.target.value;renderCats();renderCatalog()});
+document.getElementById('kind').addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;fKind=b.dataset.k;fFmt='';document.querySelectorAll('#kind button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderCats();renderCatalog()});
 document.addEventListener('click',e=>{const a=e.target.closest('a[data-go]');if(!a)return;e.preventDefault();
  if(document.getElementById('p-cat').hidden)selectTab('t-cat');
- fCat=null;fNew=false;fKind='';document.querySelectorAll('#kind button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===''));document.getElementById('q').value='';renderCats();renderCatalog();
+ fCat=null;fNew=false;fKind='';fFmt='';fLv='';document.getElementById('lvl').value='';document.querySelectorAll('#kind button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===''));document.getElementById('q').value='';renderCats();renderCatalog();
  const el=document.getElementById('r-'+a.dataset.go);if(el){el.scrollIntoView({block:'center'});el.style.boxShadow='0 0 0 2px var(--accent)';setTimeout(()=>el.style.boxShadow='',1600)}});
 
 const tabs=[...document.querySelectorAll('#tabs button')];
@@ -95,7 +102,7 @@ function startGraph(){ if(gStarted)return; gStarted=true;
 }
 document.getElementById('unis').innerHTML=U.map(g=>`<div class="uni"><div class="rk">${g.rk}<small>QS 2027</small></div><div><h3>${esc(g.uni)}</h3><p class="pais">${esc(g.pais)}</p><div class="ugrid">${g.items.map(it=>`<article class="ucard">
  <a class="slug" href="${esc(it.u)}" target="_blank" rel="noopener">${esc(it.n)}</a>
- <div class="badges">${flag(it)}<span class="b">${esc(it.t)}</span><span class="b">${esc(it.lv)}</span>${it.conf!=='k'?'<span class="b r" title="Basada en la descripción publicada por la universidad">según el sitio del curso</span>':''}</div>
+ <div class="badges">${flag(it)}<span class="b" title="Formato">${esc(it.t)}</span>${it.cl?'<span class="b" title="Material de referencia que sigue vigente, aunque no es reciente">clásico</span>':''}<span class="b" title="Nivel de entrada">${esc(it.lv)}</span>${it.conf!=='k'?'<span class="b r" title="Basada en la descripción publicada por la universidad">según el sitio del curso</span>':''}</div>
  <p>${esc(it.d)}</p>
  ${it.w?`<div class="warn">${esc(it.w)}</div>`:''}
  <div class="links"><a href="${esc(it.u)}" target="_blank" rel="noopener">Sitio oficial ↗</a>${it.repo?`<a href="${esc(it.repo)}" target="_blank" rel="noopener">Repositorio ↗</a>`:''}</div>

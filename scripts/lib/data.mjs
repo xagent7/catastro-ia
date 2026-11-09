@@ -9,7 +9,24 @@ const read = p => JSON.parse(readFileSync(join(ROOT, p), 'utf8'));
 export const CONFIDENCE = { contrastada: 'k', segun_proyecto: 'r' };
 export const REL_TYPES = ['comp', 'alt', 'pre', 'fam'];
 export const PURPOSES = { construir: 'b', aprender: 'a' };
-export const LEVELS = { B: 'Básico', I: 'Intermedio', A: 'Avanzado' };
+export const LEVELS = { B: 'Principiante', I: 'Intermedio', A: 'Avanzado' };
+// Nivel de entrada de un recurso: qué se necesita para empezarlo
+export const RES_LEVELS = ['Principiante', 'Intermedio', 'Avanzado'];
+// Formatos cerrados; cada uno pertenece a un solo propósito
+export const FORMATS = {
+  framework: { label: 'Framework o librería', purpose: 'construir' },
+  herramienta: { label: 'Herramienta o CLI', purpose: 'construir' },
+  skills: { label: 'Skills y plugins', purpose: 'construir' },
+  app: { label: 'Aplicación o agente', purpose: 'construir' },
+  infra: { label: 'Modelos e infraestructura', purpose: 'construir' },
+  plantillas: { label: 'Plantillas y ejemplos', purpose: 'construir' },
+  curso: { label: 'Curso', purpose: 'aprender' },
+  tutorial: { label: 'Tutorial, guía o ejemplos', purpose: 'aprender' },
+  indice: { label: 'Índice o ruta de estudio', purpose: 'aprender' },
+  libro: { label: 'Libro', purpose: 'aprender' },
+  docs: { label: 'Documentación o especificación', purpose: 'aprender' },
+  interactiva: { label: 'Herramienta interactiva', purpose: 'aprender' }
+};
 
 export function loadAll() {
   const config = read('site.config.json');
@@ -46,12 +63,16 @@ export function validate(d) {
   const ids = new Set(); const urls = new Map();
   d.resources.forEach((r, i) => {
     const w = `resources[${i}] (${r.id || '?'})`;
-    for (const k of ['id', 'name', 'url', 'category', 'type', 'purpose', 'level', 'confidence', 'description', 'use']) if (!r[k]) err(w, `falta "${k}"`);
+    for (const k of ['id', 'name', 'url', 'category', 'format', 'purpose', 'level', 'confidence', 'description', 'use']) if (!r[k]) err(w, `falta "${k}"`);
     if (r.id && !/^[a-z0-9_]+$/.test(r.id)) err(w, 'el id solo admite minúsculas, números y _');
     if (ids.has(r.id)) err(w, 'id duplicado');
     ids.add(r.id);
     if (!cats.has(r.category)) err(w, `categoría inexistente "${r.category}"`);
     if (r.purpose && !(r.purpose in PURPOSES)) err(w, `purpose debe ser ${Object.keys(PURPOSES).join(' o ')}`);
+    if (r.format && !(r.format in FORMATS)) err(w, `format debe ser uno de: ${Object.keys(FORMATS).join(', ')}`);
+    else if (r.format && r.purpose && FORMATS[r.format].purpose !== r.purpose) err(w, `el formato "${r.format}" es para ${FORMATS[r.format].purpose}, pero purpose dice ${r.purpose}`);
+    if (r.level && !RES_LEVELS.includes(r.level)) err(w, `level debe ser ${RES_LEVELS.join(', ')}`);
+    if ('type' in r) err(w, 'el campo type ya no se usa: usa format');
     if (!(r.confidence in CONFIDENCE)) err(w, `confidence debe ser ${Object.keys(CONFIDENCE).join(' o ')}`);
     if (r.url && !isUrl(r.url)) err(w, 'la URL debe ser https válida');
     if (r.url) { const key = r.url.replace(/\/+$/, '').toLowerCase(); if (urls.has(key)) err(w, `URL repetida con ${urls.get(key)}`); urls.set(key, r.id); }
@@ -77,7 +98,10 @@ export function validate(d) {
     if (g.tie != null && typeof g.tie !== 'boolean') err(w, 'tie debe ser true o false');
     (g.items || []).forEach((it, j) => {
       const wi = `${w}.items[${j}]`;
-      for (const k of ['name', 'url', 'type', 'level', 'confidence', 'description']) if (!it[k]) err(wi, `falta "${k}"`);
+      for (const k of ['name', 'url', 'format', 'level', 'confidence', 'description']) if (!it[k]) err(wi, `falta "${k}"`);
+      if (it.format && FORMATS[it.format]?.purpose !== 'aprender') err(wi, 'format de universidad debe ser de aprendizaje (curso, libro, tutorial…)');
+      if (it.level && !RES_LEVELS.includes(it.level)) err(wi, `level debe ser ${RES_LEVELS.join(', ')}`);
+      if (it.classic != null && typeof it.classic !== 'boolean') err(wi, 'classic debe ser true o false');
       if (!isUrl(it.url)) err(wi, 'URL inválida');
       if (it.repo && !isUrl(it.repo)) err(wi, 'repo inválido');
       if (!(it.confidence in CONFIDENCE)) err(wi, 'confidence inválida');
@@ -135,14 +159,14 @@ export function validate(d) {
 // Formato compacto que consumen las páginas (claves cortas)
 export function toClient(d) {
   const res = d.resources.map(r => {
-    const o = { id: r.id, n: r.name, u: r.url, c: r.category, k: PURPOSES[r.purpose], t: r.type, lv: r.level, conf: CONFIDENCE[r.confidence], d: r.description, uso: r.use };
+    const o = { id: r.id, n: r.name, u: r.url, c: r.category, k: PURPOSES[r.purpose], f: r.format, t: FORMATS[r.format]?.label || r.format, lv: r.level, conf: CONFIDENCE[r.confidence], d: r.description, uso: r.use };
     if (r.warning) o.w = r.warning; if (r.added) o.nw = r.added; if (r.updated) { o.up = r.updated; o.upn = r.updateNote; }
     return o;
   });
   const CATS = Object.fromEntries(d.categories.map(c => [c.id, { n: c.name, d: c.description }]));
   const E = d.relations.map(e => [e.from, e.to, e.type, e.label]);
   const U = d.universities.map(g => ({ rk: (g.tie ? '=' : '') + g.rank, uni: g.university, pais: g.country, items: g.items.map(it => {
-    const o = { n: it.name, u: it.url, t: it.type, lv: it.level, conf: CONFIDENCE[it.confidence], d: it.description, rel: (it.relations || []).map(r => [r.to, r.type, r.label]) };
+    const o = { n: it.name, u: it.url, t: FORMATS[it.format]?.label || it.format, lv: it.level, cl: it.classic ? 1 : 0, conf: CONFIDENCE[it.confidence], d: it.description, rel: (it.relations || []).map(r => [r.to, r.type, r.label]) };
     if (it.repo) o.repo = it.repo; if (it.warning) o.w = it.warning; if (it.added) o.nw = it.added; return o;
   }) }));
   const META = { updated: d.meta.updated, next: d.meta.nextReview, days: d.meta.freshDays };

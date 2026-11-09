@@ -1,0 +1,54 @@
+<main id="main" class="prose guia">
+<div class="eyebrow">Guía de uso</div>
+<h1>Cómo sacarle provecho a la academia</h1>
+<p class="lede">La academia tiene dos partes: un catálogo de {{N_RES}} recursos clasificados y relacionados entre sí, y learning paths con examen e insignia. Todo es gratuito y no pide registro. Esta guía explica cómo encontrar lo que necesitas y cómo avanzar.</p>
+
+<h2>Empieza por tu punto de partida</h2>
+<table>
+<tr><th>Si tú…</th><th>Prueba esto</th></tr>
+<tr><td>Recién empiezas con IA y no programas</td><td>En el catálogo elige <b>Para aprender</b> y el nivel <b>Principiante</b>. Parte por los cursos y las herramientas interactivas, que muestran cómo funciona un modelo sin escribir código.</td></tr>
+<tr><td>Programas y quieres construir con LLMs y agentes</td><td>Elige <b>Para construir</b> y el nivel <b>Intermedio</b>. Filtra por formato: <b>Framework o librería</b> para partir un proyecto, <b>Skills y plugins</b> para potenciar tu agente de código.</td></tr>
+<tr><td>Ya construyes con LLMs y quieres ir a producción</td><td>Nivel <b>Avanzado</b> y las categorías de inferencia, seguridad y gobernanza. Revisa las advertencias de cada ficha antes de adoptar algo en tu organización.</td></tr>
+<tr><td>Quieres demostrar lo que sabes</td><td>Abre un <a href="/#learning-paths">learning path</a>, recorre sus módulos y rinde el examen completo para obtener tu insignia.</td></tr>
+</table>
+
+<h2>Los filtros del catálogo</h2>
+<p>Los filtros se combinan entre sí, y los números de cada botón muestran cuántos recursos quedan con lo que ya elegiste.</p>
+<ul>
+<li><b>Propósito.</b> <i>Para construir</i> son repositorios versionados que se instalan o ejecutan para construir algo. <i>Para aprender</i> son cursos, libros, tutoriales, guías y documentación, aunque estén en GitHub. El catálogo abre en <i>Para construir</i>; elige <i>Todo</i> para ver los {{N_RES}}.</li>
+<li><b>Formato.</b> Qué tipo de recurso es. Para construir: {{FMT_B}}. Para aprender: {{FMT_A}}.</li>
+<li><b>Nivel de entrada.</b> Lo que necesitas para empezar el recurso, no hasta dónde llega. <i>Principiante</i>: no exige experiencia previa en IA ni programar con soltura. <i>Intermedio</i>: exige programar. <i>Avanzado</i>: exige experiencia previa con LLMs, agentes o infraestructura.</li>
+<li><b>Categoría.</b> El tema, de fundamentos a seguridad y gobernanza. <i>Nuevos y actualizados</i> muestra lo que cambió en los últimos {{FRESH_DAYS}} días.</li>
+<li><b>Búsqueda.</b> Busca en el nombre, la descripción y el uso de cada recurso; por ejemplo «RAG», «MCP» o «seguridad».</li>
+</ul>
+
+<h2>Cómo leer una ficha</h2>
+<ul>
+<li><b>Descripción y «Para qué sirve».</b> Qué es el recurso y qué papel cumple en una ruta de aprendizaje.</li>
+<li><b>Según el proyecto.</b> La descripción repite lo que declaran sus autores y no se contrastó con una fuente independiente.</li>
+<li><b>Advertencia.</b> Riesgos de seguridad, de términos de uso, de costo o afirmaciones no verificadas. Algunos recursos se incluyen solo como casos de estudio.</li>
+<li><b>NUEVO y ACTUALIZADO.</b> Agregado o modificado en los últimos {{FRESH_DAYS}} días; pasa el cursor o mantén presionada la etiqueta para ver qué cambió.</li>
+<li><b>Se relaciona con.</b> Toca un nombre para saltar a esa ficha.</li>
+</ul>
+
+<h2>El mapa de relaciones</h2>
+<p>Cada nodo es un recurso y su tamaño indica con cuántos otros se relaciona. Hay cuatro tipos de relación: <i>se complementa</i> (conviene usarlos juntos), <i>alternativa</i> (resuelven lo mismo, línea punteada), <i>prerrequisito</i> (uno conviene antes que el otro) y <i>misma familia</i>. Toca un nodo para ver sus relaciones y úsalo para armar tu propio orden de estudio.</p>
+
+<h2>Learning paths, examen e insignia</h2>
+<ul>
+<li>Cada ruta tiene módulos de nivel creciente, con recursos del catálogo y una práctica por módulo.</li>
+<li>Puedes practicar un módulo a la vez; cada respuesta trae su explicación al corregir.</li>
+<li>La insignia se obtiene solo en el <b>examen completo</b>, con al menos 75% de respuestas correctas.</li>
+<li>Al aprobar puedes descargar la insignia, agregarla a tu perfil de LinkedIn, generar un diploma con tu nombre y unirte a la comunidad. Tu nombre se usa solo en tu navegador: no se guarda en ningún servidor.</li>
+<li>Tu avance y tu mejor puntaje quedan guardados en este navegador; si cambias de dispositivo, empiezas de nuevo.</li>
+</ul>
+
+<h2>Universidades</h2>
+<p>La pestaña de universidades reúne recursos gratuitos de las diez mejores universidades del ranking QS. Los marcados como <i>clásico</i> no son recientes, pero siguen siendo referencia. Algunos cursos son gratis para aprender y cobran el certificado; la ficha lo indica.</p>
+
+<h2>Cómo se mantiene al día</h2>
+<p>El catálogo se revisa el día 1 de cada mes. Un proceso automático verifica todos los enlaces, propone recursos nuevos y corrige los que cambiaron de dirección; una persona revisa y aprueba cada cambio antes de publicarlo. El detalle queda en la pestaña <a href="/#novedades">Novedades</a> y en el <a href="{{REPO_URL}}/commits/{{BRANCH}}">historial del repositorio</a>.</p>
+
+<h2>Sugiere un recurso o reporta un error</h2>
+<p>¿Conoces un recurso que debería estar, un enlace roto o un error en un examen? Abre un issue en <a href="{{REPO_URL}}/issues/new/choose">GitHub</a>. Los datos son abiertos (CC BY 4.0): puedes descargarlos en <a href="/data/resources.json">JSON</a> y reutilizarlos citando la fuente.</p>
+</main>

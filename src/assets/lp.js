@@ -3,7 +3,7 @@
 const KEY=LP.id, PASS=LP.passMark;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-const LV={B:"Básico",I:"Intermedio",A:"Avanzado"};
+const LV={B:"Principiante",I:"Intermedio",A:"Avanzado"};
 document.getElementById('stats').innerHTML=[[MODS.length,"módulos"],[Q.length,"preguntas"],[PHASES.length,"fases del ciclo"],[new Set(MODS.flatMap(m=>m.r.map(x=>x[1]))).size,"recursos y documentos"],[PASS+"%","para aprobar"]].map(([b,s])=>`<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
 document.getElementById('phases').innerHTML=PHASES.map((p,i)=>`<div class="phase"><div class="k">FASE ${i+1}</div><h3>${p.t}</h3><p>${p.d}</p><ul>${p.r.map(([n,u])=>`<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a></li>`).join('')}</ul><div class="mods">Módulos: ${p.m.map(x=>'M'+x).join(', ')}</div></div>`).join('');
 document.getElementById('mods').innerHTML=MODS.map((m,i)=>`<li><span class="n">M${i+1}</span><div><h3>${m.t} <span class="lvlb ${m.lv}">${LV[m.lv]}</span></h3><p>${m.o}</p><p class="pr"><b>Práctica:</b> ${m.p}</p><div class="res">${m.r.map(([n,u,doc])=>`<a class="${doc?'doc':''}" href="${esc(u)}" target="_blank" rel="noopener">${esc(n)}</a>`).join('')}</div></div><button class="btn ghost" type="button" data-mod="${i+1}">Practicar M${i+1}</button></li>`).join('');

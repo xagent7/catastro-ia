@@ -121,3 +121,6 @@ h3{font-family:var(--f-display);font-size:19px;line-height:1.2;margin:0 0 4px}
 .band .fine-band{font-size:13px;margin-top:8px}
 .band .fine-band a{color:var(--band-ink)}
 .lp-actions{display:flex;flex-wrap:wrap;gap:8px}
+.guia ul{display:flex;flex-direction:column;gap:6px}
+.guia td:first-child{width:34%;font-weight:600}
+@media (max-width:560px){.guia table,.guia tr,.guia td,.guia th{display:block;width:auto}.guia tr{border:1px solid var(--line);border-radius:8px;margin:0 0 10px}.guia th{display:none}.guia td{border:0}}

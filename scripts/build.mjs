@@ -2,7 +2,7 @@
 import { mkdirSync, rmSync, writeFileSync, readFileSync, readdirSync, copyFileSync, cpSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
-import { ROOT, loadAll, validate, toClient, resolveLpResource } from './lib/data.mjs';
+import { ROOT, loadAll, validate, toClient, resolveLpResource, FORMATS } from './lib/data.mjs';
 
 const d = loadAll();
 const errors = validate(d);
@@ -87,6 +87,7 @@ const top = active => `<div class="top">
   <nav class="nav" aria-label="Principal">
     <a href="/"${active === 'home' ? ' aria-current="page"' : ''}>Catálogo</a>
     <a href="/#learning-paths"${active === 'lp' ? ' aria-current="page"' : ''}>Learning paths</a>
+    <a href="/guia/"${active === 'guia' ? ' aria-current="page"' : ''}>Cómo usar</a>
     <a href="${REPO_URL}" rel="noopener">GitHub</a>
     <a class="cta-link" href="${active === 'home' ? '' : '/'}#comunidad">Comunidad</a>
   </nav>
@@ -178,7 +179,7 @@ for (const lp of d.paths) {
   out(`lp/${lp.slug}/index.html`, page({
     meta: { title: `${lp.code} · ${lp.title} · ${C.siteName}`, description: `${lp.summary} ${lp.modules.length} módulos y examen interactivo de ${Q.length} preguntas.`, path, css: ['lp.css'], noindex: !!lp.unlisted,
       jsonld: { '@context': 'https://schema.org', '@type': 'Course', name: `${lp.code} · ${lp.title}`, description: lp.summary, inLanguage: 'es', url: C.siteUrl + path,
-        provider: { '@type': 'Organization', name: C.cta.brand, url: C.cta.brandUrl }, isAccessibleForFree: true, educationalLevel: 'Básico a avanzado',
+        provider: { '@type': 'Organization', name: C.cta.brand, url: C.cta.brandUrl }, isAccessibleForFree: true, educationalLevel: 'Principiante a avanzado',
         datePublished: lp.published, dateModified: lp.reviewed, hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'online', courseWorkload: 'PT50H' } } },
     active: 'lp', body: lpBody, scripts: [lpData, assets['badge.js'], assets['lp.js'], assets['forms.js']],
   }));
@@ -199,6 +200,11 @@ if (GF) PRIV.PRIV_META += '\n<p>No se venden ni se ceden datos a terceros, ni se
 const priv = fill(src('pages/privacidad.html'), { ...common, ...PRIV, PRIV_VERSION: longDate(C.privacy.version), PRIV_CONTROLLER: esc(C.privacy.controller), PRIV_EMAIL: esc(C.privacy.contactEmail), PRIV_RETENTION: String(C.privacy.retentionMonths) });
 out('privacidad/index.html', page({ meta: { title: `Política de privacidad · ${C.siteName}`, description: 'Qué datos recoge este sitio, para qué, por cuánto tiempo y cómo ejercer tus derechos.', path: '/privacidad/' }, active: '', body: priv }));
 sitemap.push({ loc: '/privacidad/', lastmod: C.privacy.version });
+// ── Guía de uso
+const fmtList = p => Object.values(FORMATS).filter(f => f.purpose === p).map(f => f.label.toLowerCase()).join(', ');
+const guia = fill(src('pages/guia.html'), { ...common, N_RES: String(d.resources.length), FRESH_DAYS: String(d.meta.freshDays), FMT_B: fmtList('construir'), FMT_A: fmtList('aprender') });
+out('guia/index.html', page({ meta: { title: `Cómo usar la academia · ${C.siteName}`, description: 'Cómo encontrar recursos con los filtros, leer las fichas, usar el mapa de relaciones y obtener la insignia de un learning path.', path: '/guia/' }, active: 'guia', body: guia }));
+sitemap.push({ loc: '/guia/', lastmod: d.meta.updated });
 out('404.html', page({ meta: { title: `Página no encontrada · ${C.siteName}`, description: 'La página no existe.', path: '/404' }, active: '', body: src('pages/404.html') }));
 
 // ── SEO y cabeceras
