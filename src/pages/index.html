@@ -20,8 +20,10 @@
   <div class="toolbar">
     <input id="q" type="search" placeholder="Buscar por nombre o tema (ej. RAG, skills, vLLM, seguridad)" aria-label="Buscar en el catálogo">
     <div class="seg" id="kind" role="group" aria-label="Filtrar por propósito"><button type="button" data-k="b" aria-pressed="true" title="Repositorios versionados que se instalan o ejecutan para construir o habilitar algo">Para construir</button><button type="button" data-k="a" aria-pressed="false" title="Cursos, libros, tutoriales, guías, especificaciones y metodologías">Para aprender</button><button type="button" data-k="" aria-pressed="false">Todo</button></div>
+    <label class="lvl"><span class="sr">Nivel de entrada</span><select id="lvl" aria-label="Nivel de entrada"><option value="">Todos los niveles</option><option>Principiante</option><option>Intermedio</option><option>Avanzado</option></select></label>
     <span class="count" id="count"></span>
   </div>
+  <div class="fmts" id="fmts" role="group" aria-label="Filtrar por formato"></div>
   <div class="cats" id="cats"></div>
   <div id="catalog">{{NOSCRIPT}}</div>
 </section>

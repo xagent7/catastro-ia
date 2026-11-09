@@ -98,3 +98,10 @@
 .seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .b.kb{color:var(--kb);background:var(--kb-soft);font-weight:600}
 .b.ka{color:var(--ka);background:var(--ka-soft);font-weight:600}
+.fmts{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.fmt{all:unset;cursor:pointer;font-size:13.5px;padding:5px 11px;border-radius:7px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.fmt em{font-style:normal;font-family:var(--f-mono);font-size:11.5px;opacity:.7}
+.fmt[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.fmt:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.lvl select{font:600 14px var(--f-body);padding:8px 10px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}

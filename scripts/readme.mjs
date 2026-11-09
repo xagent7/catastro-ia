@@ -1,7 +1,7 @@
 // Genera README.md desde /data. Uso: node scripts/readme.mjs [--check]
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { ROOT, loadAll, validate } from './lib/data.mjs';
+import { ROOT, loadAll, validate, FORMATS } from './lib/data.mjs';
 
 const d = loadAll();
 const errors = validate(d);
@@ -61,15 +61,15 @@ const fresh = iso => iso && (Date.parse(d.meta.updated) - Date.parse(iso)) / 864
 for (const c of d.categories) {
   const items = d.resources.filter(r => r.category === c.id).sort((a, b) => (a.purpose === b.purpose ? 0 : a.purpose === 'construir' ? -1 : 1) || relCount(b.id) - relCount(a.id) || a.name.localeCompare(b.name));
   if (!items.length) continue;
-  md += `## ${c.name}\n\n${c.description}\n\n| Recurso | Tipo · nivel | Para qué sirve |\n|---|---|---|\n`;
+  md += `## ${c.name}\n\n${c.description}\n\n| Recurso | Formato · nivel de entrada | Para qué sirve |\n|---|---|---|\n`;
   md += items.map(r => {
     const flags = (r.purpose === 'construir' ? '🛠️ ' : '📘 ') + (r.confidence === 'contrastada' ? '✅' : '🔎') + (r.warning ? ' ⚠️' : '') + (fresh(r.added) ? ' 🆕' : '');
     const rel = d.relations.filter(e => e.from === r.id || e.to === r.id).slice(0, 4).map(e => short(byId[e.from === r.id ? e.to : e.from].name).split('/').pop());
-    return `| ${flags} [**${cell(r.name)}**](${r.url})<br><sub>${cell(r.description)}</sub> | ${cell(r.type)} · ${cell(r.level)} | ${cell(r.use)}${r.warning ? `<br>⚠️ *${cell(r.warning)}*` : ''}${rel.length ? `<br><sub>Se relaciona con: ${cell(rel.join(', '))}</sub>` : ''} |`;
+    return `| ${flags} [**${cell(r.name)}**](${r.url})<br><sub>${cell(r.description)}</sub> | ${cell(FORMATS[r.format].label)} · ${cell(r.level)} | ${cell(r.use)}${r.warning ? `<br>⚠️ *${cell(r.warning)}*` : ''}${rel.length ? `<br><sub>Se relaciona con: ${cell(rel.join(', '))}</sub>` : ''} |`;
   }).join('\n') + '\n\n';
 }
-md += `## Universidades top 10 (QS 2027)\n\nRecursos gratuitos de IA que publican las diez primeras universidades del QS World University Rankings 2027. Algunos cursos son gratis para aprender, pero cobran el certificado.\n\n| # | Universidad | Recurso | Tipo · nivel |\n|:-:|---|---|---|\n`;
-for (const g of d.universities) for (const it of g.items) md += `| ${g.tie ? '=' : ''}${g.rank} | ${cell(g.university)} | [**${cell(it.name)}**](${it.url})${it.repo ? ` · [repo](${it.repo})` : ''}<br><sub>${cell(it.description)}</sub> | ${cell(it.type)} · ${cell(it.level)} |\n`;
+md += `## Universidades top 10 (QS 2027)\n\nRecursos gratuitos de IA que publican las diez primeras universidades del QS World University Rankings 2027. Algunos cursos son gratis para aprender, pero cobran el certificado.\n\n| # | Universidad | Recurso | Formato · nivel de entrada |\n|:-:|---|---|---|\n`;
+for (const g of d.universities) for (const it of g.items) md += `| ${g.tie ? '=' : ''}${g.rank} | ${cell(g.university)} | [**${cell(it.name)}**](${it.url})${it.repo ? ` · [repo](${it.repo})` : ''}<br><sub>${cell(it.description)}</sub> | ${cell(FORMATS[it.format].label)}${it.classic ? ' · clásico' : ''} · ${cell(it.level)} |\n`;
 md += `\n## Novedades\n\n${d.changelog.slice(0, 3).map(l => `**${longDate(l.date)}.** ${l.summary}`).join('\n\n')}\n\nEl detalle está en la pestaña [Novedades](${C.siteUrl}/#novedades) del sitio y en el [historial de commits](${REPO}/commits/${C.github.branch}).\n\n`;
 md += `## Cómo contribuir
 

@@ -1,5 +1,29 @@
 [
   {
+    "date": "2026-11-08",
+    "summary": "Normalización del catálogo: cada recurso tiene ahora uno de 12 formatos (6 para construir y 6 para aprender) y un nivel de entrada (Principiante, Intermedio o Avanzado). Nuevos filtros por formato y nivel, y guía de uso del sitio.",
+    "items": [
+      {
+        "change": "actualizado",
+        "name": "gszhangwei/open-spdd",
+        "id": "spdd",
+        "note": "Reclasificado: es una herramienta CLI (Para construir); descripción corregida"
+      },
+      {
+        "change": "actualizado",
+        "name": "allierays/agentic-architecture-review",
+        "id": "archreview",
+        "note": "Reclasificado: es un plugin de Claude Code (Para construir); descripción corregida"
+      },
+      {
+        "change": "actualizado",
+        "name": "OWASP Threat Advisor",
+        "id": "owaspai",
+        "note": "Descripción corregida: es un asistente, no una noticia"
+      }
+    ]
+  },
+  {
     "date": "2026-11-01",
     "summary": "Revisión mensual de noviembre: entran cinco recursos (manual de red teaming de OWASP, OSS Scanner de Anthropic, skills Elephant-Goldfish de Google y dos cursos de DeepLearning.AI), se actualizan seis enlaces que cambiaron de dirección, se marca como archivado Agent Starter Pack, se aclara la gratuidad de DeepLearning.AI y Coursera, y la pestaña de universidades pasa al ranking QS 2027. Además, cada recurso lleva ahora una etiqueta de propósito: Construir (repositorios versionados que se instalan o ejecutan) o Aprender (cursos, libros, tutoriales, guías, especificaciones y metodologías); el catálogo muestra primero lo que sirve para construir.",
     "items": [

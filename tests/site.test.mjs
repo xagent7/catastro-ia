@@ -18,13 +18,17 @@ function load(page) {
 }
 
 test('portada: catálogo, learning paths, universidades y formulario', { skip }, () => {
-  const { doc, errors } = load('index.html');
+  const { doc, win, errors } = load('index.html');
   assert.deepEqual(errors, []);
   const R = JSON.parse(readFileSync(new URL('data/resources.json', DIST), 'utf8'));
   assert.equal(doc.querySelectorAll('#catalog .card').length, R.filter(r => r.purpose === 'construir').length, 'por defecto muestra los recursos para construir');
   doc.querySelector('#kind button[data-k=""]').click();
   assert.equal(doc.querySelectorAll('#catalog .card').length, R.length, '«Todo» muestra el catálogo completo');
   assert.equal(doc.querySelectorAll('#catalog .b.kb').length + doc.querySelectorAll('#catalog .b.ka').length, R.length, 'cada ficha lleva su etiqueta de propósito');
+  const fmts = new Set(R.map(r => r.format));
+  assert.equal(doc.querySelectorAll('#fmts .fmt').length, fmts.size + 1, 'un botón por formato más «Todos los formatos»');
+  const sel = doc.getElementById('lvl'); sel.value = 'Avanzado'; sel.dispatchEvent(new win.Event('change'));
+  assert.equal(doc.querySelectorAll('#catalog .card').length, R.filter(r => r.level === 'Avanzado').length, 'el filtro de nivel funciona');
   assert.ok(doc.querySelectorAll('.lpcard').length >= 1);
   assert.ok(doc.querySelectorAll('.ucard').length >= 10);
   assert.ok(doc.querySelector('form[data-lead="equipo"] [name=consent_contact][required]') || doc.querySelector('#comunidad .gform'), 'formulario propio o de Google');
